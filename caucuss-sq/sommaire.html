@@ -1,0 +1,77 @@
+<html>
+	<head>
+		<title>#NOM_SITE_SPIP</title>
+		<link rel="stylesheet" type="text/css" href="style.css" media="screen" title="defaut" />       
+	</head>
+
+
+
+
+	<body> 
+
+		<!-- ###################### -->
+		<INCLURE (top.php3)>
+		
+		
+		
+		
+		
+		<!-- ###################### -->
+		
+		<INCLURE (menu.php3)>
+
+
+		<!-- ###################### -->
+		
+		<div class="right">
+		
+			<INCLURE (agen_min.php3)>
+			
+
+			<!-- test : afficher articles recents contenants des gallerie d'images -->
+			<h3>derniers albums</h3>
+			<ul>
+			<BOUCLE_recent_album(ARTICLES){type_mot=Album}{par date}{inverse}{0,4}>
+			<li><a href=article.php3?id_article=#ID_ARTICLE>#TITRE</a></li>
+			</BOUCLE_recent_album>
+			</ul>
+			
+			
+			
+			<h3>derniers msg forum</h3>
+			<BOUCLE_last_posts(FORUMS){plat}{par date}{inverse}{0,6}>
+			<strong>#TITRE</strong> [(#DATE|affdate_court)], par <a href=#URL_AUTEUR>#NOM</a> <br/>
+			[(#TEXTE|couper{50})]<br/><a href=#URL_FORUM>répondre</a><br/><br/>
+			</BOUCLE_last_posts>
+
+			
+			<h3>Liens</h3>
+			<ul>
+				<BOUCLE_sites (SITES)>
+				<li><a href=#URL_SITE>#NOM_SITE</a></li>
+				<!-- ajouter syndication? -->
+				</BOUCLE_sites>
+			</ul>
+			
+		</div>
+
+	
+		<!-- ###################### -->
+		<div class="content">
+			<BOUCLE_articles_recents (ARTICLES){par date}{inverse}{0,6}>
+			<div class="article">
+				
+				<h2><a href=#URL_ARTICLE&id_rubrique=#ID_RUBRIQUE>#TITRE</a></h2>
+				<p style="padding-left:5%">#INTRODUCTION
+				</p>
+			</div>
+			</BOUCLE_articles_recents>
+		</div>
+
+
+
+		<!-- ###################### -->
+		<INCLURE (bottom.php3)>
+	</body>
+</html>
+

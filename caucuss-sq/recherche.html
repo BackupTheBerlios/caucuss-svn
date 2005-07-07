@@ -1,0 +1,125 @@
+<html>
+<head>
+<title><:resultats_recherche:></title>
+<link rel="stylesheet" href="style.css" type="text/css">
+
+</head>
+
+<body>
+
+<INCLURE (top.php3)>
+
+<!--[(#FORMULAIRE_RECHERCHE)]-->
+
+<INCLURE(menu.php3)>
+<!--
+<div class="menu">
+llll
+</div>
+-->
+<div class="right">
+	<INCLURE (agen_min.php3)>
+</div>
+
+
+
+
+<div class="content">
+
+<!-- Rubriques trouvees -->
+<B_rubriques>
+<ul>
+<li><:rubriques:></li>
+<BOUCLE_rubriques(RUBRIQUES) {recherche} {par points} {inverse} {0,8}>
+	<li>
+	<a href="#URL_RUBRIQUE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
+	</li>
+</BOUCLE_rubriques>
+</ul>
+</B_rubriques>
+
+
+
+
+<!-- Mots-cles trouves et articles associes-->
+<B_mots>
+<ul title="<:mots_clefs:>">
+<BOUCLE_mots(MOTS) {recherche} {par points} {inverse} {0,5}>
+	<li>
+	<a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
+		
+	<B_articles_mots>
+		<ul>
+		<BOUCLE_articles_mots(ARTICLES) {id_mot} {par hasard} {0,8}>
+			<li>
+			<a href="#URL_ARTICLE" title="[(#DESCRIPTIF|textebrut|entites_html)]">#TITRE</a>
+			</li>
+		</BOUCLE_articles_mots>
+		</ul>
+	</B_articles_mots>
+	</li>
+</BOUCLE_mots>
+</ul>
+</B_mots>
+
+
+
+
+
+<!-- Une : articles trouves -->
+
+<h1><:resultats_recherche:></h1>
+[<h2>(#RECHERCHE)</h2>]
+
+	<!-- Breves trouvees -->
+	<B_breves>
+		<:breves:>
+		<ul>
+		<BOUCLE_breves(BREVES) {recherche} {par points} {inverse} {0,8}>
+			<li><i>[(#DATE|affdate_court)]</i>:<a href="#URL_BREVE">#TITRE</a></li>
+		</BOUCLE_breves>
+		</ul>
+	</B_breves>
+
+	<!-- Sites Web trouves -->
+	<B_sites>
+	
+		<:sites_web:>
+		<ul>
+		<BOUCLE_sites(SITES) {recherche} {par points} {inverse} {0,8}>
+			<li><a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html)]">#NOM_SITE</a></li>
+		</BOUCLE_sites>
+		</u>
+	</B_sites>
+
+	<!-- Messages trouves -->
+	<B_messages>
+		<h2><:messages_forum:></h2>
+		<ul>
+		<BOUCLE_messages(FORUMS) {recherche} {par points} {inverse} {0,8}>
+			<li><a href="#URL_FORUM">#TITRE</a></li>
+		</BOUCLE_messages>
+		</ul>
+	</B_messages>
+
+
+<!-- liste articles -->
+
+<h2>liste artciles</h2>
+
+<BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {0,10}>
+	<h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h2>
+	<br/>[(#DATE|nom_jour)] [(#DATE|affdate)]<br/>
+	<B_auteurs_articles><:par_auteur:> <BOUCLE_auteurs_articles(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_articles>
+	<br/>
+</BOUCLE_articles>
+
+
+</div>
+
+
+<INCLURE (bottom.php3)>
+
+</body>
+</html>
+

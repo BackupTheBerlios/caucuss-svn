@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<BOUCLE_principale(ARTICLES){id_article}>
+
+<!-- album photo : une seule photo par page pas de miniatures -->
+<html lang="fr">
+<head>
+<title>[(#TITRE|textebrut)]</title>
+<meta http-equiv="Content-Type" content="text/html; charset=#CHARSET">
+
+
+<link rel="stylesheet" href="style.css" type="text/css">
+
+
+</head>
+<body>
+
+<!-- calcule le nombre de photos jointes sous forme de document -->
+<B_nb_images>
+<BOUCLE_nb_images(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}>
+</BOUCLE_nb_images>
+    <?php $nb_images = "#TOTAL_BOUCLE"; ?>
+
+<!-- liens de pagination pour passer d'une image à l'autre -->
+
+<INCLURE(top.php3)>
+
+<div class="album-simple">
+       <a href=article.php3?id_article=#ID_ARTICLE>retour à l'article<br/></a>
+       <?php paginationImage(#ID_ARTICLE, $nb_images); ?>
+</div>
+
+<!-- affiche l'image dont le rang est indiqué par le paramètre debut_image -->
+<BOUCLE_photo(DOCUMENTS){id_article}{par titre}{extension==jpg|png|gif}{mode=document}{debut_image,1}>
+    <div class="album-photo">
+    	[<h2>(#TITRE)<h2>]
+    	<img src="#URL_DOCUMENT" width="#LARGEUR" height="#HAUTEUR" border="0" />
+    </div>
+    <dl class="album-photo-legende">
+        [<dd>(#DESCRIPTIF)</dd>]
+    </dl>
+</BOUCLE_photo>
+
+</B_nb_images>
+aucune image
+<//B_nb_images>
+
+</BOUCLE_principale>
+
+</body>
+</html>
+
+<?php 
+function paginationImage($id_article, $nb_images) {
+    // affiche des liens permettant d'afficher les images précédente et suivante
+    if ($nb_images > 1) {
+        $debut_image = $_GET["debut_image"];
+        if ($debut_image > 0) {
+            lienPage($id_article, ($debut_image-1), "image précédente", "prec");
+        }
+	$num = $debut_image +1;
+        echo ' Image '.$num.' / '.$nb_images.' ';
+        if ($debut_image < $nb_images-1) 
+            lienPage($id_article, ($debut_image+1), "image suivante", "suiv");
+    }
+}
+
+function lienPage($id_article, $image, $titre, $texte) {
+    // affiche un lien avec les paramètres en argument
+    $cas=$_GET["type_album"];
+    echo "<a href='album_sel.php3?id_article=$id_article&type_album=$cas";
+    echo "&debut_image=$image' title='" . htmlentities($titre, ENT_QUOTES) . "'>$texte</a>";
+}    
+?>
