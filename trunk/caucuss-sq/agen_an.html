@@ -1,0 +1,109 @@
+<?php
+$mot_cle = array('Tout', '<BOUCLE_LstMotsClefs(MOTS){type=Agenda}{par titre}{"', '"}>#TITRE</BOUCLE_LstMotsClefs>');
+
+if (!isset($date) || $date == '') {$date = date('Y-m-d');}
+ereg("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", $date, $regs);
+$cal_day = mktime(0, 0, 0, $regs[2], $regs[3], $regs[1]);
+$D = date('d', $cal_day);
+$M = date('m', $cal_day);
+$Y = date('Y', $cal_day);
+
+//$mot_cle = array();
+//$mot_cle['Tout'] = 'Tout';
+
+<BOUCLE_LstTypes(GROUPES_MOTS){titre == ^_Agenda}{par titre}>
+	if(strpos(#TITRE,"Thème")>0) {
+		$indice=str_replace("_Agenda_Thème_","",#TITRE);
+		$branche[$indice]=array('<BOUCLE_LstMotsTheme(MOTS){id_groupe}{par titre}{"', '"}>[(#TITRE|texte_script)]</BOUCLE_LstMotsTheme>');
+		}
+	else {
+		$indice=str_replace("_Agenda_","",#TITRE);
+		$mot_cle[$indice]=array('<BOUCLE_LstMotsCle(MOTS){id_groupe}{par titre}{"', '"}>[(#TITRE|texte_script)]</BOUCLE_LstMotsCle>');
+	}
+</BOUCLE_LstTypes>
+
+
+$str_motcle = strlen($str_motcle)>0 ? $str_motcle : 'Tout';
+$date=!isset($date) ? date("Y-m-01") : $date;
+$titrePage = 'Agenda - '.$months[$M].' '.$Y;
+
+
+// Construction liste des événements (1 liste par jour => liste des jours)
+$events = array();
+$mois='';
+<BOUCLE_evts_com(ARTICLES){type_mot == Agenda}{par date_redac}>
+	if ('[(#DATE_REDAC|annee)]' == $Y) {
+		$flag=false;
+		
+		<BOUCLE_motcle(MOTS){id_article}{type == Agenda}>
+			if($str_motcle=='#TITRE' && $str_motcle!='') $flag=true;
+		</BOUCLE_motcle>
+		if ($str_motcle=='Tout' || $flag==true) {
+			if ('[(#DATE_REDAC|nom_mois)]' != $mois ) {
+				if ($mois=='') { $events[]= '<br><h3>[(#DATE_REDAC|nom_mois)] '.$Y.'</h3>'.'<ul>';
+				} else { $events[]= '</ul>'.'<h3>[(#DATE_REDAC|nom_mois)] '.$Y.'</h3>'.'<ul>'; }
+				$mois = '[(#DATE_REDAC|nom_mois)]';
+			}
+			$events[]= '<b> [(#DATE_REDAC|nom_jour)]'.' [(#DATE_REDAC|jour)]</b>'.' : <a href=#URL_ARTICLE >[(#TITRE|texte_script)]</a>'.'<br>';
+		}
+	}
+
+</BOUCLE_evts_com>
+
+//print_r($events);
+
+?>
+
+<html>
+<head>
+<title>AGENDA ANNUEL</title>
+</head>
+<body>
+  	
+<!-- Titre de la rubrique -->
+ <h1>AGENDA ANNUEL</h1>
+
+  <!-- Menu de navigation -->
+  <table cellpadding="5" border="1" class="agenda">
+    <form name="navigation" method="get">
+      <tr> 
+        <th> 
+	<a href="agen_an.php3?date=<?php echo ($Y - 1); ?>-01-01&str_motcle=<?php echo $str_motcle; ?>">prec</a> 
+          <select name="var_nav_year">
+            <?php
+	    for($i = 2000; $i < 2011; $i++) 
+		echo '<option value="'.$i.'"'.($i == $Y ? ' selected="selected" ' : '').'>'.$i.'</option>';
+	    ?>
+          </select> 
+	  
+          <!-- Menu sélection de mot clef -->
+          <select name="var_nav_cle">;
+	        <?php
+		foreach($mot_cle as $key=>$value) 
+			echo '<option value='.$value.($str_motcle==$value?' selected>':'>').$value.'</option>';
+		?>
+	  </select>
+	   
+	   
+	   <input type="button" value="Ok" 
+	   	onClick="document.location.href='agen_an.php3?date=' + window.document.navigation.var_nav_year.value + '-01-01&str_motcle=' + window.document.navigation.var_nav_cle.value ; return false;" 
+		/> 
+	
+	  <a href="agen_an.php3?date=<?php echo ($Y + 1); ?>-01-01&str_motcle=<?php echo $str_motcle ?>&str_theme=<?php echo $str_theme ?>">suiv
+	  </a>
+	  
+        </th>
+      </tr>
+    </form>
+  </table>
+  
+  <!-- liste des événements de l'année -->
+  <?php
+	while (list($key, $val) = each($events)) 
+		{echo $events[$key];}
+	if (count($events)>0) { echo '</ul>'; }
+  ?>
+
+
+</body>
+</html>

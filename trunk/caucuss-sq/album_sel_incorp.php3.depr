@@ -1,0 +1,13 @@
+<?php
+switch ($_GET["type_album"]) {
+  case 'simple' : $fond = "album_simple_incorp"; break;
+  case 'avec_vignettes' : $fond = "album_vignettes_incorp"; break;
+  default : 
+  $_GET["type_album"]='simple';
+  $fond = "album_simple_incorp"; break;
+}
+
+$delais = 12*3600;
+include ("inc-public.php3");
+
+?>
