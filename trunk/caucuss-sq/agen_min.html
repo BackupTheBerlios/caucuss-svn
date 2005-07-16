@@ -22,13 +22,22 @@ $events = array();
 
 <?php  ?>
 <!-- agenda miniature: en tete -->
-	<table cellpadding="5" cellspacing="0" align="center" border="1">
-	<tr> <th colspan="7" class="agendaNav">
+	
+	
+	<div id="menu-calendar" class="menu-left-block">
+	<h3>Calendrier</h3>
+	<table>
+	<tbody>
+	
+	<tr> 
+		<th colspan="7" class="agendaNav">
 		<?php
 			echo '<a href="agenda.php3" title="Vue du mois">'.$months[$M].'</a>&nbsp;';
 			echo '<a href="agen_an.php3" title="Vue de l\'année">'.$Y.'</a>';
 		?>
-	</th> </tr>
+		</th> 
+	</tr>
+	
 	<!-- agenda miniature: affichage jours et evenements -->
 	<tr> 
 	<?php
@@ -76,6 +85,8 @@ $events = array();
 	}
 	?>
 	</tr>
+	
+	</tbody>
 	</table>
-	<br>
+	</div>
 

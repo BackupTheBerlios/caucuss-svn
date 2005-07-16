@@ -6,8 +6,8 @@
 
 function les_fichiers() {
   global $fichiers;
-  $fichiers = array('mes_fonctions.php3', 'style.css');
-  $images = array();
+  $fichiers = array('index.html', 'mes_fonctions.php3', 'style.css', 'taust.css');
+  $images = array('background.jpg','coin-bd.png','coin-bg.png','coin-hd.png','coin-hg.png','taust-enter.png','logo_taust.png','logo_taust_petit.png','logo_auteur.png');
   $couple = array('album_vignettes_incorp', 'album_simple_incorp', 'pied', 'menu', 'agen_min', 'agen_an', 'agenda', 'auteur', 'article',
   		  'breve', 'forum', 'plan', 'recherche', 'rubrique', 'sommaire', 'top', 'bottom', 'mot');
   
@@ -287,13 +287,16 @@ if(file_exists("../agenda.php3"))
 else {
   echo "<a href=\"caucuss_conf.php3?action=squelette_on\">Installer le squelette</a><br>";
 }
+echo "<br><a href=.>espace privée</a><br>";
+echo "<br><a href=caucuss_conf.php3?action=squelette_on>réinstaller le squelette</a><br>";
+
 
 echo "<ul>";
 echo "<li>Les choix proposés ci-dessus dépendent de l'état de la configuration</li>";
 echo "<li>Toute action doit se terminer par 'Exécution complète'</li>";
 echo "<li>Tous les contrôles sont faits avant exécution</li>";
 echo "<li>En cas d'erreur, la procédure est stoppée avec un message explicite</li>";
-echo "<li>Les sauvegardes (.bak) de fichiers vont dans le répertoire caucuss-sq</li>";
+echo "<li>Les sauvegardes (.bak) de fichiers vont dans le répertoire caucuss-sq</li></ul>";
 
 echo "<h3>Etat de la configuration:</h3>";
 
@@ -304,9 +307,6 @@ foreach ($groupes_mots as $titre) {
     pre_desactive_groupe($titre);
   }
 }
-
-echo "<br><a href=.>espace privée</a><br>";
-echo "<br><a href=caucuss_conf.php3?action=squelette_on>réinstaller le squelette</a><br>";
 
 install_fin_html();
 ?>

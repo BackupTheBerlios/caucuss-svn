@@ -13,21 +13,16 @@
 		<INCLURE (top.php3)>
 		
 		
-		<!-- ###################### -->
-		#FORMULAIRE_RECHERCHE
-		
 		<INCLURE (menu.php3){id_rubrique}>
 
+		
+		<BOUCLE_test(RUBRIQUES){id_rubrique}>
+		#LOGO_RUBRIQUE
+		</BOUCLE_test>		
+		
 		<!-- ###################### -->
 		<div class="right">
-			<h3>Liens</h3>
-			<ul>
-				<BOUCLE_sites (SITES)>
-				<li><a href=#URL_SITE>#NOM_SITE</a></li>
-				</BOUCLE_sites>
-			</ul>
-
-
+			
 			<h3>derniers msg forum</h3>
 			
 			<BOUCLE_last_posts(FORUMS){plat}{par date}{inverse}{0,6}>
@@ -39,14 +34,26 @@
 	
 		<!-- ###################### -->
 		<div class="content">
-			<BOUCLE_articles_recents(ARTICLES) {id_rubrique} {par date}>
-			<h1><a href="#URL_ARTICLE&id_rubrique=#ID_RUBRIQUE" [title="(#DESCRIPTION|textebrut|entites_html)"]>#TITRE</a></h1>
+		    <B_articles_recents>
+			<BOUCLE_articles_recents(ARTICLES) {id_rubrique} {par date}{doublons rub_mere}>
+			<h1>[(#LOGO_ARTICLE_RUBRIQUE)]<a href="#URL_ARTICLE&id_rubrique=#ID_RUBRIQUE" [title="(#DESCRIPTION|textebrut|entites_html)"]>#TITRE</a></h1>
 			<p>
 				[(#DATE|nom_jour)] [(#DATE|affdate)]
-				<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_recents>
-				<p>#TEXTE</p>
+				<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}><a href=#URL_AUTEUR>#NOM</a></BOUCLE_auteurs_recents>
+				<div class=article>#TEXTE</div>
 				</p>
-			</BOUCLE_articles_recents>
+			</BOUCLE_articles_recents>			
+			
+			
+			<B_les_derniers>
+			<h3>les derniers articles de ces sous rubriques</h3>
+			<BOUCLE_les_derniers(ARTICLES){branche}{par date}{inverse}{0,3}{doublons rub_mere}>
+			[(#LOGO_ARTICLE_RUBRIQUE)] <a href="#URL_ARTICLE" title="#TITRE"> #TITRE</a><br/>#INTRODUCTION...<br/>
+            </BOUCLE_les_derniers>
+			</B_les_derniers>
+			
+			</B_articles_recents>
+			
 		</div>
 
 

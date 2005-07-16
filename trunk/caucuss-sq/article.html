@@ -12,28 +12,19 @@
 		<!-- ###################### -->
 		<INCLURE (top.php3)>	
 		
-		
-		<!-- ###################### -->
-		#FORMULAIRE_RECHERCHE
-		
 		<INCLURE (menu.php3){id_rubrique}>
 
 		<!-- ###################### -->
 		<div class="right">
-			<h3>Liens</h3>
-			<ul>
-				<BOUCLE_sites (SITES)>
-				<li><a href=#URL_SITE>#NOM_SITE</a></li>
-				</BOUCLE_sites>
-			</ul>
-
-
+		
+			<B_last_posts>
 			<h3>derniers msg forum</h3>
-			
 			<BOUCLE_last_posts(FORUMS){plat}{par date}{inverse}{0,6}>
 			<strong>#TITRE</strong> [(#DATE|affdate_court)], par <a href=#URL_AUTEUR>#NOM</a> <br/>
 			[(#TEXTE|couper{50})]<br/><a href=#URL_FORUM>répondre</a><br/><br/>
 			</BOUCLE_last_posts>
+			</B_last_posts>
+			
 		</div>
 
 	
@@ -69,9 +60,10 @@
 		</BOUCLE_article>
 		
 		
+		<BOUCLE_reagir(ARTICLES){id_article}>
+			<a href=forum.php3?id_article=#ID_ARTICLE>réagir à cet article</a>
+		</BOUCLE_reagir>
 		
-		<h2><:Forum:> de l'article</h2>
-		<BOUCLE_crade(ARTICLES){id_article}><a href=forum.php3?id_article=#ID_ARTICLE>réagir à cet article</a></BOUCLE_crade>
 		<!-- msg du forum de l'article -->
 		
 		<B_forums>

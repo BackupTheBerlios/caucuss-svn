@@ -1,14 +1,79 @@
-<div class="menu">
-	<ul>
-		<BOUCLE_rub (RUBRIQUES){racine}>
-			<li>[(#EXPOSER|<b>)]<a href=#URL_RUBRIQUE>#TITRE</a>[(#EXPOSER|</b>)]</li>
-			<ol>
-				<BOUCLE_ssrub (RUBRIQUES){id_parent}>
-					<li>[(#EXPOSER|<b>)]<a href=#URL_RUBRIQUE>#TITRE</a>[(#EXPOSER|</b>)]</li>
-				</BOUCLE_ssrub>
-			</ol>
-		</BOUCLE_rub>
+<div id="menu-left">
+	
+	<div id="menu-rub" class="menu-left-block">
+	
+		<h3>Rubriques</h3>
+		<ul>
 		
-		<li><a href=ecrire>admin</a></li>
-	</ul>
+			<BOUCLE_rub (RUBRIQUES){racine}>
+				<li>[(#EXPOSER|<b>)]<!--[(#LOGO_RUBRIQUE)]--><a href=#URL_RUBRIQUE>#TITRE</a>[(#EXPOSER|</b>)]
+				<ul>
+					<BOUCLE_ssrub (RUBRIQUES){id_parent}>
+						<li>[(#EXPOSER|<b>)]<!--[(#LOGO_RUBRIQUE)]--><a href=#URL_RUBRIQUE>#TITRE</a>[(#EXPOSER|</b>)]</li>
+					</BOUCLE_ssrub>
+				</ul>
+				</li>
+			</BOUCLE_rub>
+		
+			<!--<li><a href=ecrire>admin</a></li>-->
+		
+	
+		
+		<li><a href="">Taust</a>
+		<ul>
+		<li><a href="">Evênements</a></li>
+		<li><a href="">Albums</a></li>
+		<li><a href="">Vie interne</a></li>
+		</ul>
+		</li>
+		
+		</ul>
+	
+	</div>
+		
+	<div id="menu-search" class="menu-left-block">
+		#FORMULAIRE_RECHERCHE
+	</div>
+	
+	
+	
+	<INCLURE (agen_min.php3)>
+	
+	
+	<!-- les trucs optionnels de test -->
+	
+	<!-- articles recents contenants des galleries d'images -->
+	
+	<div id="menu-rub" class="menu-left-block">
+	<B_recent_album>
+		<h3>derniers albums</h3>
+		<ul>
+		<BOUCLE_recent_album(ARTICLES){type_mot=Album}{par date}{inverse}{0,4}>
+			<li><a href=article.php3?id_article=#ID_ARTICLE>#TITRE</a></li>
+		</BOUCLE_recent_album>
+		</ul>
+	</B_recent_album>
+	
+	<B_last_posts>
+		<h3>derniers msg forum</h3>
+		<BOUCLE_last_posts(FORUMS){plat}{par date}{inverse}{0,6}>
+			<p>
+			<strong>#TITRE</strong> [(#DATE|affdate_court)], par <a href=#URL_AUTEUR>#NOM</a> <br/>
+			[(#TEXTE|couper{50})]<br/><a href=#URL_FORUM>répondre</a><br/>
+			</p>
+		</BOUCLE_last_posts>
+	</B_last_posts>
+	</div>
+		
+	
+	<B_sites>
+		<h3>Sur le web</h3>
+		<ul>
+			<BOUCLE_sites (SITES)>
+				<li><a href=#URL_SITE>#NOM_SITE</a></li>
+			</BOUCLE_sites>
+		</ul>
+	</B_sites>
+	
+	
 </div>

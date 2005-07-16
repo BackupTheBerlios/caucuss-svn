@@ -12,11 +12,7 @@
 <!--[(#FORMULAIRE_RECHERCHE)]-->
 
 <INCLURE(menu.php3)>
-<!--
-<div class="menu">
-llll
-</div>
--->
+
 <div class="right">
 	<INCLURE (agen_min.php3)>
 </div>
@@ -83,7 +79,6 @@ llll
 
 	<!-- Sites Web trouves -->
 	<B_sites>
-	
 		<:sites_web:>
 		<ul>
 		<BOUCLE_sites(SITES) {recherche} {par points} {inverse} {0,8}>
@@ -102,20 +97,27 @@ llll
 		</ul>
 	</B_messages>
 
-
 <!-- liste articles -->
 
-<h2>liste artciles</h2>
-
+<B_articles>
+<ul>
 <BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {0,10}>
-	<h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h2>
-	<br/>[(#DATE|nom_jour)] [(#DATE|affdate)]<br/>
-	<B_auteurs_articles><:par_auteur:> <BOUCLE_auteurs_articles(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs_articles>
-	<br/>
+	<li><h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h2></li>
+	[(#DATE|nom_jour)] [(#DATE|affdate)]
+	
+		<B_auteurs_articles>
+		par  
+		<BOUCLE_auteurs_articles(AUTEURS) {id_article} {", "}>
+		<a href=#URL_AUTEUR>#NOM</a>
+		</BOUCLE_auteurs_articles>
+	
 </BOUCLE_articles>
-
+</ul>
+</B_articles>
 
 </div>
+
+
 
 
 <INCLURE (bottom.php3)>
