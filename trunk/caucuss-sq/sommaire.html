@@ -8,24 +8,19 @@
 
 
 <body>
-	<img id="logo" src="IMG/logo_taust.png" alt="" />
+	<a href=sommaire.php3><img id="logo" src="IMG/logo_taust.png" alt="" /></a>
 	<h1>Le <span>Taust</span>, chauds et beurrés depuis 1991</h1>
 	
 	<div id="main">
-
-		<!-- ###################### -->
 		<INCLURE (top.php3)>
 		<br class="separator"/>
-		<!-- ###################### -->
-		
 		<INCLURE (menu.php3)>
-	
-		<!-- ###################### -->
-		<div id="content">
+			<div id="content">
 		
 			<B_articles_recents>
 			<BOUCLE_articles_recents (ARTICLES){par date}{inverse}{0,6}>
 				<div class="billet">
+					#LOGO_ARTICLE_RUBRIQUE
 					<h3><a href=#URL_ARTICLE&id_rubrique=#ID_RUBRIQUE>#TITRE</a></h3>
 					
 					<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>

@@ -4,26 +4,34 @@
 	
 		<h3>Rubriques</h3>
 		<ul>
-		
-			<BOUCLE_rub (RUBRIQUES){racine}>
-				<li>[(#EXPOSER|<b>)]<!--[(#LOGO_RUBRIQUE)]--><a href=#URL_RUBRIQUE>#TITRE</a>[(#EXPOSER|</b>)]
+
+			<BOUCLE_rub (RUBRIQUES){tout}{racine}>
+				<li>[(#EXPOSER|<b>)] <!--[(#LOGO_RUBRIQUE)]--> <a href=#URL_RUBRIQUE>#TITRE</a>[(#EXPOSER|</b>)]
 				<ul>
-					<BOUCLE_ssrub (RUBRIQUES){id_parent}>
-						<li>[(#EXPOSER|<b>)]<!--[(#LOGO_RUBRIQUE)]--><a href=#URL_RUBRIQUE>#TITRE</a>[(#EXPOSER|</b>)]</li>
+					<BOUCLE_ssrub (RUBRIQUES){tout}{id_parent}>
+						<li>[(#EXPOSER|<b>)] <!--[(#LOGO_RUBRIQUE)]--> <a href=#URL_RUBRIQUE>#TITRE</a>[(#EXPOSER|</b>)]</li>
+						
+						<B_recursive>
+						<li><ul>
+						<BOUCLE_recursive(BOUCLE_ssrub)>
+						</BOUCLE_recursive>
+						</ul></li>
+						</B_recursive>
+						
 					</BOUCLE_ssrub>
 				</ul>
 				</li>
 			</BOUCLE_rub>
-		
+					
 			<!--<li><a href=ecrire>admin</a></li>-->
 		
 	
 		
-		<li><a href="">Taust</a>
+		<li><a href="sommaire.php3">Taust</a>
 		<ul>
-		<li><a href="">Evênements</a></li>
-		<li><a href="">Albums</a></li>
-		<li><a href="">Vie interne</a></li>
+		<li><a href="events.php3">Evénements</a></li>
+		<li><a href="albums.php3">Albums</a></li>
+		<!-- <li><a href="">Vie interne</a></li> -->
 		</ul>
 		</li>
 		
@@ -32,7 +40,7 @@
 	</div>
 		
 	<div id="menu-search" class="menu-left-block">
-		#FORMULAIRE_RECHERCHE
+		recherche  :#FORMULAIRE_RECHERCHE
 	</div>
 	
 	

@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title>#NOM_SITE_SPIP</title>
-		<link rel="stylesheet" type="text/css" href="style.css" media="screen" title="defaut" />       
+		<link rel="stylesheet" type="text/css" href="taust.css" media="screen" title="defaut" />       
 	</head>
 
 
@@ -9,105 +9,128 @@
 
 	<body> 
 
-		<!-- ###################### -->
-		<INCLURE (top.php3)>	
-		
-		<INCLURE (menu.php3){id_rubrique}>
 
-		<!-- ###################### -->
-		<div class="right">
-		
-			<B_last_posts>
-			<h3>derniers msg forum</h3>
-			<BOUCLE_last_posts(FORUMS){plat}{par date}{inverse}{0,6}>
-			<strong>#TITRE</strong> [(#DATE|affdate_court)], par <a href=#URL_AUTEUR>#NOM</a> <br/>
-			[(#TEXTE|couper{50})]<br/><a href=#URL_FORUM>répondre</a><br/><br/>
-			</BOUCLE_last_posts>
-			</B_last_posts>
-			
-		</div>
-
+	<a href=sommaire.php3><img id="logo" src="IMG/logo_taust.png" alt="" /></a>
+	<h1>Le <span>Taust</span>, chauds et beurrés depuis 1991</h1>
 	
-		<!-- ###################### -->
-		<div class="content">
-		<!-- l'article demandé -->
-		<BOUCLE_article (ARTICLES) {id_article}>
-			<div class="article">
-				#TITRE
-				<span style="color:green;">#TEXTE</span>
-			</div>
+	<div id="main">
+		<INCLURE (top.php3)>
+		<br class="separator"/>
+		<INCLURE (menu.php3)>
 			
-			<!-- incorporation de l'album (un peu crade) (ajouter balise si vide) -->
-			<BOUCLE_mot_album_simple (MOTS){id_article}{type=Album}{titre=simple}>
-				<INCLURE (album_simple_incorp.php3){id_rubrique}{id_article}{debut_image}>
-			</BOUCLE_mot_album_simple>
-			<BOUCLE_mot_album_vign (MOTS){id_article}{type=Album}{titre=avec_vignettes}>
-				<INCLURE (album_vignettes_incorp.php3){id_rubrique}{id_article}{debut_image}{debut_vignette}>	
-			</BOUCLE_mot_album_vign>
+		<div id="content">
+			<!-- l'article demandé -->
+			<BOUCLE_article (ARTICLES) {id_article}>
+				<div class="billet">
+					#LOGO_ARTICLE_RUBRIQUE
+					<h3>#TITRE<h3>
+					<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
+							<span><a href=#URL_AUTEUR>[(#LOGO_AUTEUR)] #NOM</a></span>
+						</BOUCLE_auteurs_recents>
+					<span class="billet-date">[(#DATE|affdate_court)]</span>
+					<p>#TEXTE</p>
+				</div>
+			
+				<!-- incorporation de l'Album (un peu crade car 2 boucles presque identiques) -->
+				<B_mot_album_simple>
+					<div class=album>
+					<BOUCLE_mot_album_simple (MOTS){id_article}{type=Album}{titre=simple}>
+						<INCLURE (album_simple_incorp.php3){id_rubrique}{id_article}{debut_image}>
+					</BOUCLE_mot_album_simple>
+					</div>
+				</B_mot_album_simple>
+				
+				<B_mot_album>
+					<div class=album>
+					<BOUCLE_mot_album_vign (MOTS){id_article}{type=Album}{titre=avec_vignettes}>
+						<INCLURE (album_vignettes_incorp.php3){id_rubrique}{id_article}{debut_image}{debut_vignette}>	
+					</BOUCLE_mot_album_vign>
+					</div>
+				</B_mot_album>
 			
 			
 			
-			<!-- Articles dans la meme rubrique -->
-			<B_articles_rubrique>
-			<strong>Articles dans la m&ecirc;me rubrique...</strong>
-			<ul>
-			<BOUCLE_articles_rubrique(ARTICLES){id_rubrique}{exclus}{0,5}>
-			<li><a href=#URL_ARTICLE&id_rubrique=#ID_RUBRIQUE>(#TITRE)</a></li>
-			</BOUCLE_articles_rubrique>
-			</ul>
-			</B_articles_rubrique>
+				<!-- Articles dans la meme rubrique -->
+				<B_articles_meme_rubrique>
+					<strong>Articles dans la même rubrique...</strong>
+					<ul>
+					<BOUCLE_articles_meme_rubrique(ARTICLES){id_rubrique}{exclus}{0,5}>
+					<li><a href=#URL_ARTICLE>[(#TITRE)]</a> | [(#DATE|affdate_court)]</li>
+					</BOUCLE_articles_meme_rubrique>
+				</ul>
+			</B_articles_meme_rubrique>
 			
 		</BOUCLE_article>
 		
 		
 		<BOUCLE_reagir(ARTICLES){id_article}>
 			<a href=forum.php3?id_article=#ID_ARTICLE>réagir à cet article</a>
+			<br/>
 		</BOUCLE_reagir>
+
 		
 		<!-- msg du forum de l'article -->
-		
-		<B_forums>
-			<h1><:Forum:> de l'article</h1>
+		<B_forum>
+			<div class=forum>
+				<h1><:Forum:> de l'article</h1>
 			
-			<ul>
-				<BOUCLE_forums(FORUMS){id_article}{par date}{inverse}>
+				<ul>
+					<BOUCLE_forum(FORUMS){id_article}{par date}{inverse}>
 				
-				<li>
-				#TEXTE
-				[<a href="(#URL_SITE)">#NOM_SITE</a>]
-				[<a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a>]
-			
-					<B_forums_fils>
-					<ul>
-						<BOUCLE_forums_fils(FORUMS){id_parent}{par date}>
+					
 						<li>
-						<a name="forum#ID_FORUM"></a>#TITRE
-						[(#DATE|affdate)][, <:par_auteur:> <A HREF="mailto:#EMAIL">(#NOM)</A>]
-						#TEXTE
-						[<a href="(#URL_SITE)" >#NOM_SITE</a>]
-						[<a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a>]
-						
-							<BOUCLE_Forums_Boucle(boucle_forums_fils)><!-- appel récursif --></BOUCLE_Forums_Boucle>
+							<h3>#TITRE<h3>
+							[(#DATE|affdate)][, <:par_auteur:> <A HREF="mailto:#EMAIL">(#NOM)</A>]
+							<p>#TEXTE</p>
+							[<a href="(#URL_SITE)">#NOM_SITE</a>]
+							[<a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a>]
 						</li>
-						</BOUCLE_forums_fils>
-					</ul>
-					</B_forums_fils>
-				</li>
-			
-				</BOUCLE_forums>
-			</ul>
-		</B_forums>
+						
+						<B_forum_fils>
+							
+							<ul>
+								<BOUCLE_forum_fils(FORUMS){id_parent}{par date}>
+									<li>
+										<h3>#TITRE</h3>
+										[(#DATE|affdate)][, <:par_auteur:> <A HREF="mailto:#EMAIL">(#NOM)</A>]
+										<p>#TEXTE</p>
+										[<a href="(#URL_SITE)" >#NOM_SITE</a>]
+										[<a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a>]
+									</li>
+									
+									<B_Forum_Boucle>
+									<ul>
+									<BOUCLE_Forum_Boucle(boucle_forum_fils)>
+										<!-- appel récursif -->
+									</BOUCLE_Forum_Boucle>
+									</ul>
+									</B_Forum_Boucle>
+										
+								</BOUCLE_forum_fils>
+							</ul>
+							
+						</B_forum_fils>
+					
+					</BOUCLE_forum>
+				</ul>
+			</div>
+		</B_forum>
 			
 			
 			
 			
 		</div>
+		
+		<div id="bottombar">
+			<div id="search">
+			</div>
+		</div>
 
+		</div>
 
-
-
-		<!-- ###################### -->
-		<INCLURE (pied.php3)>
+		<br class="separator"/>
+		<INCLURE (bottom.php3)>
+		
 	</body>
 </html>
 

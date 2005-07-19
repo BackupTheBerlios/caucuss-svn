@@ -8,7 +8,7 @@ function les_fichiers() {
   global $fichiers;
   $fichiers = array('index.html', 'mes_fonctions.php3', 'style.css', 'taust.css');
   $images = array('background.jpg','coin-bd.png','coin-bg.png','coin-hd.png','coin-hg.png','taust-enter.png','logo_taust.png','logo_taust_petit.png','logo_auteur.png');
-  $couple = array('album_vignettes_incorp', 'album_simple_incorp', 'pied', 'menu', 'agen_min', 'agen_an', 'agenda', 'auteur', 'article',
+  $couple = array('albums', 'events', 'album_vignettes_incorp', 'album_simple_incorp', 'pied', 'menu', 'agen_min', 'agen_an', 'agenda', 'auteur', 'article',
   		  'breve', 'forum', 'plan', 'recherche', 'rubrique', 'sommaire', 'top', 'bottom', 'mot');
   
   foreach ($couple as $fichier) {$fichiers[]=$fichier.'.html'; $fichiers[]=$fichier.'.php3';}
