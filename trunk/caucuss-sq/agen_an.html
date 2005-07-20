@@ -54,13 +54,24 @@ $mois='';
 
 ?>
 
+
 <html>
-<head>
-<title>AGENDA ANNUEL</title>
-</head>
+	<head>
+		<title>#NOM_SITE_SPIP</title>
+		<link rel="stylesheet" type="text/css" href="taust.css" media="screen" title="defaut" />       
+	</head>
+
 <body>
+	<a href=sommaire.php3><img id="logo" src="IMG/logo_taust.png" alt="" /></a>
+	<h1>Le <span>Taust</span>, chauds et beurrés depuis 1991</h1>
+	
+	<div id="main">
+		<INCLURE (top.php3)>
+		<br class="separator"/>
+		<INCLURE (menu.php3)>
+			<div id="content">
   	
-<!-- Titre de la rubrique -->
+
  <h1>AGENDA ANNUEL</h1>
 
   <!-- Menu de navigation -->
@@ -103,6 +114,23 @@ $mois='';
 		{echo $events[$key];}
 	if (count($events)>0) { echo '</ul>'; }
   ?>
+  
+  </div>
+  
+  
+  		<!-- ###################### -->
+		
+	<div id="bottombar">
+		<div id="search">
+			
+		</div>
+	</div>
+
+	</div>
+
+	<br class="separator"/>
+	<INCLURE (bottom.php3)>
+
 
 
 </body>
