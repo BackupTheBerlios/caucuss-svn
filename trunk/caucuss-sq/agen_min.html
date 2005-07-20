@@ -5,6 +5,7 @@ $_days = array('D', 'L', 'M', 'M', 'J', 'V', 'S');
 $_M = intval(date('m', time()));
 $_Y = intval(date('Y', time()));
 $_events = array();
+$_dates=array();//liste des dates qui ont un evenement.
 ?>
 
 
@@ -21,11 +22,19 @@ $_events = array();
 ?>
 
 <?php  ?>
-<!-- agenda miniature: en tete -->
-	
-	
+
+
+	<script type="text/javascript" language="JavaScript">
+		function showDiv(tid) {document.getElementById(tid).style.display = "";}
+		function hideDiv(tid) {document.getElementById(tid).style.display = "none";}
+	</script>
+
+	<!-- agenda miniature: en tete -->	
 	<div id="menu-calendar" class="menu-left-block">
 	<h3>Calendrier</h3>
+	
+	
+	
 	<table>
 	<tbody>
 	
@@ -66,16 +75,12 @@ $_events = array();
 	}
 	$_TempD = 1;
 	$_Time = mktime(0, 0, 0, $_M, 1, $_Y);	
-		
+	
+
 	while((date('m', $_Time) == $_M) || (date('w', $_Time) != 1)) {
 		if(date('w', $_Time) == 1) { echo '</tr><tr>'; }
 		echo '<td width="14%" align=center';
 		
-		//modif crade pour differencier les jours de la semaine
-		//if(date(W) == date(W,$_Time))
-		//	echo 'class=agendaThisWeek >';
-		//else
-		//echo ' class="agenda'.(date('m', $_Time) != $_M ? 'Not' : '').'This'.(date('Ymd', $_Time) == date('Ymd') ? 'Day' : 'Month'). "> ';
 		echo ' class=agenda';
 		if(date('m', $_Time) == $_M)//mois?
 		{
@@ -93,18 +98,34 @@ $_events = array();
 			echo (date(W) == date(W,$_Time)) ? 'Week' : '';
 		}
 		
-		echo ' >';
+		//echo ' onmouseover="javascript:showDiv(\'encart\');" ';
+		//echo ' onmouseout="javascript:hideDiv(\'encart\');" ';
+
+		//echo ' >';
 		
 		
 		$_date=date('Ymd', $_Time);
-		if (isset($_events[$_date])) {
-				if (count($_events[$_date]) == 1) {
-				  echo '<a href='.$_events[$_date][0]['link'].' title="'.$_events[$_date][0]['title'].'">';
-				} else {
-				  echo '<a href="agenda.php3?" title="'.count($_events[$_date]).' &eacute;v&eacute;nements">';
-				}
-				echo date('j', $_Time).'</a>';
-		} else {echo date('j', $_Time);}
+		
+		if (isset($_events[$_date]))
+		{
+			$_dates[]=$_date;
+			echo ' onmouseover="javascript:showDiv(\'encart'.$_date.'\');" ';
+			echo ' onmouseout="javascript:hideDiv(\'encart'.$_date.'\');" ';
+			echo ' >';
+			
+			
+			
+			if (count($_events[$_date]) == 1) {
+			  echo '<a href='.$_events[$_date][0]['link'].' title="'.$_events[$_date][0]['title'].'">';
+			} else {
+			  echo '<a href="agenda.php3?" title="'.count($_events[$_date]).' &eacute;v&eacute;nements">';
+			}
+			echo date('j', $_Time).'</a>';
+		} 
+		else 
+		{
+			echo ' >'.date('j', $_Time);
+		}
 		echo '</td>';
 		$_TempD++;
 		$_Time = mktime(0, 0, 0, $_M, $_TempD, $_Y);
@@ -114,5 +135,23 @@ $_events = array();
 	
 	</tbody>
 	</table>
+	
 	</div>
-
+	
+	<?php
+	
+	$style='display:none;background-color:#FFFFCC;position:absolute;';
+	
+		foreach($_dates as $v) 
+		{
+			echo '<div id=encart'.$v.' style="'.$style.'">';
+			
+			echo '<ul>';
+			foreach ($_events[$v] as $ev)
+				{echo '<li>'.$ev['title'].'</li>';}
+			echo '</ul>';
+			echo '</div>';
+		}
+	
+	?>
+	
