@@ -1,26 +1,24 @@
 <html>
-<head>
-<title><:resultats_recherche:></title>
-<link rel="stylesheet" href="style.css" type="text/css">
+	<head>
+		<title>#NOM_SITE_SPIP</title>
+		<link rel="stylesheet" type="text/css" href="taust.css" media="screen" title="defaut" />       
+	</head>
 
-</head>
+
+
 
 <body>
-
-<INCLURE (top.php3)>
-
-<!--[(#FORMULAIRE_RECHERCHE)]-->
-
-<INCLURE(menu.php3)>
-
-<div class="right">
-	<INCLURE (agen_min.php3)>
-</div>
+	<a href=sommaire.php3><img id="logo" src="IMG/logo_taust.png" alt="" /></a>
+	<h1>Le <span>Taust</span>, chauds et beurrés depuis 1991</h1>
+	
+	<div id="main">
+		<INCLURE (top.php3)>
+		<br class="separator"/>
+		<INCLURE (menu.php3)>
 
 
 
-
-<div class="content">
+<div id="content">
 
 <!-- Rubriques trouvees -->
 <B_rubriques>
@@ -120,8 +118,24 @@
 
 
 
-<INCLURE (bottom.php3)>
 
+
+
+
+	
+
+		<!-- ###################### -->
+		
+	<div id="bottombar">
+		<div id="search">
+			
+		</div>
+	</div>
+
+	</div>
+
+	<br class="separator"/>
+	<INCLURE (bottom.php3)>
+		
 </body>
 </html>
-

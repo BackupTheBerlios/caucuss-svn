@@ -1,7 +1,7 @@
 <?php
 
-$fond = "pied";
-$delais = 3600*24;
+$fond = "albums";
+$delais = 24*3600;
 
 include ("inc-public.php3");
 

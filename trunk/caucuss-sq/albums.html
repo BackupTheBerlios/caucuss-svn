@@ -1,0 +1,56 @@
+<html>
+	<head>
+		<title>#NOM_SITE_SPIP</title>
+		<link rel="stylesheet" type="text/css" href="taust.css" media="screen" title="defaut" />       
+	</head>
+
+
+
+
+<body>
+	<a href=sommaire.php3><img id="logo" src="IMG/logo_taust.png" alt="" /></a>
+	<h1>Le <span>Taust</span>, chauds et beurrés depuis 1991</h1>
+	
+	<div id="main">
+		<INCLURE (top.php3)>
+		<br class="separator"/>
+		<INCLURE (menu.php3)>
+			<div id="content">
+		
+			<B_articles_recents>
+			
+			<BOUCLE_articles_recents (ARTICLES){type_mot == Album}{par date}{inverse}{0,8}>
+				<div class="billet">
+					[<img src=IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)></img>]
+					<h3><a href=#URL_ARTICLE&id_rubrique=#ID_RUBRIQUE>#TITRE</a></h3>
+					
+					<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
+						<span><a href=#URL_AUTEUR>[(#LOGO_AUTEUR)] #NOM</a></span>
+					</BOUCLE_auteurs_recents>
+					|<span class="billet-date">[(#DATE|affdate_court)]</span>
+					<p>#INTRODUCTION</p>	
+				</div>
+			</BOUCLE_articles_recents>
+			</B_articles_recents>
+			
+		</div>
+
+
+	
+
+		<!-- ###################### -->
+		
+	<div id="bottombar">
+		<div id="search">
+			
+		</div>
+	</div>
+
+	</div>
+
+	<br class="separator"/>
+	<INCLURE (bottom.php3)>
+		
+</body>
+</html>
+
