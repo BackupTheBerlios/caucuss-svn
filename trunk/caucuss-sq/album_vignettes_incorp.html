@@ -45,11 +45,12 @@
 <!-- affichage de la photo  -->
 <div id="album-photo">
     <BOUCLE_photo(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}{debut_image,1}>
-    [<h1>(#TITRE)</h1>]
+    
      <img src=#URL_DOCUMENT /> 
         <!-- affichage de la légende (titre et descriptif) de la photo -->
-        <dl class="album-photo-titre">
-            [<dd>(#DESCRIPTIF)</dd>]
+		[<h1>(#TITRE)</h1>]
+        <dl class="album-photo-legende">
+            <p>[<dd>(#DESCRIPTIF)</dd>]</p>
         </dl>
     </BOUCLE_photo>
 </div>

@@ -12,12 +12,13 @@
 <!-- affiche l'image dont le rang est indiqué par le paramètre debut_image -->
 <BOUCLE_photo(DOCUMENTS){id_article}{par titre}{extension==jpg|png|gif}{mode=document}{debut_image,1}>
     <!--<div class="album-photo">-->
-    	[<h2>(#TITRE)<h2>]
+    	
     	<img src="#URL_DOCUMENT" width="#LARGEUR" height="#HAUTEUR" border="0" />
-    <!--</div>-->o
-    <dl class="album-photo-legende">
-        [<dd>(#DESCRIPTIF)</dd>]
-    </dl>
+    <!--</div>-->
+		[<h2>(#TITRE)<h2>]
+        <dl class="album-photo-legende">
+            <p>[<dd>(#DESCRIPTIF)</dd>]</p>
+	    </dl>
 </BOUCLE_photo>
 
 </B_nb_images>
