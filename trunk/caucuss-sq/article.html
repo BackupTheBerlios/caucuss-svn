@@ -25,7 +25,7 @@
 					#LOGO_ARTICLE_RUBRIQUE
 					<h3>#TITRE<h3>
 					<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
-							<span><a href=#URL_AUTEUR>[(#LOGO_AUTEUR)] #NOM</a></span>
+							<span><a href=#URL_AUTEUR>[(#LOGO_AUTEUR|left)] #NOM</a></span>
 						</BOUCLE_auteurs_recents>
 					<span class="billet-date">[(#DATE|affdate_court)]</span>
 					<p>#TEXTE</p>
@@ -79,7 +79,7 @@
 				
 					
 						<li>
-							<h3>#TITRE<h3>
+							<h3 name=#ID_FORUM>#TITRE</h3>
 							[(#DATE|affdate)][, <:par_auteur:> <A HREF="mailto:#EMAIL">(#NOM)</A>]
 							<p>#TEXTE</p>
 							[<a href="(#URL_SITE)">#NOM_SITE</a>]
@@ -92,7 +92,7 @@
 								<BOUCLE_forum_fils(FORUMS){id_parent}{par date}>
 									<li>
 										<h3>#TITRE</h3>
-										[(#DATE|affdate)][, <:par_auteur:> <A HREF="mailto:#EMAIL">(#NOM)</A>]
+										[(#DATE|nom_jour)] [(#DATE|affdate)][, <:par_auteur:> <A HREF="mailto:#EMAIL">(#NOM)</A>]
 										<p>#TEXTE</p>
 										[<a href="(#URL_SITE)" >#NOM_SITE</a>]
 										[<a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a>]

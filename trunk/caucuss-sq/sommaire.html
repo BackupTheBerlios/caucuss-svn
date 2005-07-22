@@ -27,9 +27,9 @@
 					<h3><a href=#URL_ARTICLE&id_rubrique=#ID_RUBRIQUE>#TITRE</a></h3>
 					
 					<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
-						<span><a href=#URL_AUTEUR>[(#LOGO_AUTEUR)] #NOM</a></span>
+						<span><a href=#URL_AUTEUR>[(#LOGO_AUTEUR|left)] #NOM</a></span>
 					</BOUCLE_auteurs_recents>
-					|<span class="billet-date">[(#DATE|affdate_court)]</span>
+					<span class="billet-date">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
 					<p>#INTRODUCTION</p>	
 				</div>
 			</BOUCLE_articles_recents>

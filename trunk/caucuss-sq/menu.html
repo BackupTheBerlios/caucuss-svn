@@ -2,7 +2,8 @@
 	
 	<div id="menu-rub" class="menu-left-block">
 	
-		<h3>Rubriques</h3>
+		<h3><a href=plan.php3 style="color:white;text-decoration:none">
+		Rubriques</a></h3>
 		<ul>
 
 			<BOUCLE_rub (RUBRIQUES){tout}{racine}>
@@ -67,8 +68,8 @@
 		<h3>derniers msg forum</h3>
 		<BOUCLE_last_posts(FORUMS){plat}{par date}{inverse}{0,6}>
 			<p>
-			<strong>#TITRE</strong> [(#DATE|affdate_court)], par <a href=#URL_AUTEUR>#NOM</a> <br/>
-			[(#TEXTE|couper{50})]<br/><a href=#URL_FORUM>répondre</a><br/>
+			<strong>#TITRE</strong> [(#DATE|affdate_court)][, par <a href=#URL_AUTEUR>(#NOM)</a>]<br/>
+			[(#TEXTE|couper{50})]<br/><a href=#URL_FORUM>Lire</a> [<a HREF="forum.php3?(#PARAMETRES_FORUM)">Répondre</a>]<br/>
 			</p>
 		</BOUCLE_last_posts>
 	</B_last_posts>
