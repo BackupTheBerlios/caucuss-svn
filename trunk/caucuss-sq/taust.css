@@ -386,8 +386,13 @@ font-variant:small-caps;
 }
 
 
+.description li{
+padding:10 10 10 10px;
+}
 
-
+.description p{
+font-style: italic;
+}
 
 #encart_{
 display:none;

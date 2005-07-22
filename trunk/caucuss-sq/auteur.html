@@ -33,7 +33,7 @@
 
 
 
-<BOUCLE_articles(ARTICLES) {id_auteur}{par date}{inverse}{debut_page,15}>
+<BOUCLE_articles(ARTICLES) {id_auteur}{par date}{inverse}{debut_page,10}>
 	<h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h2>
 	<div class="detail">
 	[(#DATE|nom_jour)] [(#DATE|affdate)]
@@ -45,7 +45,7 @@
 <!-- Pagination -->
 <BOUCLE_pagination(ARTICLES){id_auteur}{par date}{inverse}>
 </BOUCLE_pagination>
-[<div class="page">Pages: (#TOTAL_BOUCLE|pagination{debut_page,15}) </div>]
+[<div class="page">Pages: (#TOTAL_BOUCLE|pagination{debut_page,10}) </div>]
 </B_pagination>
 
 

@@ -17,9 +17,20 @@
 		<INCLURE (menu.php3)>
 			<div id="content">
 		
+			<BOUCLE_rub (RUBRIQUES){id_rubrique}>
+			<h1>#TITRE</h1>
+			<p>#DESCRIPTIF</p>
+			<p>#TEXTE</p>
+			<br/>
+			
+			
+			</BOUCLE_rub>
+			
+			
+			
 			<B_articles_recents>
 			
-			<BOUCLE_articles_recents (ARTICLES){id_rubrique}{par date}{inverse}{0,8}>
+			<BOUCLE_articles_recents (ARTICLES){id_rubrique}{par date}{inverse}{debut_page,10}>
 				<div class="billet">
 					[<img src=IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)></img>]
 					<h3><a href=#URL_ARTICLE&id_rubrique=#ID_RUBRIQUE>#TITRE</a></h3>
@@ -32,6 +43,16 @@
 				</div>
 			</BOUCLE_articles_recents>
 			</B_articles_recents>
+			
+			
+			
+			
+			<!-- Pagination -->
+			<BOUCLE_pagination(ARTICLES){id_rubrique}{par date}{inverse}>
+			</BOUCLE_pagination>
+			[<div class="page">Pages: (#TOTAL_BOUCLE|pagination{debut_page,10}) </div>]
+			</B_pagination>
+			
 			
 		</div>
 
