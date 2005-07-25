@@ -24,13 +24,14 @@
 			<BOUCLE_articles_recents (ARTICLES){par date}{inverse}{debut_page,10}>
 				<div class="billet">
 					#LOGO_ARTICLE_RUBRIQUE
-					<h3><a href=#URL_ARTICLE&id_rubrique=#ID_RUBRIQUE>#TITRE</a></h3>
+					<h3><a href=#URL_ARTICLE>#TITRE</a></h3>
 					
 					<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
 						<span><a href=#URL_AUTEUR>[(#LOGO_AUTEUR|left)] #NOM</a></span>
 					</BOUCLE_auteurs_recents>
 					<span class="billet-date">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
-					<p>#INTRODUCTION</p>	
+					[<p>(#INTRODUCTION)</p>]
+					<a href=#URL_ARTICLE>lire la suite</a>
 				</div>
 			</BOUCLE_articles_recents>
 			</B_articles_recents>
