@@ -8,8 +8,7 @@ function les_fichiers() {
   global $fichiers;
   $fichiers = array('index.html', 'mes_fonctions.php3', 'style.css', 'taust.css');
   $images = array('background.jpg','coin-bd.png','coin-bg.png','coin-hd.png','coin-hg.png','taust-enter.png','logo_taust.png','logo_taust_petit.png','logo_auteur.png');
-  $couple = array('albums', 'events', 'album_vignettes_incorp', 'album_simple_incorp', 'pied', 'menu', 'agen_min', 'agen_an', 'agenda', 'auteur', 'article',
-  		  'breve', 'forum', 'plan', 'recherche', 'rubrique', 'sommaire', 'top', 'bottom', 'mot');
+  $couple = array('sites', 'albums', 'events', 'album_vignettes_incorp', 'album_simple_incorp', 'pied', 'menu', 'agen_min', 'agen_an', 'agenda', 'auteur', 'article', 'breve', 'forum', 'plan', 'recherche', 'rubrique', 'sommaire', 'top', 'bottom', 'mot');
   
   foreach ($couple as $fichier) {$fichiers[]=$fichier.'.html'; $fichiers[]=$fichier.'.php3';}
   foreach ($images as $image) $fichiers[]='IMG/'.$image;
@@ -224,11 +223,12 @@ function squelette_on() {spip_query("REPLACE spip_meta (nom, valeur) VALUES ('co
   if (!pre_install_fichiers()) return;
   if (!install_fichiers()) return;
   
-  active_groupe('Agenda', array('Clowns','Impros','Comédie Musicale'), 'non');
+  active_groupe('Agenda', array('Clowns','Impros','Comédie_Musicale'), 'non');
   active_groupe('Album', array('simple','avec_vignettes'), 'oui');
   
   
   active_antidatage();
+  active_preview();
   
   echo "<h1>Exécution complète</h1>";
 }
@@ -247,6 +247,10 @@ spip_query("REPLACE spip_meta (nom, valeur) VALUES ('articles_redac', 'oui')");
 echo "<h2>ajout des date anterieures</h2><br>";
 }
 
+function active_preview() {
+spip_query("REPLACE spip_meta (nom, valeur) VALUES ('creer_preview', 'oui')");
+echo "<h2>activation des miniatures</h2><br>";
+}
 
 //
 // Main
@@ -287,6 +291,7 @@ if(file_exists("../agenda.php3"))
 else {
   echo "<a href=\"caucuss_conf.php3?action=squelette_on\">Installer le squelette</a><br>";
 }
+
 echo "<br><a href=.>espace privée</a><br>";
 echo "<br><a href=caucuss_conf.php3?action=squelette_on>réinstaller le squelette</a><br>";
 
