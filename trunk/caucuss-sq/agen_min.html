@@ -27,6 +27,26 @@ $_dates=array();//liste des dates qui ont un evenement.
 	<script type="text/javascript" language="JavaScript">
 		function showDiv(tid) {document.getElementById(tid).style.display = "";}
 		function hideDiv(tid) {document.getElementById(tid).style.display = "none";}
+			
+		function creerEncart2(elav,elapres,tab){
+			var encart = document.createElement("div");
+			encart.id="encart";
+			var liste = document.createElement("ul");
+			for (var i=0; i<tab.length; i++)
+			{
+				var item = document.createElement("li");
+				var texte_item = document.createTextNode(tab[i]);
+				item.appendChild(texte_item);
+				liste.appendChild(item);
+			}
+			encart.appendChild(liste);
+			document.getElementById(elav).insertBefore(encart, document.getElementById(elapres));
+		}
+			
+		function effacerEncart(elav,a_effacer){
+			document.getElementById(elav).removeChild(document.getElementById(a_effacer));
+			}
+		
 	</script>
 
 	<!-- agenda miniature: en tete -->	
@@ -79,6 +99,7 @@ $_dates=array();//liste des dates qui ont un evenement.
 
 	while((date('m', $_Time) == $_M) || (date('w', $_Time) != 1)) {
 		if(date('w', $_Time) == 1) { echo '</tr><tr>'; }
+		
 		echo '<td width="14%" align=center';
 		
 		echo ' class=agenda';
@@ -98,22 +119,29 @@ $_dates=array();//liste des dates qui ont un evenement.
 			echo (date(W) == date(W,$_Time)) ? 'Week' : '';
 		}
 		
-		//echo ' onmouseover="javascript:showDiv(\'encart\');" ';
-		//echo ' onmouseout="javascript:hideDiv(\'encart\');" ';
-
-		//echo ' >';
-		
 		
 		$_date=date('Ymd', $_Time);
 		
 		if (isset($_events[$_date]))
 		{
+			//Pour voir les noms des events en passant la souris sur la case du jour.
 			$_dates[]=$_date;
-			echo ' onmouseover="javascript:showDiv(\'encart'.$_date.'\');" ';
-			echo ' onmouseout="javascript:hideDiv(\'encart'.$_date.'\');" ';
+			
+			//echo ' onmouseover="javascript:showDiv(\'encart'.$_date.'\');" ';
+			//echo ' onmouseout="javascript:hideDiv(\'encart'.$_date.'\');" ';
+			
+			
+			$tabjs="(";
+			foreach ($_events[$_date] as $ev){$tabjs.='\''.$ev['title'].'\',';}
+			$tabjs.=")";
+			$tabjs = str_replace(",)", ")", $tabjs);
+			
+			//echo ' onmouseover="javascript:creerEncart(\'menu-calendar\',\'bidon\',\''.$contenu.'\');" ';
+			echo " onmouseover=\"javascript:creerEncart('menu-calendar','bidon',new Array".$tabjs.");\" ";
+			echo " onmouseout=\"javascript:effacerEncart('menu-calendar','encart');\" ";
+			
 			echo ' >';
-			
-			
+			echo $tabjs;
 			
 			if (count($_events[$_date]) == 1) {
 			  echo '<a href='.$_events[$_date][0]['link'].' title="'.$_events[$_date][0]['title'].'">';
@@ -135,11 +163,13 @@ $_dates=array();//liste des dates qui ont un evenement.
 	
 	</tbody>
 	</table>
-	
+	<i id=bidon></i>
 	</div>
+	<!--test pour insertion de div dynamique en javascript-->
 	
-	<?php
 	
+	<?php	
+	/*
 	$style='display:none;background-color:#FFFFCC;position:absolute;';
 	
 		foreach($_dates as $v) 
@@ -152,6 +182,6 @@ $_dates=array();//liste des dates qui ont un evenement.
 			echo '</ul>';
 			echo '</div>';
 		}
-	
+	*/
 	?>
 	
