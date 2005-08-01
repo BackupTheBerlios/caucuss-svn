@@ -1,6 +1,12 @@
 #!/bin/env bash
 
 
+if [ $# -eq 0 ]; then
+    echo "Usage : install.sh directory"
+    echo "you must specify the directory where to install caucuss"
+    exit
+fi
+
 if [ "$1" != "" ]; then
     cp -rf caucuss-sq/ $1;
     #echo "cp -rf caucuss-sq/ $1"
@@ -12,5 +18,4 @@ if [ "$1" != "" ]; then
 else
     echo "usage : install.sh rep_racine_de_spip"
 fi
-
 

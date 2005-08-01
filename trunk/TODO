@@ -1,6 +1,10 @@
 
-- encore plein de skinnage 
+- skinnage manque des classes + test ie
 
-- ajout des chapeaux et autres textes d'explication
+- ajout des chapeaux et autres textes d'explication (#SURTITRE ...)
 
-- gestion doc joints
+- ajout et mise en page doc joints
+
+- tag d'entete (doctype...) et attributs de balise
+
+- gestion des breves ?
