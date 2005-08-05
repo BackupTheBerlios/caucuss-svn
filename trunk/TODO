@@ -1,13 +1,12 @@
-
 - skinnage manque des classes + test ie
 
-- ajout des chapeaux et autres textes d'explication (#SURTITRE ...)
+- ajout des chapeaux et autres textes d'explication (#SURTITRE ...) sur articles et surtout les rubriques
 
-- ajout et mise en page doc joints
+- mise en page doc joints
 
 - tag d'entete (doctype...) et attributs de balise
 
-- installeur caucus.conf.php3 honnete
+- un installeur caucus_conf.php3 un minimum honnete
 
 
 - gestion des breves ?
