@@ -11,15 +11,18 @@
 
 
 <body>
-	<a href=sommaire.php3><img id="logo" src="IMG/logo_taust.png" alt="" /></a>
+	<a style="text-decoration:none" href=sommaire.php3><img id="logo" src="IMG/logo_taust.png" alt="" /></a>
 	<h1>Le <span>Taust</span>, chauds et beurrés depuis 1991</h1>
 	
 	<div id="main">
 		<INCLURE (top.php3)>
 		<br class="separator"/>
 		<INCLURE (menu.php3)>
-			<div id="content">
-		
+			<div name=content id="content">
+			
+			<script type="text/javascript">alert("donc : "+document.getElementbyID(content).offsetWidth);</script>
+			
+			
 			<B_articles_recents>
 			<BOUCLE_articles_recents (ARTICLES){par date}{inverse}{debut_page,10}>
 				<div class="billet">

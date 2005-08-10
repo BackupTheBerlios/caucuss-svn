@@ -7,6 +7,7 @@
     <?php $nb_images = "#TOTAL_BOUCLE"; ?>
 
 <!-- liens de pagination pour passer d'une image à l'autre -->
+<div id=album-photo>
        <?php paginationImage(#ID_ARTICLE, $nb_images); ?>
 
 <!-- affiche l'image dont le rang est indiqué par le paramètre debut_image -->
@@ -14,7 +15,7 @@
 <BOUCLE_photo(DOCUMENTS){id_article}{par titre}{extension==jpg|png|gif}{mode=document}{debut_image,1}>
     <!--<div class="album-photo">-->
     	
-    	<img name="photo" src="#URL_DOCUMENT" width="#LARGEUR" height="#HAUTEUR" border="0" />
+    	<img name="photo" src="#URL_DOCUMENT" />
 		<br>
     <!--</div>-->
 		[<h2>(#TITRE)<h2>]
@@ -26,7 +27,7 @@
 </B_nb_images>
 aucune image
 <//B_nb_images>
-
+</div>
 </BOUCLE_principale>
 
 
@@ -41,7 +42,7 @@ function paginationImage($id_article, $nb_images) {
 	$num = $debut_image +1;
         echo ' Image '.$num.' / '.$nb_images.' ';
         if ($debut_image < $nb_images-1) 
-            lienPage($id_article, ($debut_image+1), "image suivante", "suiv->");
+            lienPage($id_article, ($debut_image+1), "image suivante", "->");
     }
 }
 

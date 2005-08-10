@@ -8,58 +8,59 @@
 <?php $nb_images = "#TOTAL_BOUCLE"; ?>
 
 
-<br>#TITRE<br>
+
 
 
 
 <!-- affiche un lot de vignettes dont le rang de la 1ère est indiqué par debut_vignette -->
 <!--<center>-->
-<table cellpadding="0" cellspacing="5" border="0" >
+<div id=album-photo>
+<br>#TITRE<br><a name=photo ></a>
+<table>
 <tbody>
 <tr>
-<td style="vertical-align: center" > <?php flecheGauche(#ID_ARTICLE, $nb_images); ?> </td>
-<td style="vertical-align: top;">
+<td> <?php flecheGauche(#ID_ARTICLE, $nb_images); ?> </td>
+<td>
 <!--<center>-->
     <B_vignettes>
         <?php 
             $debut_vignette = isset($_GET["debut_vignette"]) ? $_GET["debut_vignette"] : 0; 
             $id_vignette = $debut_vignette;
         ?>
-    <BOUCLE_vignettes(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}{debut_vignette,4}>
-        <?php 
-            lienPage(#ID_ARTICLE, $debut_vignette, $id_vignette, "agrandir l'image", "#LOGO_DOCUMENT"); 
-            $id_vignette++; 
-        ?>
+    	<BOUCLE_vignettes(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}{debut_vignette,4}>
+        	<?php 
+            	lienPage(#ID_ARTICLE, $debut_vignette, $id_vignette, "agrandir l'image", "#LOGO_DOCUMENT"); 
+            	$id_vignette++; 
+        	?>
     
-    </BOUCLE_vignettes>
+    	</BOUCLE_vignettes>
     </B_vignettes>
 <!--</center>-->
 </td>
-<td style="vertical-align: center;"> <?php flecheDroite(#ID_ARTICLE, $nb_images); ?> </td>
+<td> <?php flecheDroite(#ID_ARTICLE, $nb_images); ?> </td>
 </tr>
 </tbody>
 </table>
-<!--</center>-->
 
 
 <!-- affichage de la photo  -->
-<a name=photo ></a>
-<div id="album-photo">
+
     <BOUCLE_photo(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}{debut_image,1}>
-    
-     	<img src=#URL_DOCUMENT />
+    	
+     	<img  src=#URL_DOCUMENT />
         <!-- affichage de la légende (titre et descriptif) de la photo -->
 		[<h1>(#TITRE)</h1>]
         <dl class="album-photo-legende">
             <p>[<dd>(#DESCRIPTIF)</dd>]</p>
         </dl>
     </BOUCLE_photo>
-</div>
+
 
 
 </B_nb_images>
 aucune image
 <//B_nb_images>
+</div>
 
 </BOUCLE_principale>
 

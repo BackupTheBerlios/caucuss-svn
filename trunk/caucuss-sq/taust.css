@@ -368,7 +368,17 @@ background: url("IMG/coin-bd.png") no-repeat bottom right;
 }
 
 
+#album-photo{
+border:1px solid #76A0CB;
+text-align:center;
+}
 
+#album-photo a {text-decoration:none;}
+
+#album-photo table{
+margin-left: auto;
+margin-right: auto;
+}
 
 
 #credits{

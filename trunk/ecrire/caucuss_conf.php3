@@ -1,6 +1,7 @@
 <?php
 //
-// Librement adapté du configurateur de Epona de Marc Lebas.
+// Librement adapté du configurateur de Epona de Marc Lebas
+// http://www.spip-contrib.net/Squelette-Epona-v2-2?var_recherche=epona
 //
 
 
