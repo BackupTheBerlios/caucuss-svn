@@ -128,21 +128,17 @@ $_dates=array();//liste des dates qui ont un evenement.
 			//Pour voir les noms des events en passant la souris sur la case du jour.
 			$_dates[]=$_date;
 			
-			//echo ' onmouseover="javascript:showDiv(\'encart'.$_date.'\');" ';
-			//echo ' onmouseout="javascript:hideDiv(\'encart'.$_date.'\');" ';
+			$tab_js="(";
+			foreach ($_events[$_date] as $ev){$tab_js.='\''.$ev['title'].'\',';}
+			$tab_js.=")";
+			$tab_js = str_replace(",)", ")", $tab_js);
 			
-			
-			$tabjs="(";
-			foreach ($_events[$_date] as $ev){$tabjs.='\''.$ev['title'].'\',';}
-			$tabjs.=")";
-			$tabjs = str_replace(",)", ")", $tabjs);
-			
-			//echo ' onmouseover="javascript:creerEncart(\'menu-calendar\',\'bidon\',\''.$contenu.'\');" ';
-			echo " onmouseover=\"javascript:creerEncart('menu-calendar','bidon',new Array".$tabjs.");\" ";
+			echo " onmouseover=\"javascript:creerEncart('menu-calendar','bidon',new Array".$tab_js.");\" ";
 			echo " onmouseout=\"javascript:effacerEncart('menu-calendar','encart');\" ";
 			
-			echo ' >';
+			echo ' >';//tag <td>
 			
+			//Un lien dans la csae du jour pour chaque event
 			if (count($_events[$_date]) == 1) {
 			  echo '<a href='.$_events[$_date][0]['link'].' title="'.$_events[$_date][0]['title'].'">';
 			} else {
@@ -163,9 +159,9 @@ $_dates=array();//liste des dates qui ont un evenement.
 	
 	</tbody>
 	</table>
+	<!-- fausse div pour faire marcher l'insertion dynamique en javascript-->
 	<i id=bidon></i>
 	</div>
-	<!--test pour insertion de div dynamique en javascript-->
 	
 	
 	<?php	

@@ -31,19 +31,6 @@
 					<p>#TEXTE</p>
 				</div>
 				
-				
-				<B_documents_joints>
-					<!--<div><hr>-->
-					<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {doublons} {"<br />"}>
-					<div style="float: right;">
-						[(#LOGO_DOCUMENT|#URL_DOCUMENT)][<div><b>(#TITRE)</b></div>][<div>(#DESCRIPTIF)</div>]
-					</div>
-					</BOUCLE_documents_joints>
-					<!--</div>-->
-					<!--<div style="clear: both;"></div>-->
-				</B_documents_joints>
-				
-			
 				<!-- incorporation de l'Album (un peu crade car 2 boucles presque identiques) -->
 				<B_mot_album_simple>
 					<div class=album>
@@ -53,13 +40,31 @@
 					</div>
 				</B_mot_album_simple>
 				
-				<B_mot_album>
+				<B_mot_album_vign>
 					<div class=album>
 					<BOUCLE_mot_album_vign (MOTS){id_article}{type=Album}{titre=avec_vignettes}>
 						<INCLURE (album_vignettes_incorp.php3){id_rubrique}{id_article}{debut_image}{debut_vignette}>	
 					</BOUCLE_mot_album_vign>
 					</div>
-				</B_mot_album>
+				</B_mot_album_vign>
+				
+				
+				<BOUCLE_album (MOTS){id_article}{type=Album}>
+				</BOUCLE_album>
+					<!-- Pas d'album on peut mettre les docs joints -->
+					<B_documents_joints>
+						<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {doublons} {"<br/>"}>
+							<div style="float: right;">
+								[(#LOGO_DOCUMENT|#URL_DOCUMENT)][<div><b>(#TITRE)</b></div>][<div>(#DESCRIPTIF)</div>]
+							</div>
+						</BOUCLE_documents_joints>
+					</B_documents_joints>
+				<//B_album>
+				
+				
+				
+			
+				
 			
 			
 			

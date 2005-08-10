@@ -10,10 +10,12 @@
        <?php paginationImage(#ID_ARTICLE, $nb_images); ?>
 
 <!-- affiche l'image dont le rang est indiqué par le paramètre debut_image -->
+<a name=photo ></a>
 <BOUCLE_photo(DOCUMENTS){id_article}{par titre}{extension==jpg|png|gif}{mode=document}{debut_image,1}>
     <!--<div class="album-photo">-->
     	
-    	<img src="#URL_DOCUMENT" width="#LARGEUR" height="#HAUTEUR" border="0" />
+    	<img name="photo" src="#URL_DOCUMENT" width="#LARGEUR" height="#HAUTEUR" border="0" />
+		<br>
     <!--</div>-->
 		[<h2>(#TITRE)<h2>]
         <dl class="album-photo-legende">
@@ -34,19 +36,18 @@ function paginationImage($id_article, $nb_images) {
     if ($nb_images > 1) {
         $debut_image = $_GET["debut_image"];
         if ($debut_image > 0) {
-            lienPage($id_article, ($debut_image-1), "image précédente", "prec");
+            lienPage($id_article, ($debut_image-1), "image précédente", "<-");
         }
 	$num = $debut_image +1;
         echo ' Image '.$num.' / '.$nb_images.' ';
         if ($debut_image < $nb_images-1) 
-            lienPage($id_article, ($debut_image+1), "image suivante", "suiv");
+            lienPage($id_article, ($debut_image+1), "image suivante", "suiv->");
     }
 }
 
 function lienPage($id_article, $image, $titre, $texte) {
     // affiche un lien avec les paramètres en argument
-    $cas=$_GET["type_album"];
-    echo "<a href='article.php3?id_article=$id_article&type_album=$cas";
-    echo "&debut_image=$image' title='" . htmlentities($titre, ENT_QUOTES) . "'>$texte</a>";
+    echo "<a href='article.php3?id_article=$id_article&debut_image=$image";
+	echo "#photo' title='" . htmlentities($titre, ENT_QUOTES) . "'>$texte</a>";
 }    
 ?>
