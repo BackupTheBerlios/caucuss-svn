@@ -1,3 +1,4 @@
+
 - skinnage manque des classes + test ie
 
 - ajout des chapeaux et autres textes d'explication (#SURTITRE ...) sur articles et surtout les rubriques
@@ -8,5 +9,6 @@
 
 - un installeur caucus_conf.php3 un minimum honnete
 
+- trouver autre chose que la div bidon dans agen_min.html
 
 - gestion des breves ?
