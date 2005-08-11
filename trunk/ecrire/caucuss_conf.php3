@@ -224,7 +224,7 @@ function squelette_on() {spip_query("REPLACE spip_meta (nom, valeur) VALUES ('co
   if (!pre_install_fichiers()) return;
   if (!install_fichiers()) return;
   
-  active_groupe('Agenda', array('Clowns','Impros','Comédie_Musicale'), 'non');
+  active_groupe('Agenda', array('Clown','Impro'), 'non');
   active_groupe('Album', array('simple','avec_vignettes'), 'oui');
   
   
