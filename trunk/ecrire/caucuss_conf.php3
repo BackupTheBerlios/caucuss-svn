@@ -70,17 +70,17 @@ function pre_install_fichiers() {
 }
 
 //
-// /*Sauvegarde ancien squelette*/ et installation
+// Sauvegarde ancien squelette (dans caucuss-sq) et installation
 //
 function install_fichiers() {
   global $fichiers;
-  /*
-  echo "<h3>Sauvegarde des fichiers squelette (en .bak)</h3>";
+  
+  echo "<h3>Sauvegarde des fichiers de l'ancien squelette (en .bak)</h3>";
   foreach ($fichiers as $fichier) {
      if (!file_exists('../'.$fichier)) continue;
      if (!copie($fichier, 'caucuss-sq/'.$fichier.'.bak')) return FALSE;
   }
-  */
+  
   echo "<h3>Installation du squelette</h3>";
   foreach ($fichiers as $fichier) {
      if (!copie('caucuss-sq/'.$fichier, $fichier)) return FALSE;
@@ -91,10 +91,10 @@ function install_fichiers() {
 
 
 //
-// Contrôles avant restauration fichiers squelette
+// Contrôles d'accès en écriture avant restauration fichiers squelette
 //
 function pre_restaure_fichiers() {
-  if (!epona_sq()) return FALSE;
+  if (!caucuss_sq()) return FALSE;
   if (!is_writable("../caucuss-sq")) {
     refus("Pas d'accès en écriture dans caucuss-sq");
     echo "Changez les droits du répertoire<br>";
@@ -105,6 +105,7 @@ function pre_restaure_fichiers() {
 
 function avertir($msg) { echo "<font color=orange>$msg</font><br>"; }
 
+//restaure les fichiers .bak du rep caucuss-sq à la racine
 function restaure_fichiers() {
   global $fichiers;
   les_fichiers();
@@ -118,7 +119,7 @@ function restaure_fichiers() {
   echo "<h3>Restauration des fichiers .bak depuis caucuss-sq</h3>";
   foreach ($fichiers as $fichier) {
      if (!file_exists('../caucuss/'.$fichier.'.bak')) continue;
-     if (!rename('../epona-sq/'.$fichier.'.bak', '../'.$fichier)) {
+     if (!rename('../caucuss-sq/'.$fichier.'.bak', '../'.$fichier)) {
        abandon("échec restauration $fichier...");
        return FALSE; 
      }
@@ -128,9 +129,6 @@ function restaure_fichiers() {
   return TRUE;
 }
 
-
-
-
 //
 // Fonctions pour mot-clés
 //
@@ -139,7 +137,8 @@ function id_groupe($titre) {
   if ($row = spip_fetch_array($result)) return $row['id_groupe'];
   return 0;
 }
-//seul='oui' un 'non'
+
+//unseul='oui' un 'non'
 function active_groupe($groupe, $mots, $unseul) {
   $id_groupe=id_groupe($groupe);
   if ($id_groupe != 0) return FALSE;
@@ -205,7 +204,6 @@ function pre_desactive_mot($id_mot, $titre) {
   return $rcode;
 }
 
-/*
 function desinstall() {
   echo "<h1>Restauration complète</h1>";
   if (!pre_restaure_fichiers()) return;
@@ -217,9 +215,10 @@ function desinstall() {
   desactive_groupe('Agenda');
   echo "<h1>Exécution complète</h1>";
 }
-*/
 
-function squelette_on() {spip_query("REPLACE spip_meta (nom, valeur) VALUES ('config_precise_groupes', 'oui')");
+
+function squelette_on() {
+  spip_query("REPLACE spip_meta (nom, valeur) VALUES ('config_precise_groupes', 'oui')");
   echo "<h1>Installation du squelette caucuss</h1>";
   if (!pre_install_fichiers()) return;
   if (!install_fichiers()) return;
@@ -227,25 +226,24 @@ function squelette_on() {spip_query("REPLACE spip_meta (nom, valeur) VALUES ('co
   active_groupe('Agenda', array('Clown','Impro'), 'non');
   active_groupe('Album', array('simple','avec_vignettes'), 'oui');
   
-  
   active_antidatage();
   active_preview();
   
   echo "<h1>Exécution complète</h1>";
 }
 
-/*
+
 function squelette_off() {
   echo "<h1>Désinstallation du squelette caucuss</h1>";
   if (!pre_restaure_fichiers()) return;
   if (!restaure_fichiers()) return;
   echo "<h1>Exécution complète</h1>";
 }
-*/
+
 
 function active_antidatage() {
 spip_query("REPLACE spip_meta (nom, valeur) VALUES ('articles_redac', 'oui')");
-echo "<h2>ajout des date anterieures</h2><br>";
+echo "<h2>activation des date anterieures</h2><br>";
 }
 
 function active_preview() {
@@ -258,7 +256,7 @@ echo "<h2>activation des miniatures</h2><br>";
 //
 $groupes_mots = array('Agenda', 'Album');
 if (!file_exists("inc.php3")) {
-  refus("inc.php3 non trouvé. Le fichier caucuss_conf.php3 a-t-il été placé dans le répertoire ecrire ?");
+  refus("inc.php3 non trouvé. Le fichier caucuss_conf.php3 a-t-il été placé dans le répertoire ecrire?");
   exit;
 }
 
@@ -276,25 +274,27 @@ install_debut_html("Configurateur");
 
 switch ($action) {
   case 'squelette_on' : squelette_on(); break;
-//  case 'squelette_off' : squelette_off(); break;
-//  case 'desinstall' : desinstall(); break;
+  case 'squelette_off' : squelette_off(); break;
+  case 'desinstall' : desinstall(); break;
 }
 
 echo "<hr>";
-echo '<a href="../sommaire.php3?recalcul=oui">Page d\'accueil</a><br>';
+echo '<a href="../sommaire.php3?recalcul=oui">Page d\'accueil</a>';
+echo "<br><a href=.>Espace privé</a><br><br>";
 
-
-if(file_exists("../agenda.php3"))
+if(file_exists("../agen_min.html"))
 {
-  echo "<a href=\"epona_conf.php3?action=desinstall\">Tout désinstaller</a><br>";
-  ;
+  echo "<a href=\"caucuss_conf.php3?action=desinstall\">Tout désinstaller</a><br>";
+  echo "<a href=\"caucuss_conf.php3?action=squelette_off\">Désinstaller les fichiers du squelette</a>";
 } 
 else {
-  echo "<a href=\"caucuss_conf.php3?action=squelette_on\">Installer le squelette</a><br>";
+  echo "<a href=\"caucuss_conf.php3?action=squelette_on\">Installer le squelette</a>";
 }
 
-echo "<br><a href=.>espace privée</a><br>";
-echo "<br><a href=caucuss_conf.php3?action=squelette_on>réinstaller le squelette</a><br>";
+echo "<br><a href=caucuss_conf.php3?action=squelette_on>Réinstaller le squelette</a>";
+
+
+
 
 
 echo "<ul>";
@@ -305,6 +305,12 @@ echo "<li>En cas d'erreur, la procédure est stoppée avec un message explicite</l
 echo "<li>Les sauvegardes (.bak) de fichiers vont dans le répertoire caucuss-sq</li></ul>";
 
 echo "<h3>Etat de la configuration:</h3>";
+
+if (!file_exists("../agen_min.html")) 
+  echo "Squelette : absent<br>";
+  	else 
+  Echo "Squelette : présent<br>";
+
 
 foreach ($groupes_mots as $titre) {
   $id_groupe=id_groupe($titre);
