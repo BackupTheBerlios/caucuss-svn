@@ -49,18 +49,15 @@
 				</B_mot_album_vign>
 				
 				
-				<BOUCLE_album (MOTS){id_article}{type=Album}>
-				</BOUCLE_album>
-					<!-- Pas d'album on peut mettre les docs joints -->
-					<B_documents_joints>
-						<BOUCLE_documents_joints(DOCUMENTS) {id_article} {mode=document} {doublons} {"<br/>"}>
-							<div style="float: right;">
-								[(#LOGO_DOCUMENT|#URL_DOCUMENT)][<div><b>(#TITRE)</b></div>][<div>(#DESCRIPTIF)</div>]
-							</div>
-						</BOUCLE_documents_joints>
-					</B_documents_joints>
-				<//B_album>
 				
+				<B_docs>
+                	<strong>Documents joints à cet article :</strong>
+					<ul>
+                    	<BOUCLE_docs(DOCUMENTS){id_article}{extension !== jpg|png|gif}{mode=document}{doublons}>
+							<li><a href=#URL_DOCUMENT> #LOGO_DOCUMENT  #TITRE </a></li>
+						</BOUCLE_docs>
+					</ul>
+                </B_docs>
 				
 				
 			
