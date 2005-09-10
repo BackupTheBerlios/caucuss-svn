@@ -1,7 +1,7 @@
 <?php
 
 $fond = "plan";
-$delais = 2 * 3600;
+$delais =0;
 
 include ("inc-public.php3");
 

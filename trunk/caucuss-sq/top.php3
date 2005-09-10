@@ -2,7 +2,7 @@
 <?php
 
 $fond = "top";
-$delais = 7*24*3600;
+$delais =0;
 
 include ("inc-public.php3");
 
