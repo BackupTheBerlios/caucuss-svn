@@ -3,9 +3,28 @@
 	<div id="menu-rub" class="menu-left-block">
 	
 		<h3><img alt="" src="IMG/menu-rub.png"/><a href="plan.php3">Rubriques</a></h3>
+
 		<ul>
 
-			<!--<li><a href=ecrire>admin</a></li>-->
+		<BOUCLE_rub (RUBRIQUES){racine}>
+          <li><a href=#URL_RUBRIQUE>#TITRE</a>
+                <ul>
+                    <BOUCLE_ssrub (RUBRIQUES){id_parent}>
+                        <li> <a href=#URL_RUBRIQUE>#TITRE</a></li>
+                        
+                        <B_recursive>
+                        	<li><ul>
+                        	<BOUCLE_recursive(BOUCLE_ssrub)>
+                        	</BOUCLE_recursive>
+                        	</ul></li>
+                        </B_recursive>
+                        
+                    </BOUCLE_ssrub>
+                </ul>
+          </li>
+		</BOUCLE_rub>
+
+		<!--<li><a href=ecrire>admin</a></li>-->
 		
 	
 		
