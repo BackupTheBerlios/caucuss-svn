@@ -229,23 +229,16 @@ text-decoration:underline;
 background:#CBD5E4;
 }
 
-#menu-calendar .agendaMonth{
+#menu-calendar .agendaMonth, #menu-calendar .agendaMonthWeek{
 background:#C0CAD8;
 }
 
-#menu-calendar .agendaWeek{
-background:#0099FF;
-}
+
 
 #menu-calendar .agendaDay{
-background:#C0CAD8;
-border:2px solid /*#3333FF*/#9966FF;
+background:white;
 }
 
-#menu-calendar .agendaMonthWeek{
-background:#C0CAD8;
-border:1px solid #9966FF;
-}
 
 
 
@@ -309,6 +302,7 @@ margin-right:2%;
 border-bottom:1px solid #76A0CB;
 margin-bottom:1em;
 padding-bottom:1em;
+
 }
 
 .billet p{
@@ -316,16 +310,46 @@ font-size:0.9em;
 margin:0;
 margin-left:1em;
 color:#333;
+margin-bottom:0.7em
 }
 
 .billet h3{
 font-size:1.1em;
 margin:0;
+margin-bottom: 10px;
+
+}
+
+.billet-infos{
+	float:right;
+	background: #ddd;
+-moz-border-radius:1em;
+padding:6px;
+font-size:0.9em;
+margin:0 0 1em 2em;
+min-width:20%;
+}
+
+.billet-suite{
+	
+	font-size: 0.9em;
+	color:gray;
+	padding-right: 20px;
+	min-height:18px;
+}
+
+.billet-separator{
+	clear: right;
+	visibility:hidden;
+	margin:0;
+	padding:0;
+	height:1px;
 }
 
 .billet h3 a{
 color:black;
 text-decoration:none;
+
 }
 
 .billet h3 a:hover{
@@ -334,15 +358,22 @@ text-decoration:underline;
 
 .billet .billet-auteur{
 background:url("IMG/auteur.png") no-repeat center left;
-min-height:18px;
-padding-left :19px;
+min-height:24px;
+padding-left :28px;
+
+display:block;
+}
+
+.billet .billet-auteur, .billet .billet-date a{
+	min-height:24px;
 }
 
 .billet .billet-date{
-background:url("IMG/date.png") no-repeat center left;
-min-height:18px;
-padding-left :19px;
+background:url("IMG/calendar.png") no-repeat center left;
+min-height:24px;
+padding-left :28px;
 /* margin-left:10px */
+display:block;
 }
 
 .forum {
@@ -408,4 +439,175 @@ font-style: italic;
 display:none;
 background-color:#FFFFCC;
 position:absolute;
+}
+
+
+.pagination{
+	
+	text-align:center;
+	font-size:0.9em;
+	font-weight:bold;
+}
+
+.pagination a{
+	
+	color:gray;
+	font-weight:normal;
+}
+
+.menu-left-block h3 img{
+	margin:-7px 4px -10px 4px;
+}
+
+.menu-left-block h3{
+	
+	vertical-align: middle;
+}
+
+.menu-left-block h3 a{
+	text-decoration: none;
+	color:white;
+}
+
+.article-block{
+	background:#ddd;
+	-moz-border-radius:0.7em;
+	padding:0.4em;
+	margin-bottom: 20px;
+}
+
+
+.article-block h3{
+	font-size:1.2em;
+	margin:0;
+	}
+	
+.article-block h3 img{
+	margin:-17px 5px -7px 0;
+}
+
+.article-docjoints ul, .article-memerub ul{
+padding:0;	
+}
+
+.article-docjoints li, .article-memerub li{
+	list-style:none;
+	
+}
+
+.article-docjoints li a{
+	min-height:18px;
+	padding:4px 0 4px 40px;
+	background: url(IMG/download.png) no-repeat 20px center;
+	display:block;
+	text-decoration:none;
+	color:black;
+}
+
+.article-memerub li a{
+	min-height:18px;
+	padding:4px 0 4px 40px;
+	background: url(IMG/article.png) no-repeat 20px center;
+	display:block;
+	text-decoration:none;
+	color:black;
+}
+
+.article-memerub li a .date{
+	font-size:0.9em;
+	color:gray;
+}
+
+.article-docjoints li a:hover, .article-memerub li a:hover{
+	background-color:white; 
+}
+
+
+.article-reagir{
+	padding:4px;
+	-moz-border-radius:0.5em;
+	color:white;
+	font-weight: bold;
+	background:#D57F05;
+	font-size:0.9em;
+	
+	text-decoration:none;
+	margin-left:60%;
+	margin-bottom:20px;
+}
+
+.article-reagir img{
+	margin:-5px 5px -12px 3px;
+	border:none;
+}
+
+
+.article-forum{
+	margin-top:20px;
+}
+
+.article-forum  h3{
+	margin-bottom:1.5em;
+}
+
+.article-forum h4{
+	margin-bottom: 0;
+	padding:5px 2px;
+	color:white;
+}
+
+.article-forum .commentaire-infos{
+	font-size:0.9em;
+	text-align:right;
+	padding:0 3px 1px  0;
+}
+
+.article-forum .commentaire-texte{
+	background:#ededed;
+	border:1px solid #ccc;
+	padding:0.4em;
+	margin:0 1px;
+}
+
+.article-forum .repondre a{
+	color:white;
+	text-decoration:none;
+}
+.article-forum .repondre{
+	
+	text-align:right;
+	padding:1px 3px;
+	font-size: 0.9em;
+}
+
+.article-forum .commentaire{
+	background:#7A9CAF;
+	-moz-border-radius:0.5em 0.5em 0.2em 0.2em;
+	margin-bottom:1em;
+}
+
+.article-forum ul{
+	margin:0;
+	padding:0;
+	padding-left:1.3em;
+}
+
+.article-forum li{
+	list-style:none;
+	
+}
+
+
+#menu-albums li, #menu-sites li{
+	list-style: none;
+}
+
+#menu-albums ul, #menu-sites ul{
+padding:0;
+}
+
+#menu-albums ul a, #menu-sites ul a{
+display:block;
+padding-left:10px;
+padding-bottom:2px;
 }

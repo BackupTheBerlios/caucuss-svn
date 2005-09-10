@@ -21,9 +21,9 @@
 		<div id="content">
 			<!-- l'article demandé -->
 			<BOUCLE_article (ARTICLES) {id_article}>
-				<div class="billet">
+				<div class="article">
 					#LOGO_ARTICLE_RUBRIQUE
-					<h3>#TITRE<h3>
+					<h3>#TITRE</h3>
 					<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
 							<span><a href=#URL_AUTEUR>[(#LOGO_AUTEUR|left)] #NOM</a></span>
 						</BOUCLE_auteurs_recents>
@@ -51,66 +51,56 @@
 				
 				
 				<B_docs>
-                	<strong>Documents joints à cet article :</strong>
+				<div class="article-block article-docjoints">
+                	<h3><img src="IMG/attach.png" alt="">Documents joints à cet article</h3>
 					<ul>
                     	<BOUCLE_docs(DOCUMENTS){id_article}{extension !== jpg|png|gif}{mode=document}{doublons}>
-							<li><a href=#URL_DOCUMENT> #LOGO_DOCUMENT  #TITRE </a></li>
+							<li><a href="#URL_DOCUMENT"> <!--#LOGO_DOCUMENT-->  #TITRE </a></li>
 						</BOUCLE_docs>
 					</ul>
-                </B_docs>
+					</div>
+        </B_docs>
 				
-				
+	
 			
-				
-			
-			
-			
-				<!-- Articles dans la meme rubrique -->
-				<B_articles_meme_rubrique>
-					<strong>Articles dans la même rubrique...</strong>
-					<ul>
-					<BOUCLE_articles_meme_rubrique(ARTICLES){id_rubrique}{exclus}{0,10}>
-					<li><a href=#URL_ARTICLE>[(#TITRE)]</a> | [(#DATE|affdate_court)]</li>
-					</BOUCLE_articles_meme_rubrique>
-				</ul>
-			</B_articles_meme_rubrique>
-			
-		</BOUCLE_article>
 		
 		
 		<BOUCLE_reagir(ARTICLES){id_article}>
-			<a href=forum.php3?id_article=#ID_ARTICLE>réagir à cet article</a>
+			<a class="article-block article-reagir" href="forum.php3?id_article=#ID_ARTICLE"><img src="IMG/reagir.png" alt=""> Réagir à cet article</a>
 			<br/>
 		</BOUCLE_reagir>
 
 		
 		<!-- msg du forum de l'article -->
 		<B_forum>
-			<div class=forum>
-				<h1><:Forum:> de l'article</h1>
+			<div class="article-block article-forum">
+				<h3><img src="IMG/forum.png" alt="">Forum de l'article</h3>
 			
 				<ul>
 					<BOUCLE_forum(FORUMS){id_article}{par date}{inverse}>
 				
 					
-						<li>
-							<h3 name=#ID_FORUM>#TITRE</h3>
-							[(#DATE|affdate)][, <:par_auteur:> <A HREF="mailto:#EMAIL">(#NOM)</A>]
-							<p>#TEXTE</p>
-							[<a href="(#URL_SITE)">#NOM_SITE</a>]
-							[<a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a>]
+						<li class="commentaire">
+							<h4 name="#ID_FORUM">#TITRE</h4>
+							<div class="commentaire-infos">[(#DATE|affdate)][, <:par_auteur:> (#NOM)] 
+							[&middot; <a href="mailto:(#EMAIL)">mail</a>][ &middot; <a href="(#URL_SITE)">#NOM_SITE</a>]</div>
+							<div class="commentaire-texte">#TEXTE</div>
+
+							[<div class="repondre"><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a></div>]
 						</li>
 						
 						<B_forum_fils>
 							
 							<ul>
 								<BOUCLE_forum_fils(FORUMS){id_parent}{par date}>
-									<li>
-										<h3>#TITRE</h3>
-										[(#DATE|nom_jour)] [(#DATE|affdate)][, <:par_auteur:> <A HREF="mailto:#EMAIL">(#NOM)</A>]
-										<p>#TEXTE</p>
-										[<a href="(#URL_SITE)" >#NOM_SITE</a>]
-										[<a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a>]
+									<li class="commentaire">
+										<h4>#TITRE</h4>
+										<div class="commentaire-infos">[(#DATE|nom_jour)] [(#DATE|affdate)][, <:par_auteur:> (#NOM)] 
+										[ &middot; <a href="mailto:(#EMAIL)">mail</a>][ &middot; <a href="(#URL_SITE)">#NOM_SITE</a>]</div>
+							
+										<div class="commentaire-texte">#TEXTE</div>
+					
+										[<div class="repondre"><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a></div>]
 									</li>
 									
 									<B_Forum_Boucle>
@@ -131,7 +121,19 @@
 			</div>
 		</B_forum>
 			
+				<!-- Articles dans la meme rubrique -->
+				<B_articles_meme_rubrique>
+				<div class="article-block article-memerub">
+					<h3><img src="IMG/memerub.png" alt="">Articles dans la même rubrique...</h3>
+					<ul>
+					<BOUCLE_articles_meme_rubrique(ARTICLES){id_rubrique}{exclus}{0,10}>
+					<li><a href="#URL_ARTICLE">[(#TITRE)] [&middot <span class="date">(#DATE|affdate_court)</span>]</a></li>
+					</BOUCLE_articles_meme_rubrique>
+				</ul>
+				</div>
+			</B_articles_meme_rubrique>
 			
+		</BOUCLE_article>
 			
 			
 		</div>

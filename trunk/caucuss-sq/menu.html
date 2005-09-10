@@ -2,28 +2,9 @@
 	
 	<div id="menu-rub" class="menu-left-block">
 	
-		<h3><a href=plan.php3 style="color:white;text-decoration:none">
-		Rubriques</a></h3>
+		<h3><img alt="" src="IMG/menu-rub.png"/><a href="plan.php3">Rubriques</a></h3>
 		<ul>
 
-			<BOUCLE_rub (RUBRIQUES){tout}{racine}>
-				<li>[(#EXPOSE|<b>)] <!--[(#LOGO_RUBRIQUE)]--> <a href=#URL_RUBRIQUE>#TITRE</a>[(#EXPOSER|</b>)]
-				<ul>
-					<BOUCLE_ssrub (RUBRIQUES){tout}{id_parent}>
-						<li>[(#EXPOSE|<b>)] <!--[(#LOGO_RUBRIQUE)]--> <a href=#URL_RUBRIQUE>#TITRE</a>[(#EXPOSER|</b>)]</li>
-						
-						<B_recursive>
-						<li><ul>
-						<BOUCLE_recursive(BOUCLE_ssrub)>
-						</BOUCLE_recursive>
-						</ul></li>
-						</B_recursive>
-						
-					</BOUCLE_ssrub>
-				</ul>
-				</li>
-			</BOUCLE_rub>
-					
 			<!--<li><a href=ecrire>admin</a></li>-->
 		
 	
@@ -41,7 +22,7 @@
 	</div>
 		
 	<div id="menu-search" class="menu-left-block">
-		<h3>Recherche</h3>
+		<h3><img alt="" src="IMG/menu-recherche.png"/>Recherche</h3>
 		#FORMULAIRE_RECHERCHE
 	</div>
 	
@@ -56,18 +37,20 @@
 	
 	<!-- articles recents contenants des galleries d'images -->
 	
-	<div id="menu-rub" class="menu-left-block">
+	<div id="menu-albums" class="menu-left-block">
 	<B_recent_album>
-		<h3>derniers albums</h3>
+		<h3><img alt="" src="IMG/menu-albums.png"/>Derniers albums</h3>
 		<ul>
 		<BOUCLE_recent_album(ARTICLES){type_mot=Album}{par date}{inverse}{0,4}>
 			<li><a href=article.php3?id_article=#ID_ARTICLE>#TITRE</a></li>
 		</BOUCLE_recent_album>
 		</ul>
 	</B_recent_album>
+	</div>
 	
+	<div id="menu-forum" class="menu-left-block">
 	<B_last_posts>
-		<h3>derniers msg forum</h3>
+		<h3><img alt="" src="IMG/menu-forum.png"/>Derniers commentaires</h3>
 		<BOUCLE_last_posts(FORUMS){plat}{par date}{inverse}{0,3}>
 			<p>
 			<strong>#TITRE</strong> [(#DATE|affdate_court)][, par <a href=#URL_AUTEUR>(#NOM)</a>]<br/>
@@ -82,11 +65,11 @@
 	
 	
 	<B_sites>
-	<div id="menu-rub" class="menu-left-block">
-		<h3><a href=sites.php3>Sur le web</a></h3>
+	<div id="menu-sites" class="menu-left-block">
+		<h3><img alt="" src="IMG/menu-liens.png"/><a href="sites.php3">Sur le web</a></h3>
 		<ul>
 			<BOUCLE_sites (SITES)>
-				<li><a href=#URL_SITE>#NOM_SITE</a></li>
+				<li><a href="#URL_SITE">#NOM_SITE</a></li>
 			</BOUCLE_sites>
 		</ul>
 	</div>

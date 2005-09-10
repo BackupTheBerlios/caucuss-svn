@@ -26,22 +26,24 @@
 			<B_articles_recents>
 			<BOUCLE_articles_recents (ARTICLES){par date}{inverse}{debut_page,10}>
 				<div class="billet">
-					#LOGO_ARTICLE_RUBRIQUE
-					<h3><a href=#URL_ARTICLE>#TITRE</a></h3>
-					
+					<!--#LOGO_ARTICLE_RUBRIQUE-->
+					<h3><a href="#URL_ARTICLE">#TITRE</a></h3>
+					<div class="billet-infos">
 					<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
-						<span><a href=#URL_AUTEUR>[(#LOGO_AUTEUR|left)] #NOM</a></span>
+						<span class="billet-auteur"><a href="#URL_AUTEUR">[(#LOGO_AUTEUR|left)] #NOM</a></span>
 					</BOUCLE_auteurs_recents>
 					<span class="billet-date">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
+					</div>
 					[<p>(#INTRODUCTION)</p>]
-					<a href=#URL_ARTICLE>lire la suite</a>
+					<a class="billet-suite" href="#URL_ARTICLE">lire la suite</a>
+					<hr class="billet-separator" />
 				</div>
 			</BOUCLE_articles_recents>
 			</B_articles_recents>
 			
 			<BOUCLE_articles_pagination(ARTICLES){par date}{inverse}>
 			</BOUCLE_articles_pagination>
-			[(#TOTAL_BOUCLE|pagination{debut_page,10})]
+			[<div class="pagination">(#TOTAL_BOUCLE|pagination{debut_page,10})</div>]
 			</B_articles_pagination>
 			
 		</div>

@@ -29,7 +29,7 @@ $GLOBALS['dossier_squelettes'] = 'caucuss-sq';
 function pagination($total, $position=0, $pas=1, $fonction='') {
   global $clean_link;
   global $pagination_item_avant, $pagination_item_apres, $pagination_separateur;
-  tester_variable('pagination_separateur', '&nbsp;| ');
+  tester_variable('pagination_separateur', '&nbsp;&middot; ');
   if (ereg('^debut([-_a-zA-Z0-9]+)$', $position, $match)) {
     $debut_lim = "debut".$match[1];
     $position = intval($GLOBALS['HTTP_GET_VARS'][$debut_lim]);
