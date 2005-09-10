@@ -8,7 +8,7 @@
 function les_fichiers() {
   global $fichiers;
   $fichiers = array('index.html', 'mes_fonctions.php3', 'style.css', 'taust.css');
-  $images = array('background.jpg','coin-bd.png','coin-bg.png','coin-hd.png','coin-hg.png','taust-enter.png','logo_taust.png','logo_taust_petit.png','logo_auteur.png');
+  $images = array('article.png','attach.png','auteur.png','calendar.png','forum.png','download.png','memerub.png','menu-albums.png','menu-calendar.png','menu-forum.png','menu-liens.png','menu-recherche.png','menu-rub.png','reagir.png','suite.png','menu-rub.png','background.jpg','coin-bd.png','coin-bg.png','coin-hd.png','coin-hg.png','taust-enter.png','logo_taust.png','logo_taust_petit.png');
   $couple = array('sites', 'albums', 'events', 'album_vignettes_incorp', 'album_simple_incorp', 'menu', 'agen_min', 'agen_an', 'agenda', 'auteur', 'article', 'breve', 'forum', 'plan', 'recherche', 'rubrique', 'sommaire', 'top', 'bottom', 'mot');
   
   foreach ($couple as $fichier) {$fichiers[]=$fichier.'.html'; $fichiers[]=$fichier.'.php3';}
@@ -26,7 +26,11 @@ function copie($src, $dst) {
   {  echo basename($src)." ";  return TRUE;}
 }
 
-
+function abandon($msg) {
+  echo "<b><font color=red>$msg</font></b><br>";
+  echo "Action abandonnée en cours d'éxécution<br>";
+  echo "Rectifier le problème et rétablir des conditions initiales avant de reprendre<br>";
+}
 
 //
 // Contrôles avant mise en place fichiers squelette
