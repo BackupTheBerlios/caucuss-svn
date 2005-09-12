@@ -21,6 +21,7 @@
 <div id="content">
 
 <!-- Rubriques trouvees -->
+<!--
 <B_rubriques>
 <ul>
 <li><:rubriques:></li>
@@ -31,13 +32,18 @@
 </BOUCLE_rubriques>
 </ul>
 </B_rubriques>
+-->
 
+<h2 class="titre" id="titre_recherche">Recherche</h2>
+[<p>Résultats pour la recherche : <strong>(#RECHERCHE)</strong></p>]
 
+	
 
 
 <!-- Mots-cles trouves et articles associes-->
+
 <B_mots>
-<ul title="<:mots_clefs:>">
+<!--<ul title="<:mots_clefs:>">
 <BOUCLE_mots(MOTS) {recherche} {par points} {inverse} {0,5}>
 	<li>
 	<a href="#URL_MOT" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a>
@@ -53,65 +59,61 @@
 	</B_articles_mots>
 	</li>
 </BOUCLE_mots>
-</ul>
+</ul>-->
 </B_mots>
 
 
 
+<!-- liste articles -->
+
+<B_articles>
+<ul class="resultats_recherche" id="result_articles">
+<BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {0,10}>
+	<li><h3><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h3>
+	
+	<div class="resultat_infos">
+	[(#DATE|nom_jour)] [(#DATE|affdate)]
+		<B_auteurs_articles>
+		&middot;   
+		<BOUCLE_auteurs_articles(AUTEURS) {id_article} {", "}>
+		<a href="#URL_AUTEUR">#NOM</a>
+		</BOUCLE_auteurs_articles>
+	</li>
+</BOUCLE_articles>
+</ul>
+</B_articles>
 
 
-<!-- Une : articles trouves -->
-
-<h1><:resultats_recherche:></h1>
-[<h2>(#RECHERCHE)</h2>]
-
-	<!-- Breves trouvees -->
+<!-- Breves trouvees -->
 	<B_breves>
-		<:breves:>
-		<ul>
+		<!--<h3>Dans les brèves</h3>-->
+		<ul class="resultats_recherche" id="result_breves">
 		<BOUCLE_breves(BREVES) {recherche} {par points} {inverse} {0,8}>
-			<li><i>[(#DATE|affdate_court)]</i>:<a href="#URL_BREVE">#TITRE</a></li>
+			<li><a href="#URL_BREVE">#TITRE</a>[ <span class="resultat_infos">&middot; (#DATE|affdate_court)</span>]</li>
 		</BOUCLE_breves>
 		</ul>
 	</B_breves>
 
-	<!-- Sites Web trouves -->
-	<B_sites>
-		<:sites_web:>
-		<ul>
-		<BOUCLE_sites(SITES) {recherche} {par points} {inverse} {0,8}>
-			<li><a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html)]">#NOM_SITE</a></li>
-		</BOUCLE_sites>
-		</u>
-	</B_sites>
-
 	<!-- Messages trouves -->
 	<B_messages>
-		<h2><:messages_forum:></h2>
-		<ul>
+		<!--<h3>Dans les forums</h3>-->
+		<ul class="resultats_recherche" id="result_forum">
 		<BOUCLE_messages(FORUMS) {recherche} {par points} {inverse} {0,8}>
 			<li><a href="#URL_FORUM">#TITRE</a></li>
 		</BOUCLE_messages>
 		</ul>
 	</B_messages>
 
-<!-- liste articles -->
-
-<B_articles>
-<ul>
-<BOUCLE_articles(ARTICLES) {recherche} {par points} {inverse} {0,10}>
-	<li><h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h2></li>
-	[(#DATE|nom_jour)] [(#DATE|affdate)]
+		<!-- Sites Web trouves -->
+	<B_sites>
+		<!--<h3>Dans les sites</h3>-->
+		<ul class="resultats_recherche" id="result_liens">
+		<BOUCLE_sites(SITES) {recherche} {par points} {inverse} {0,8}>
+			<li><a href="#URL_SITE" title="[(#DESCRIPTIF|textebrut|entites_html)]">#NOM_SITE</a></li>
+		</BOUCLE_sites>
+		</ul>
+	</B_sites>
 	
-		<B_auteurs_articles>
-		par  
-		<BOUCLE_auteurs_articles(AUTEURS) {id_article} {", "}>
-		<a href=#URL_AUTEUR>#NOM</a>
-		</BOUCLE_auteurs_articles>
-	
-</BOUCLE_articles>
-</ul>
-</B_articles>
 
 </div>
 

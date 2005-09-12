@@ -71,7 +71,7 @@ $events = array();
 
 
 <body>
-	<a href=sommaire.php3><img id="logo" src="IMG/logo_taust.png" alt="" /></a>
+	<a href="sommaire.php3"><img id="logo" src="IMG/logo_taust.png" alt="" /></a>
 	<h1>Le <span>Taust</span>, chauds et beurrés depuis 1991</h1>
 	
 	<div id="main">
@@ -82,12 +82,14 @@ $events = array();
 		
 		
 		<div id="content">
+		<h2 class="titre" id="titre_agenda">Agenda</h2>
 			<!-- Fabrication du tableau : l'en tête -->
-			<table cellpadding="5" cellspacing="0" align="center" border="1">
+			<table id="agenda">
 			<form name="navigation" method="get">
 			<tr>
 			<th colspan="7" class="agendaNav" >
-			<a href="agenda.php3?date=<?php echo (($M - 1 > 0) ? $Y : ($Y - 1)); ?>-<?php printf('%02d', ($M - 1) > 0 ? ($M - 1) : 12); ?>-01&str_motcle=<?php echo $str_motcle ?>" >précedant</a>
+			<a href="agenda.php3?date=<?php echo (($M - 1 > 0) ? $Y : ($Y - 1)); ?>-<?php printf('%02d', ($M - 1) > 0 ? 
+			($M - 1) : 12); ?>-01&str_motcle=<?php echo $str_motcle ?>" ><img src="IMG/agt_back.png" alt="Précédent"/></a>
 			
 			<select name="var_nav_month">
 			<?php
@@ -103,21 +105,21 @@ $events = array();
 			?>
 			</select>
         	
-			<!-- Construction Menu sélection  attention double niveau car plusieurs groupes de mots-clés !-->
+			<!-- Construction Menu sélection  attention double niveau car plusieurs groupes de mots-clés !
 			<select name="var_nav_cle">;
 			<?php
 			foreach($mot_cle as $key=>$value)
 				echo '<option value='.$key.($key==$str_motcle?' selected ':' ').'>'.($key=='Tout'?'':'-> ').$key.'</option>';
 			?>
 			</select>
-			
+			-->
 			<input type="button" value="Afficher" 
 			onClick="document.location.href='agenda.php3?date=' + window.document.navigation.var_nav_year.value + '-' + window.document.navigation.var_nav_month.value + '-01&str_motcle=' + window.document.navigation.var_nav_cle.value ; return false;" />
 			
 			<input type="button" value="Aujourd'hui" onClick="document.location.href='agenda.php3?date=<?php echo (date('Y-m-d')); ?>&str_motcle=<?php echo $str_motcle ?>'; return false;" />
 			
 			<a href="agenda.php3?date=<?php echo (($M + 1 < 13) ? $Y : ($Y + 1)); ?>-<?php printf('%02d', ($M + 1) < 13 ? ($M + 1) : 1); ?>-01&str_motcle=<?php echo $str_motcle ?>"
-			>suivant</a>
+			><img src="IMG/agt_forward.png" alt="Suivant"/></a>
 			
 			</th></tr>
 			</form>
@@ -144,10 +146,12 @@ $events = array();
 					$case .= date('j', $Time);
 					if (isset($events[date('Ymd', $Time)])) 
 					{
+					$case.='<ul class="agenda_events">';
 						while (list(, $event) = each($events[date('Ymd', $Time)])) 
 						{
-							$case .= '<br />'.$event['logo'].'<a href="'.$event['link'].'">'.$event['title'].'</a>';
+							$case .= '<li>'.$event['logo'].'<a href="'.$event['link'].'">'.$event['title'].'</a></li>';
 						}
+						$case.='</ul>';
 					}
 					
 					$case .= '</td>';
@@ -164,7 +168,7 @@ $events = array();
 				echo '<td width="14%" height="50" ';
 				
 				//echo ' class="agenda'.(date('m', $Time) != $M ? 'Not' : '').'This'.(date('Ymd', $Time) == date('Ymd') ? 'Day' : 'Month').'">';
-				echo ' class=agenda';
+				echo ' class="agenda';
 				if(date('m', $Time) == $M)//mois?
 				{
 					if(date(W) == date(W,$Time))//semaine?
@@ -181,15 +185,19 @@ $events = array();
 					//semaine?
 					echo (date(W) == date(W,$Time)) ? 'Week' : '';
 				}
-				echo ' >';
-				
+				if (isset($events[date('Ymd', $Time)]))
+					 echo ' events';
+				echo ' ">';
+				 
 				echo date('j', $Time);
 				if (isset($events[date('Ymd', $Time)])) 
 				{
+				 echo '<ul class="agenda_events">';
 					while (list(, $event) = each($events[date('Ymd', $Time)])) 
 					{
-						echo '<br />'.$event['logo'].'<a href="'.$event['link'].'">'.$event['title'].'</a>';
+						echo '<li>'.$event['logo'].'<a href="'.$event['link'].'">'.$event['title'].'</a></li>';
 					}
+					echo '</ul>';
 				}
 				echo '</td>';
 				$TempD++;

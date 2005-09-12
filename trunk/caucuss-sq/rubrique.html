@@ -18,31 +18,33 @@
 			<div id="content">
 		
 			<BOUCLE_rub (RUBRIQUES){id_rubrique}{tout}><!-- {tout} permet d'afficher meme si la rubrique est vide-->
-			<h1>#TITRE</h1>
-			[<p>(#DESCRIPTIF)</p>]
-			[<p>(#TEXTE)</p>]
+			<h2 class="titre" id="titre_rubrique">#TITRE</h2>
+			[<div class="rub_desc">(#DESCRIPTIF)</div>]
+			[<div class="rub_texte">(#TEXTE)</div>]
 			
 			<!--[<:dernier_ajout:> : (#DATE|nom_jour)] [(#DATE|affdate).]-->
-			<br/>
+	
 			
 			
 			</BOUCLE_rub>
 			
 			
-			
+			<br />
 			<B_articles_recents>
 			
 			<BOUCLE_articles_recents (ARTICLES){id_rubrique}{par date}{inverse}{debut_page,10}>
 				<div class="billet">
-					[<img src=IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)></img>]
-					<h3><a href=#URL_ARTICLE&id_rubrique=#ID_RUBRIQUE>#TITRE</a></h3>
-					
+					<!--#LOGO_ARTICLE_RUBRIQUE-->
+					<h3><a href="#URL_ARTICLE">#TITRE</a></h3>
+					<div class="billet-infos">
 					<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
-						<span><a href=#URL_AUTEUR>[(#LOGO_AUTEUR|left)] #NOM</a></span>
+						<span class="billet-auteur"><a href="#URL_AUTEUR">[(#LOGO_AUTEUR|left)] #NOM</a></span>
 					</BOUCLE_auteurs_recents>
 					<span class="billet-date">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
-					<p>#INTRODUCTION</p>
-					<a href=#URL_ARTICLE>lire la suite</a>
+					</div>
+					[<p>(#INTRODUCTION)</p>]
+					<a class="billet-suite" href="#URL_ARTICLE">lire la suite</a>
+					<hr class="billet-separator" />
 				</div>
 			</BOUCLE_articles_recents>
 			</B_articles_recents>

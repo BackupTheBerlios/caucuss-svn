@@ -8,7 +8,7 @@
 
 
 <body>
-	<a href=sommaire.php3><img id="logo" src="IMG/logo_taust.png" alt="" /></a>
+	<a href="sommaire.php3"><img id="logo" src="IMG/logo_taust.png" alt="" /></a>
 	<h1>Le <span>Taust</span>, chauds et beurrés depuis 1991</h1>
 	
 	<div id="main">
@@ -17,24 +17,25 @@
 		<INCLURE (menu.php3)>
 			<div id="content">
 		
-			<h1>Les évenenements!<h1>
-			<p>
-				Tout ce qui est dans l'agenda est ici aussi.
-			<p><br>
+			<h2 class="titre" id="titre_events">Les évenenements</h2>
+			
 			
 			<B_articles_recents>
 			
 			<BOUCLE_articles_recents (ARTICLES){type_mot == Agenda}{par date}{inverse}{debut_page,10}>
+				
 				<div class="billet">
-					[<img src=IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)></img>]
-					<h3><a href=#URL_ARTICLE&id_rubrique=#ID_RUBRIQUE>#TITRE</a></h3>
-					
+					<!--#LOGO_ARTICLE_RUBRIQUE-->
+					<h3><a href="#URL_ARTICLE">#TITRE</a></h3>
+					<div class="billet-infos">
 					<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
-						<span><a href=#URL_AUTEUR>[(#LOGO_AUTEUR|left)] #NOM</a></span>
+						<span class="billet-auteur"><a href="#URL_AUTEUR">[(#LOGO_AUTEUR|left)] #NOM</a></span>
 					</BOUCLE_auteurs_recents>
-					|<span class="billet-date">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
-					<p>#INTRODUCTION</p>
-					<a href=#URL_ARTICLE>lire la suite</a>
+					<span class="billet-date">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
+					</div>
+					[<p>(#INTRODUCTION)</p>]
+					<a class="billet-suite" href="#URL_ARTICLE">lire la suite</a>
+					<hr class="billet-separator" />
 				</div>
 			</BOUCLE_articles_recents>
 			</B_articles_recents>

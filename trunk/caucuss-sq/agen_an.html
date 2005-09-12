@@ -40,11 +40,12 @@ $mois='';
 		</BOUCLE_motcle>
 		if ($str_motcle=='Tout' || $flag==true) {
 			if ('[(#DATE_REDAC|nom_mois)]' != $mois ) {
-				if ($mois=='') { $events[]= '<br><h3>[(#DATE_REDAC|nom_mois)] '.$Y.'</h3>'.'<ul>';
-				} else { $events[]= '</ul>'.'<h3>[(#DATE_REDAC|nom_mois)] '.$Y.'</h3>'.'<ul>'; }
+				if ($mois=='') { $events[]= '<h3>[(#DATE_REDAC|nom_mois)] '.$Y.'</h3>'.'<ul>';
+				} else 
+				{ $events[]= '</ul>'.'<h3>[(#DATE_REDAC|nom_mois)] '.$Y.'</h3>'.'<ul>'; }
 				$mois = '[(#DATE_REDAC|nom_mois)]';
 			}
-			$events[]= '<b> [(#DATE_REDAC|nom_jour)]'.' [(#DATE_REDAC|jour)]</b>'.' : <a href=#URL_ARTICLE >[(#TITRE|texte_script)]</a>'.'<br>';
+			$events[]= '<li><a href=#URL_ARTICLE >[(#TITRE|texte_script)]  [<span class="date">&middot; (#DATE_REDAC|nom_jour)] [(#DATE_REDAC|jour)]</span></a>'.'</li>';
 		}
 	}
 
@@ -72,14 +73,13 @@ $mois='';
 			<div id="content">
   	
 
- <h1>AGENDA ANNUEL</h1>
+<h2 class="titre" id="titre_agenda">Agenda</h2>
 
   <!-- Menu de navigation -->
-  <table cellpadding="5" border="1" class="agenda">
+  <div id="agenda_an_nav">
     <form name="navigation" method="get">
-      <tr> 
-        <th> 
-	<a href="agen_an.php3?date=<?php echo ($Y - 1); ?>-01-01&str_motcle=<?php echo $str_motcle; ?>">prec</a> 
+     <p>
+	<a href="agen_an.php3?date=<?php echo ($Y - 1); ?>-01-01&str_motcle=<?php echo $str_motcle; ?>"><img src="IMG/agt_back.png" alt="Précédent"/></a> 
           <select name="var_nav_year">
             <?php
 	    for($i = 2000; $i < 2011; $i++) 
@@ -91,7 +91,7 @@ $mois='';
           <select name="var_nav_cle">;
 	        <?php
 		foreach($mot_cle as $key=>$value) 
-			echo '<option value='.$value.($str_motcle==$value?' selected>':'>').$value.'</option>';
+			echo '<option value="'.$value.($str_motcle==$value?' selected">':'">').$value.'</option>';
 		?>
 	  </select>
 	   
@@ -100,21 +100,21 @@ $mois='';
 	   	onClick="document.location.href='agen_an.php3?date=' + window.document.navigation.var_nav_year.value + '-01-01&str_motcle=' + window.document.navigation.var_nav_cle.value ; return false;" 
 		/> 
 	
-	  <a href="agen_an.php3?date=<?php echo ($Y + 1); ?>-01-01&str_motcle=<?php echo $str_motcle ?>&str_theme=<?php echo $str_theme ?>">suiv
+	  <a href="agen_an.php3?date=<?php echo ($Y + 1); ?>-01-01&str_motcle=<?php echo $str_motcle ?>
+		&str_theme=<?php echo $str_theme ?>"><img src="IMG/agt_forward.png" alt="Suivant"/>
 	  </a>
 	  
-        </th>
-      </tr>
+        </p>
     </form>
-  </table>
-  
+  </div>
+  <div id="agenda_an_results">
   <!-- liste des événements de l'année -->
   <?php
 	while (list($key, $val) = each($events)) 
 		{echo $events[$key];}
 	if (count($events)>0) { echo '</ul>'; }
   ?>
-  
+  </div>
   </div>
   
   

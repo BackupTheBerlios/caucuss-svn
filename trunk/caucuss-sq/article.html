@@ -24,11 +24,13 @@
 				<div class="article">
 					#LOGO_ARTICLE_RUBRIQUE
 					<h3>#TITRE</h3>
+					<div class="article-infos">
 					<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
-							<span><a href=#URL_AUTEUR>[(#LOGO_AUTEUR|left)] #NOM</a></span>
+							[<span class="article-auteur"><a href="#URL_AUTEUR">(#NOM)</a></span>]
 						</BOUCLE_auteurs_recents>
-					<span class="billet-date">[(#DATE|affdate_court)]</span>
-					<p>#TEXTE</p>
+					[ &middot; <span class="article-date">(#DATE|affdate_court)</span>]
+					</div>
+					<div class="article-texte">#TEXTE</div>
 				</div>
 				
 				<!-- incorporation de l'Album (un peu crade car 2 boucles presque identiques) -->
