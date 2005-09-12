@@ -897,3 +897,28 @@ td:hover .agenda_events{
 	color:gray;
 	
 }
+
+#liste_sites{
+	margin:0;
+	padding:0;
+}
+
+li.site{
+	list-style: none;
+	margin:0.5em 0;
+	padding:3px 3px 3px 20px;
+	-moz-border-radius:0.4em;
+	background: #ccc;
+}
+
+
+li.site h3{
+	margin:0.2em 0 0.6em 0;
+	min-height:18px;
+	background: url(IMG/internet.png) no-repeat center left;
+	padding-left:22px;
+}
+
+li.site h3 a{
+	color:black;
+}

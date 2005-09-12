@@ -25,21 +25,19 @@
 		
 			
 			<B_sites>
-			<ul>
+			<ul id="liste_sites">
 				<BOUCLE_sites (SITES)>
-					<li><a href=#URL_SITE>#NOM_SITE</a></li>
-					<div class=description>
-					<p>#DESCRIPTIF</p>
-					</div>
+					<li class="site"><h3><a href="#URL_SITE">#NOM_SITE</a></h3>
+					<div class="site_description">#DESCRIPTIF</div>
 					
 					<B_art>
 					<ul>
 					<BOUCLE_art(SYNDIC_ARTICLES){id_syndic}{par date}{inverse}{0,5}>
-						<li><a href=#URL_ARTICLE>#TITRE</a></li>
+						<li><a href="#URL_ARTICLE">#TITRE</a></li>
 					</BOUCLE_art>
 					</ul>
 					</B_art>
-					
+					</li>
 				</BOUCLE_sites>
 			</ul>
 			</B_sites>
