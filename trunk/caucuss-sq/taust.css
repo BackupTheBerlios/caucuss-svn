@@ -823,6 +823,8 @@ td:hover .agenda_events{
 	text-align:left;
 	color:black;
 	font-weight:normal;
+	margin-top:0.5em;
+	margin-left:0.5em;
 }
 
 .agenda_events li{
