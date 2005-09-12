@@ -1,8 +1,9 @@
 <BOUCLE_principale(ARTICLES){id_article}>
 
+
 <!-- calcule le nombre de photos jointes sous forme de document -->
 <B_nb_images>
-<BOUCLE_nb_images(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}>
+<BOUCLE_nb_images(DOCUMENTS){mode=document}{id_article}{extension==jpg|png|gif}>
 </BOUCLE_nb_images>
     <?php $nb_images = "#TOTAL_BOUCLE"; ?>
 
@@ -11,8 +12,8 @@
        <?php paginationImage(#ID_ARTICLE, $nb_images); ?>
 
 <!-- affiche l'image dont le rang est indiqué par le paramètre debut_image -->
-<a name=photo ></a>
-<BOUCLE_photo(DOCUMENTS){id_article}{par titre}{extension==jpg|png|gif}{mode=document}{debut_image,1}>
+
+<BOUCLE_photo(DOCUMENTS){mode=document}{id_article}{par titre}{extension==jpg|png|gif}{debut_image,1}>
     <!--<div class="album-photo">-->
     	
     	<img name="photo" src="#URL_DOCUMENT" />
@@ -40,8 +41,8 @@ function paginationImage($id_article, $nb_images) {
             lienPage($id_article, ($debut_image-1), "image précédente", "<-");
         }
 	$num = $debut_image +1;
-        echo ' Image '.$num.' / '.$nb_images.' ';
-        if ($debut_image < $nb_images-1) 
+    echo ' Image '.$num.' / '.$nb_images.' ';
+    if ($debut_image < $nb_images-1) 
             lienPage($id_article, ($debut_image+1), "image suivante", "->");
     }
 }

@@ -9,9 +9,6 @@
 
 
 
-
-
-
 <!-- affiche un lot de vignettes dont le rang de la 1ère est indiqué par debut_vignette -->
 <!--<center>-->
 <div id=album-photo>
@@ -27,7 +24,7 @@
             $debut_vignette = isset($_GET["debut_vignette"]) ? $_GET["debut_vignette"] : 0; 
             $id_vignette = $debut_vignette;
         ?>
-    	<BOUCLE_vignettes(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}{debut_vignette,4}>
+    	<BOUCLE_vignettes(DOCUMENTS){id_article}{extension==jpg|png|gif}{par titre}{mode=document}{debut_vignette,4}>
         	<?php 
             	lienPage(#ID_ARTICLE, $debut_vignette, $id_vignette, "agrandir l'image", "#LOGO_DOCUMENT"); 
             	$id_vignette++; 
