@@ -26,6 +26,7 @@ function les_fichiers() {
 'events.png',
 'forum.png',
 'info.png',
+'internet.png',
 'liens.png',
 'lire.png',
 'logo_auteur.png',
