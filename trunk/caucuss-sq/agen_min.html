@@ -82,10 +82,18 @@ $_dates=array();//liste des dates qui ont un evenement.
 			$_Time = mktime(0, 0, 0, $_M, $_TempD, $_Y);
 			$_case = '<td width="14%" class="agenda">';
 		        $_date=date('Ymd', $_Time);
-			if (isset($_events[$_date])) {
+			if (isset($_events[$_date])) 
+			{
+	
+				/****/
+				$_case.='<ul>';
+				foreach ($_events[$_date] as $ev) { $_case.='<li><a href="'.$ev['link'].'">'.$ev['title'].'</a></li>'; }
+				$_case.='</ul>';
+
+
 				if (count($_events[$_date]) == 1) {
 				  $_case .= '<a href='.$_events[$_date][0]['link'].' title="'.$_events[$_date][0]['title'].'">';
-				} else {
+				} else 	{
 				  $_case .= '<a href="agenda.php3?" title="'.count($_events[$_date]).' &eacute;v&eacute;nements">';
 				}
 				$_case .= date('j', $_Time).'</a>';
@@ -128,17 +136,26 @@ $_dates=array();//liste des dates qui ont un evenement.
 			//Pour voir les noms des events en passant la souris sur la case du jour.
 			$_dates[]=$_date;
 			
-			$tab_js="(";
-			foreach ($_events[$_date] as $ev){$tab_js.='\''.$ev['title'].'\',';}
-			$tab_js.=")";
-			$tab_js = str_replace(",)", ")", $tab_js);
+			//argument pour la fonction javascript (à conserver si on remet du javascript)
+			//$tab_js="(";
+			//foreach ($_events[$_date] as $ev){$tab_js.='\''.$ev['title'].'\',';}
+			//$tab_js.=")";
+			//$tab_js = str_replace(",)", ")", $tab_js);
+
+			//echo " onmouseover=\"javascript:creerEncart('menu-calendar','bidon',new Array".$tab_js.");\" ";
+			//echo " onmouseout=\"javascript:effacerEncart('menu-calendar','encart');\" ";
+
 			
-			echo " onmouseover=\"javascript:creerEncart('menu-calendar','bidon',new Array".$tab_js.");\" ";
-			echo " onmouseout=\"javascript:effacerEncart('menu-calendar','encart');\" ";
 			
-			echo ' >';//tag <td>
+			echo ' >';
+			//tag <td>
 			
-			//Un lien dans la csae du jour pour chaque event
+			/****/
+			echo '<ul>';
+			foreach ($_events[$_date] as $ev) { echo '<li><a href="'.$ev['link'].'">'.$ev['title'].'</a></li>'; }
+			echo '</ul>';
+
+			//Un lien dans la case du jour pour chaque event
 			if (count($_events[$_date]) == 1) {
 			  echo '<a href='.$_events[$_date][0]['link'].' title="'.$_events[$_date][0]['title'].'">';
 			} else {
