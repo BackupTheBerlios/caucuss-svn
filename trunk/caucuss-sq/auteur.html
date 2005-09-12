@@ -21,31 +21,31 @@
 		
 		<div>
 		[(#LOGO_AUTEUR|left)]
-		<h1>Tous les articles de #NOM</h1>
-		[<div class="chapo">(#BIO)</div>]
-		[<br>#NOM_SITE : <a href="(#URL_SITE)">#URL_SITE</a><br>]
+		<h2 class="titre" id="titre_auteur">Tous les articles de #NOM</h2>
+		[<div class="auteur_infos">(#BIO)</div>]
+		[<div class="auteur_site"><strong>#NOM_SITE</strong> : <a href="(#URL_SITE)">#URL_SITE</a></div>]
 		[<div class="notes">(#NOTES)</div>]
 		</div>
 		
 
 
 
-
-
-
+<ul  id="result_auteur">
 <BOUCLE_articles(ARTICLES) {id_auteur}{par date}{inverse}{debut_page,10}>
-	<h2><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h2>
-	<div class="detail">
+	<li><h3><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h3>
+	<div class="resultats_infos">
 	[(#DATE|nom_jour)] [(#DATE|affdate)]
-	<B_auteurs><:par_auteur:><BOUCLE_auteurs(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs>
-	</div>
-	<br>
+	<B_auteurs> &middot; 
+	<BOUCLE_auteurs(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs>
+</div>
+	</li>
 </BOUCLE_articles>
+</ul>
 
 <!-- Pagination -->
 <BOUCLE_pagination(ARTICLES){id_auteur}{par date}{inverse}>
 </BOUCLE_pagination>
-[<div class="page">Pages: (#TOTAL_BOUCLE|pagination{debut_page,10}) </div>]
+[<div class="pagination">(#TOTAL_BOUCLE|pagination{debut_page,10}) </div>]
 </B_pagination>
 
 
