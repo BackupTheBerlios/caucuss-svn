@@ -86,7 +86,7 @@ $_dates=array();//liste des dates qui ont un evenement.
 			{
 	
 				/****/
-				$_case.='<ul>';
+				$_case.='<ul class="agenda_events">';
 				foreach ($_events[$_date] as $ev) { $_case.='<li><a href="'.$ev['link'].'">'.$ev['title'].'</a></li>'; }
 				$_case.='</ul>';
 
@@ -151,7 +151,7 @@ $_dates=array();//liste des dates qui ont un evenement.
 			//tag <td>
 			
 			/****/
-			echo '<ul>';
+			echo '<ul class="agenda_events">';
 			foreach ($_events[$_date] as $ev) { echo '<li><a href="'.$ev['link'].'">'.$ev['title'].'</a></li>'; }
 			echo '</ul>';
 

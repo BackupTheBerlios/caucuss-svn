@@ -776,7 +776,7 @@ ul.resultats_recherche h3 a{
 
 #agenda{
 	border:1px solid #577796;
-	width:99%;
+	
 }
 
 #agenda .agendaNav,  #agenda_an_nav {
@@ -804,11 +804,11 @@ background:#CBD5E4;
 }
 
 
-#agenda .agenda_events{
+.agenda_events{
 	display:none;
 }
 
-#agenda td:hover .agenda_events{
+td:hover .agenda_events{
 	display:block;
 	position:absolute;
 }
