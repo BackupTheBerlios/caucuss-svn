@@ -7,10 +7,10 @@
 		<ul>
 
 		<BOUCLE_rub (RUBRIQUES){racine}>
-          <li><a href=#URL_RUBRIQUE>#TITRE</a>
+          <li><a href="#URL_RUBRIQUE">#TITRE</a>
                 <ul>
                     <BOUCLE_ssrub (RUBRIQUES){id_parent}>
-                        <li> <a href=#URL_RUBRIQUE>#TITRE</a></li>
+                        <li> <a href="#URL_RUBRIQUE">#TITRE</a></li>
                         
                         <B_recursive>
                         	<li><ul>
@@ -67,21 +67,27 @@
 	</B_recent_album>
 	</div>
 	
-	<div id="menu-forum" class="menu-left-block">
+		<div id="menu-forum" class="menu-left-block">
 	<B_last_posts>
 		<h3><img alt="" src="IMG/menu-forum.png"/>Derniers commentaires</h3>
+		<ul>
 		<BOUCLE_last_posts(FORUMS){plat}{par date}{inverse}{0,3}>
-			<p>
-			<strong>#TITRE</strong> [(#DATE|affdate_court)][, par <a href=#URL_AUTEUR>(#NOM)</a>]<br/>
-			[(#TEXTE|couper{50})]<br/><a href=#URL_FORUM>Lire</a>
+			<li class="lastpost">
+			<h4>#TITRE</h4> 
+			<div class="lastpost-infos">
+			[<a href="#URL_AUTEUR">(#NOM)</a>][ &middot; (#DATE|affdate_court)] 
+			</div>
+			[<p>(#TEXTE|couper{50})</p>]
+			<a class="lire" href="#URL_FORUM">Lire</a>
 
-			<!-- [<a HREF="forum.php3?(#PARAMETRES_FORUM)">Répondre</a>]<br/>-->
-			</p>
+			</li>
 		</BOUCLE_last_posts>
+		</ul>
 	</B_last_posts>
-	</div>
-		
 	
+	</div>
+
+
 	
 	<B_sites>
 	<div id="menu-sites" class="menu-left-block">
