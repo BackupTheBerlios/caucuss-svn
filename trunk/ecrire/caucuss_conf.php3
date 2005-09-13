@@ -7,7 +7,7 @@
 
 function les_fichiers() {
   global $fichiers;
-  $fichiers = array('index.html', 'mes_fonctions.php3', 'style.css', 'taust.css');
+  $fichiers = array('index.html', 'mes_fonctions.php3', 'taust.css');
   $images = array('agendares.png','agt_back.png','agt_forward.png','albums.png','article.png','attach.png','auteur.png','background.jpg','billet.png','calendar.png','coin-bd.png','coin-bg.png','coin-hd.png','coin-hg.png','download.png','events.png','forum.png','info.png','internet.png','liens.png','lire.png','logo_auteur.png','logo_taust.png','logo_taust_petit.png','memerub.png','menu-albums.png','menu-calendar.png','menu-forum.png','menu-liens.png','menu-recherche.png','menu-rub.png','reagir.png','recherche.png','result_articles.png','result_breves.png','result_forum.png','result_liens.png','rubriques.png','suite.png','taust-enter.png','titre_auteur.png',);
 
   $couple = array('sites', 'albums', 'events', 'album_vignettes_incorp', 'album_simple_incorp', 'menu', 'agen_min', 'agen_an', 'agenda', 'auteur', 'article', 'forum', 'recherche', 'rubrique', 'sommaire', 'top', 'bottom', 'mot');
