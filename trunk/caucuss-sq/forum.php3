@@ -1,7 +1,7 @@
 <?php
 
 $fond = "forum";
-$delais =0;
+$delais=2*3600;
 
 // Exemples de personnalisation :
 // @ http://www.spip.net/fr_article1825.html

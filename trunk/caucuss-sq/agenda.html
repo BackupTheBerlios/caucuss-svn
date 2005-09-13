@@ -106,13 +106,14 @@ $events = array();
 			</select>
         	
 			<!-- Construction Menu sélection  attention double niveau car plusieurs groupes de mots-clés !
-			<select name="var_nav_cle">;
+			-->
+			<select name="var_nav_cle">
 			<?php
 			foreach($mot_cle as $key=>$value)
 				echo '<option value='.$key.($key==$str_motcle?' selected ':' ').'>'.($key=='Tout'?'':'-> ').$key.'</option>';
 			?>
 			</select>
-			-->
+			
 			<input type="button" value="Afficher" 
 			onClick="document.location.href='agenda.php3?date=' + window.document.navigation.var_nav_year.value + '-' + window.document.navigation.var_nav_month.value + '-01&str_motcle=' + window.document.navigation.var_nav_cle.value ; return false;" />
 			
