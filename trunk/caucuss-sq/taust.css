@@ -725,6 +725,10 @@ h2#titre_auteur{
 	background-image: url(IMG/titre_auteur.png)
 }
 
+h2#titre_forum{
+	background-image: url(IMG/titre_forum.png)
+}
+
 .rub_desc, .auteur_infos{
 	background:#ccc url(IMG/info.png) no-repeat 5px 5px;
 	-moz-border-radius:0.5em;
@@ -936,4 +940,17 @@ li.site h3 a{
 #result_auteur{
 	padding:0;
 	margin-top:2em;
+}
+
+
+fieldset{
+	background:#ccc;
+	-moz-border-radius:0.6em;
+	border:none;
+}
+
+fieldset legend{
+	background: #ccc;
+	padding: 3px 6px;
+	-moz-border-radius:0.5em;
 }
