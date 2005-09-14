@@ -9,15 +9,15 @@
 
 <!-- liens de pagination pour passer d'une image à l'autre -->
 <div id=album-photo>
-       <?php paginationImage(#ID_ARTICLE, $nb_images); ?>
+       <?php paginationImage(#ID_ARTICLE, $nb_images); ?><br/>
 
 <!-- affiche l'image dont le rang est indiqué par le paramètre debut_image -->
 
-<BOUCLE_photo(DOCUMENTS){mode=document}{id_article}{par titre}{extension==jpg|png|gif}{debut_image,1}>
+<BOUCLE_photo(DOCUMENTS){mode=document}{id_article}{extension==jpg|png|gif}{debut_image,1}>
     <!--<div class="album-photo">-->
     	
-    	<img name="photo" src="#URL_DOCUMENT" />
-		<br>
+		<a href="#URL_DOCUMENT"><img src="#URL_DOCUMENT" width=500 /></a>
+		<br/>
     <!--</div>-->
 		[<h2>(#TITRE)<h2>]
         <dl class="album-photo-legende">
@@ -25,8 +25,10 @@
 	    </dl>
 </BOUCLE_photo>
 
+		<?php paginationImage(#ID_ARTICLE, $nb_images); ?><br/>
+
 </B_nb_images>
-aucune image
+
 <//B_nb_images>
 </div>
 </BOUCLE_principale>
@@ -38,12 +40,12 @@ function paginationImage($id_article, $nb_images) {
     if ($nb_images > 1) {
         $debut_image = $_GET["debut_image"];
         if ($debut_image > 0) {
-            lienPage($id_article, ($debut_image-1), "image précédente", "<-");
+            lienPage($id_article, ($debut_image-1), "image précédente", "<img src=IMG/agt_back.png>");
         }
 	$num = $debut_image +1;
     echo ' Image '.$num.' / '.$nb_images.' ';
     if ($debut_image < $nb_images-1) 
-            lienPage($id_article, ($debut_image+1), "image suivante", "->");
+            lienPage($id_article, ($debut_image+1), "image suivante", "<img src=IMG/agt_forward.png>");
     }
 }
 
