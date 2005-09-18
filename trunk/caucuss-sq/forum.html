@@ -18,34 +18,40 @@
 			<h2 class="titre" id="titre_forum"><:poster_message:></h2>
 			<div class="reponse">
 			<BOUCLE_article(ARTICLES) {id_article}>
-				<:en_reponse:>
+			En réponse à l'article
+				<div class="reponse-article">
+				
 				[(#LOGO_ARTICLE|right)]
 				[(#SURTITRE)]
-				<h2><a href="#URL_ARTICLE">#TITRE</a></h2>
+				<h4><a href="#URL_ARTICLE">#TITRE</a></h4>
 				[(#SOUSTITRE)]
-				[(#DATE|nom_jour)] [(#DATE|affdate)]
+				<span class="infos">[(#DATE|nom_jour)] [(#DATE|affdate)]
 				
 				<B_auteurs_un>
-				<:par_auteur:> 
+				&middot;  
 				<BOUCLE_auteurs_un(AUTEURS) {id_article} {", "}>
 				#NOM
 				</BOUCLE_auteurs_un>
-				
+				</span>
 				[<p>(#INTRODUCTION)</p>]
-				
+				</div>
 			</BOUCLE_article>
 			
 			<BOUCLE_rubrique(RUBRIQUES) {id_rubrique}>
-				<:en_reponse:>
+				<!--<:en_reponse:>
 				<h2><a href="#URL_RUBRIQUE">#TITRE</a></h2>
-				<p>(#TEXTE)</p>
+				<p>(#TEXTE)</p>-->
 			</BOUCLE_rubrique>
 			
 			<BOUCLE_forum_parent(FORUMS) {id_forum}>
-				<:en_reponse:>
-				<h2><a href="#URL_FORUM">#TITRE</a></h2>
-				[(#DATE|nom_jour)] [(#DATE|affdate)]
+				<br />
+				En réponse au message
+				<div class="reponse-message">
+				
+				<h4><a href="#URL_FORUM">#TITRE</a></h4>
+				<span class="infos">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
 				[<p>(#TEXTE)</p>]
+				</div>
 			</BOUCLE_forum_parent>
 			
 			#FORMULAIRE_FORUM

@@ -44,12 +44,13 @@
 
     <BOUCLE_photo(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}{debut_image,1}>
      	<!--<img  src=#URL_DOCUMENT />-->
-		<a href=#URL_DOCUMENT><img src="#URL_DOCUMENT" width=500 /></a>
+			<div class="photo">
+		<a href="#URL_DOCUMENT"><img src="#URL_DOCUMENT" width="500px" /></a>
         <!-- affichage de la légende (titre et descriptif) de la photo -->
-		[<h1>(#TITRE)</h1>]
-        <dl class="album-photo-legende">
-            <p>[<dd>(#DESCRIPTIF)</dd>]</p>
-        </dl>
+		[<h4>(#TITRE)</h4>]
+            [<p>(#DESCRIPTIF)</p>]
+        
+				</div>
     </BOUCLE_photo>
 
 
@@ -74,7 +75,7 @@ function flecheGauche($id_article, $nb_images) {
     if ($nb_images > VIGNETTES_PAGE) {
         $debut_vignette = $_GET["debut_vignette"];
         if ($debut_vignette >= VIGNETTES_PAGE) 
-            lienPage($id_article, ($debut_vignette-VIGNETTES_PAGE), ($debut_vignette-VIGNETTES_PAGE), "vignettes précédentes", "<img src=IMG/agt_back.png>");
+            lienPage($id_article, ($debut_vignette-VIGNETTES_PAGE), ($debut_vignette-VIGNETTES_PAGE), "vignettes précédentes", "<img src=\"IMG/agt_back.png\" class=\"fleches\" />");
     }
 }
 
@@ -83,7 +84,7 @@ function flecheDroite($id_article, $nb_images) {
     if ($nb_images > VIGNETTES_PAGE) {
         $debut_vignette = $_GET["debut_vignette"];
         if ($debut_vignette < $nb_images-VIGNETTES_PAGE) 
-            lienPage($id_article, ($debut_vignette+VIGNETTES_PAGE), ($debut_vignette+VIGNETTES_PAGE), "vignettes suivantes", "<img src=IMG/agt_forward.png>");
+            lienPage($id_article, ($debut_vignette+VIGNETTES_PAGE), ($debut_vignette+VIGNETTES_PAGE), "vignettes suivantes", "<img src=\"IMG/agt_forward.png\" class=\"fleches\" />");
     }
 }
 

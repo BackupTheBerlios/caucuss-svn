@@ -954,3 +954,34 @@ fieldset legend{
 	padding: 3px 6px;
 	-moz-border-radius:0.5em;
 }
+
+
+#album-photo{
+	border:none;
+}
+
+
+.fleches{
+	border: none;
+}
+
+.photo img{
+	border: none;
+}
+
+
+.reponse-article, .reponse-message{
+	background:#eee;
+	padding:0.5em;
+}
+
+.reponse-article .infos, .reponse-message .infos{
+	font-size:0.9em;
+}
+
+.reponse-article h4, .reponse-article p, .reponse-message h4{
+	margin:3px 0;
+}
+
+/** Burn IE, buuuuuurrrnnnnn **/
+@import "./taust_ie_hacks.css";
