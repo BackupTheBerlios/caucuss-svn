@@ -804,7 +804,7 @@ vertical-align: middle;
 }
 
 #agenda td{
-	
+	z-index:2;
 	padding:2px;
 	text-align: center;
 }
@@ -820,11 +820,13 @@ background:#CBD5E4;
 
 .agenda_events{
 	display:none;
+	z-index:3;
 }
 
 td:hover .agenda_events{
 	display:block;
 	position:absolute;
+	z-index:3;
 }
 
 
@@ -838,7 +840,7 @@ td:hover .agenda_events{
 	color:black;
 	font-weight:normal;
 	margin-top:0.5em;
-	margin-left:0.5em;
+	margin-left:0.2em;
 }
 
 .agenda_events li{

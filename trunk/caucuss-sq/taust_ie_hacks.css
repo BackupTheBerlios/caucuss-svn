@@ -1,0 +1,171 @@
+* html #logo{
+	display:none;
+}
+/*
+* html #topbar{
+	display:none;
+}*/
+/*
+* html #menu-sites ul, * html #menu-albums ul, * html #menu-forum ul{
+	margin:0;
+	padding:0;
+}
+
+* html #menu-sites li a, * html #menu-rub li li a,* html #menu-albums li a{
+	display:inline;
+}
+*/
+* html #menu-rub ul{
+	margin:0;
+}
+
+* html #menu-left h3 img{
+	/*display: none;*/
+	margin:1px 5px 1px 1px;
+}
+
+* html #menu-left h3{
+	vertical-align: middle;
+	padding-top:0;
+	padding-bottom:0;
+}
+
+* html #menu-left h3 *{
+	vertical-align: middle;
+}
+
+* html  *{
+	position:relative;
+}
+
+
+* html #menu-rub li{
+	}
+
+* html #menu-rub ul a{
+	display:inline;
+}
+
+* html #menu-rub ul ul{
+	margin-top:0;
+}
+
+
+* html .billet-auteur, * html .billet-date{
+	padding-top:4px;
+	padding-bottom:4px;
+	margin:2px 0;
+}
+
+* html .billet{
+	background:white;
+}
+
+
+
+
+* html #menu-sites li, * html #menu-albums li{
+	display: inline;
+	padding-left:0;
+}
+
+
+* html #menu-sites ul, * html #menu-albums ul, * html #menu-forum ul{
+	padding-left:0;
+	margin:0;
+}
+
+
+* html .menu-left-block h3{
+	font-size:1em !important;
+}
+
+
+* html #menu-forum .lire{
+	height:20px;
+}
+
+* html #content{
+	
+	margin-left:2%;float:right;
+	width:70%;
+}
+
+* html #menu-left{
+	
+}
+
+* html #main{
+	
+}
+
+
+* html body{
+	
+padding-left:1%;
+}
+
+
+* html .article-memerub li{
+	display:inline;
+}
+
+
+* html .article-block h3 img{
+	margin:0;
+	margin-right:6px;
+}
+
+* html .article-block h3, * html .article-block h3 *{
+	vertical-align: middle;
+}
+
+* html #article-memerub ul, * html #article-docjoints ul{
+	margin-left:0;
+	padding-left:0;
+}
+
+
+* html fieldset {
+	padding:0.6em;
+}
+
+
+* html .article-reagir img{
+	margin:0 6px;
+	
+}
+
+* html .article-reagir{
+	display:inline;
+	
+	height:34px;
+	vertical-align: middle;
+}
+
+* html .article-reagir *{
+	vertical-align: middle;
+}
+
+
+* html .commentaire {
+	background:transparent;
+border:1px solid #ddd;	
+margin-top:1em;
+margin-bottom:0;
+}
+
+* html .commentaire ul{
+border:1px solid #ddd;
+background:#ddd;
+margin:0;
+}
+
+
+* html #menu-search p{
+	margin:0;
+}
+
+* html #menu-search form{
+	margin:0.5em 0;
+}

@@ -85,9 +85,10 @@ $events = array();
 		<h2 class="titre" id="titre_agenda">Agenda</h2>
 			<!-- Fabrication du tableau : l'en tête -->
 			<table id="agenda">
-			<form name="navigation" method="get">
+			
 			<tr>
 			<th colspan="7" class="agendaNav" >
+			<form name="navigation" method="get">
 			<a href="agenda.php3?date=<?php echo (($M - 1 > 0) ? $Y : ($Y - 1)); ?>-<?php printf('%02d', ($M - 1) > 0 ? 
 			($M - 1) : 12); ?>-01&str_motcle=<?php echo $str_motcle ?>" ><img src="IMG/agt_back.png" alt="Précédent"/></a>
 			
@@ -121,9 +122,9 @@ $events = array();
 			
 			<a href="agenda.php3?date=<?php echo (($M + 1 < 13) ? $Y : ($Y + 1)); ?>-<?php printf('%02d', ($M + 1) < 13 ? ($M + 1) : 1); ?>-01&str_motcle=<?php echo $str_motcle ?>"
 			><img src="IMG/agt_forward.png" alt="Suivant"/></a>
-			
-			</th></tr>
 			</form>
+			</th></tr>
+			
 
 			<!-- les cases des jours -->
 			<!-- Fabrication du tableau : les données -->

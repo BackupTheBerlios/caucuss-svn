@@ -27,7 +27,7 @@ $_dates=array();//liste des dates qui ont un evenement.
 	<script type="text/javascript" language="JavaScript">
 		//function showDiv(tid) {document.getElementById(tid).style.display = "";}
 		//function hideDiv(tid) {document.getElementById(tid).style.display = "none";}
-			
+			/*
 		function creerEncart(elav,elapres,tab){
 			var encart = document.createElement("div");
 			encart.id="encart";
@@ -45,6 +45,22 @@ $_dates=array();//liste des dates qui ont un evenement.
 			
 		function effacerEncart(elav,a_effacer){
 			document.getElementById(elav).removeChild(document.getElementById(a_effacer));
+			}*/
+			
+			function showEvents(td){
+							 events = td.getElementsByTagName('ul')[0];
+							 if(events){
+							 						events.style.display='block';
+													events.style.position='absolute';
+							 }
+			}
+			
+			function hideEvents(td){
+							 events = td.getElementsByTagName('ul')[0];
+							 if(events){
+							 						events.style.display='none';
+													/*events.style.position='relative';*/
+							 }
 			}
 		
 	</script>
@@ -80,8 +96,13 @@ $_dates=array();//liste des dates qui ont un evenement.
 		while(date('w', $_Time) != 1) {
 			$_TempD--;
 			$_Time = mktime(0, 0, 0, $_M, $_TempD, $_Y);
-			$_case = '<td width="14%" class="agenda">';
-		        $_date=date('Ymd', $_Time);
+			$_case = '<td width="14%" class="agenda" ';
+			$_date=date('Ymd', $_Time);
+			if (isset($_events[$_date])){
+			$_case.='onmouseover="showEvents(this);" onmouseout="hideEvents(this);"';
+			}
+		  $_case .='>';
+			
 			if (isset($_events[$_date])) 
 			{
 	
@@ -111,7 +132,7 @@ $_dates=array();//liste des dates qui ont un evenement.
 		
 		echo '<td width="14%" align=center';
 		
-		echo ' class=agenda';
+		echo ' class="agenda';
 		if(date('m', $_Time) == $_M)//mois?
 		{
 			if(date(W) == date(W,$_Time))//semaine?
@@ -128,9 +149,12 @@ $_dates=array();//liste des dates qui ont un evenement.
 			echo (date(W) == date(W,$_Time)) ? 'Week' : '';
 		}
 		
-		
+		echo '"';
 		$_date=date('Ymd', $_Time);
-		
+			if (isset($_events[$_date])){
+			echo ' onmouseover="showEvents(this);" onmouseout="hideEvents(this);"';
+			}
+			
 		if (isset($_events[$_date]))
 		{
 			//Pour voir les noms des events en passant la souris sur la case du jour.
@@ -145,7 +169,7 @@ $_dates=array();//liste des dates qui ont un evenement.
 			//echo " onmouseover=\"javascript:creerEncart('menu-calendar','bidon',new Array".$tab_js.");\" ";
 			//echo " onmouseout=\"javascript:effacerEncart('menu-calendar','encart');\" ";
 
-			
+		
 			
 			echo ' >';
 			//tag <td>
