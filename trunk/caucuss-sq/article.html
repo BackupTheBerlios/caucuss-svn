@@ -79,8 +79,6 @@
 			
 				<ul>
 					<BOUCLE_forum(FORUMS){id_article}{par date}{inverse}>
-				
-					
 						<li class="commentaire">
 							<h4 name="#ID_FORUM">#TITRE</h4>
 							<div class="commentaire-infos">[(#DATE|affdate)][, <:par_auteur:> (#NOM)] 
@@ -128,7 +126,7 @@
 					<h3><img src="IMG/memerub.png" alt="">Articles dans la même rubrique...</h3>
 					<ul>
 					<BOUCLE_articles_meme_rubrique(ARTICLES){id_rubrique}{exclus}{0,10}>
-					<li><a href="#URL_ARTICLE">[(#TITRE)] [&middot <span class="date">(#DATE|affdate_court)</span>]</a></li>
+						<li><a href="#URL_ARTICLE">[(#TITRE)] [&middot <span class="date">(#DATE|affdate_court)</span>]</a></li>
 					</BOUCLE_articles_meme_rubrique>
 				</ul>
 				</div>

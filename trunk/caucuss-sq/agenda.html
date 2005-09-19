@@ -148,14 +148,14 @@ $events = array();
 
 			<!-- les cases des jours -->
 			<!-- Fabrication du tableau : les données -->
-			<tr> 
+			<tr>
 			<?php
 			
 			for($i = 1; $i < 8; $i++) 
 				{echo '<th width="14%" class="agendaHead">'.$days[$i%7].'</th>';}
 			$TempD = 1;
 			$Time = mktime(0, 0, 0, $M, 1, $Y);
-			if(date('w', $Time) != 1) 
+			if(date('w', $Time) != 1)
 			{
 			    // jours du mois precedent
 				echo '</tr><tr>';
@@ -165,18 +165,20 @@ $events = array();
 					$TempD--;
 					$Time = mktime(0, 0, 0, $M, $TempD, $Y);
 					$case = '<td width="14%" height="50" class="agenda" ';
-					$case .= date('j', $Time);
+					
 					if (isset($events[date('Ymd', $Time)])) 
 						 $case.='onmouseover="showEvents(this);" onmouseout="hideEvents(this);"';
-					$cade.='>';
+					$case.='>';
+					$case .= date('j', $Time);
 					if (isset($events[date('Ymd', $Time)])) 
 					{
 					$case.='<ul class="agenda_events">';
 						while (list(, $event) = each($events[date('Ymd', $Time)])) 
 						{
-							$case .= '<li>'.$event['logo'].'<a href="'.$event['link'].'">'.$event['title'].'</a></li>';
+							//$case .= '<li>'.$event['logo'].'<a href="'.$event['link'].'">'.$event['title'].'</a></li>';
+							$case .= '<li><a href="'.$event['link'].'">'.$event['title'].'</a></li>';						
 						}
-						$case.='</ul>';
+					$case.='</ul>';
 					}
 					
 					$case .= '</td>';
@@ -223,7 +225,8 @@ $events = array();
 				 echo '<ul class="agenda_events">';
 					while (list(, $event) = each($events[date('Ymd', $Time)])) 
 					{
-						echo '<li>'.$event['logo'].'<a href="'.$event['link'].'">'.$event['title'].'</a></li>';
+						//echo '<li>'.$event['logo'].'<a href="'.$event['link'].'">'.$event['title'].'</a></li>';
+						echo '<li><a href="'.$event['link'].'">'.$event['title'].'</a></li>';
 					}
 					echo '</ul>';
 				}
