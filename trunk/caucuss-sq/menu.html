@@ -22,10 +22,7 @@
                     </BOUCLE_ssrub>
                 </ul>
           </li>
-		</BOUCLE_rub>
-
-		<!--<li><a href=ecrire>admin</a></li>-->
-		
+		</BOUCLE_rub>		
 	
 		
 		<li><a href="sommaire.php3">Taust</a>
@@ -36,6 +33,7 @@
 		</ul>
 		</li>
 		
+		<li><a href="apropos.php3">à propos</a></li>
 		</ul>
 	
 	</div>
@@ -58,7 +56,7 @@
 	
 	<B_recent_album>
 		<div id="menu-albums" class="menu-left-block">
-		<h3><img alt="" src="IMG/menu-albums.png"/>Derniers albums</h3>
+		<h3><img alt="" src="IMG/menu-albums.png"/><a href="albums.php3">Derniers albums</a></h3>
 		<ul>
 		<BOUCLE_recent_album(ARTICLES){type_mot=Album}{par date}{inverse}{0,4}>
 			<li><a href=article.php3?id_article=#ID_ARTICLE>#TITRE</a></li>

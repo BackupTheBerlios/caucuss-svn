@@ -164,10 +164,14 @@ $events = array();
 				{
 					$TempD--;
 					$Time = mktime(0, 0, 0, $M, $TempD, $Y);
-					$case = '<td width="14%" height="50" class="agenda" ';
+					$case = '<td width="14%" height="50" class="agenda ';
 					
 					if (isset($events[date('Ymd', $Time)])) 
-						 $case.='onmouseover="showEvents(this);" onmouseout="hideEvents(this);"';
+					{
+						$case.=' events"'; //class css event
+						$case.='onmouseover="showEvents(this);" onmouseout="hideEvents(this);"';
+					} else { $case.='" '; }
+	
 					$case.='>';
 					$case .= date('j', $Time);
 					if (isset($events[date('Ymd', $Time)])) 
