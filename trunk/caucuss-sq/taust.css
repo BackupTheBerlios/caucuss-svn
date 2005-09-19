@@ -818,19 +818,15 @@ background:#CBD5E4;
 }
 
 
-.agenda_events{
-	display:none;
-	z-index:3;
-}
-
 td:hover .agenda_events{
 	display:block;
-	position:absolute;
-	z-index:3;
+	position:absolute !important;
+	
 }
 
 
 .agenda_events{
+display:none;
 	background: white;
 	-moz-border-radius:0.3em;
 	border:1px solid #577796;
@@ -867,9 +863,7 @@ td:hover .agenda_events{
 
 #agenda .events{
 	background: #577796;
-	color:white;
-	font-weight:
-	
+	color:white;	
 	}
 	
 #agenda th{

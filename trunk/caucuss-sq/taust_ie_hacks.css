@@ -36,6 +36,7 @@
 
 * html  *{
 	position:relative;
+	z-index:1;
 }
 
 
@@ -168,4 +169,31 @@ margin:0;
 
 * html #menu-search form{
 	margin:0.5em 0;
+}
+
+
+* html #menu-calendar td{
+	position: static;
+}
+
+* html #encart_{
+	position: absolute !important;
+}
+
+
+
+
+* html #menu-calendar *, * html #menu-albums, * html #menu-albums *{
+	position:static !important;
+}
+
+
+
+* html #calendar *, * html #agenda *{
+position:static !important;
+}
+
+* html #menu-calendar .agenda_events, * html #agenda .agenda_events{
+	position:absolute !important;
+	z-index:500 !important;
 }

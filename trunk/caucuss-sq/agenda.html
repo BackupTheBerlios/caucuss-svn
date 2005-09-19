@@ -67,6 +67,26 @@ $events = array();
 	<head>
 		<title>#NOM_SITE_SPIP</title>
 		<link rel="stylesheet" type="text/css" href="taust.css" media="screen" title="defaut" />       
+			<script type="text/javascript" language="JavaScript">
+		
+			
+			function showEvents(td){
+							 events = td.getElementsByTagName('ul')[0];
+							 if(events){
+							 						events.style.display='block';
+													events.style.position='absolute';
+							 }
+			}
+			
+			function hideEvents(td){
+							 events = td.getElementsByTagName('ul')[0];
+							 if(events){
+							 						events.style.display='none';
+													/*events.style.position='relative';*/
+							 }
+			}
+		
+	</script>
 	</head>
 
 
@@ -144,8 +164,11 @@ $events = array();
 				{
 					$TempD--;
 					$Time = mktime(0, 0, 0, $M, $TempD, $Y);
-					$case = '<td width="14%" height="50" class="agenda">';
+					$case = '<td width="14%" height="50" class="agenda" ';
 					$case .= date('j', $Time);
+					if (isset($events[date('Ymd', $Time)])) 
+						 $case.='onmouseover="showEvents(this);" onmouseout="hideEvents(this);"';
+					$cade.='>';
 					if (isset($events[date('Ymd', $Time)])) 
 					{
 					$case.='<ul class="agenda_events">';
@@ -189,8 +212,11 @@ $events = array();
 				}
 				if (isset($events[date('Ymd', $Time)]))
 					 echo ' events';
-				echo ' ">';
-				 
+				echo ' "';
+				 if (isset($events[date('Ymd', $Time)])) 
+						 echo ' onmouseover="showEvents(this);" onmouseout="hideEvents(this);"';
+					$cade.='>';
+				 echo '>';
 				echo date('j', $Time);
 				if (isset($events[date('Ymd', $Time)])) 
 				{
