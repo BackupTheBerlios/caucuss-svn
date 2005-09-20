@@ -6,13 +6,13 @@
 
 		<ul>
 
-		<li><a href="sommaire.php3">Taust</a>
+		<!--<li><a href="sommaire.php3">Taust</a>
 		<ul>
 		<li><a href="events.php3">Evénements</a></li>
 		<li><a href="albums.php3">Albums</a></li>
-		<!-- <li><a href="">Vie interne</a></li> -->
+		<li><a href="">Vie interne</a></li>
 		</ul>
-		</li>
+		</li>-->
 
 		<BOUCLE_rub (RUBRIQUES){racine}{tout}>
           <li><a href="#URL_RUBRIQUE">#TITRE</a>
@@ -46,13 +46,21 @@
 	
 	<INCLURE (agen_min.php3)>
 	
+	<!-- derniers evenements -->
+	<B_recent_events>
+		<div id="menu-events" class="menu-left-block">
+		<h3><img alt="" src="IMG/menu-calendar.png"/><a href="events.php3">Prochains évenements</a></h3>
+		<ul>
+		<BOUCLE_recent_events(ARTICLES){type_mot=Agenda}{age_redac<30}{par date_redac}{0,4}>
+			<li><a href=article.php3?id_article=#ID_ARTICLE>#TITRE</a></li>
+		</BOUCLE_recent_events>
+		</ul>
+	</div>
+	</B_recent_events>
 	
 	
-	
-	<!-- les trucs optionnels de test -->
 	
 	<!-- articles recents contenants des galleries d'images -->
-	
 	<B_recent_album>
 		<div id="menu-albums" class="menu-left-block">
 		<h3><img alt="" src="IMG/menu-albums.png"/><a href="albums.php3">Derniers albums</a></h3>
