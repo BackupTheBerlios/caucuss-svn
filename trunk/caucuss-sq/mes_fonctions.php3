@@ -2,6 +2,20 @@
 
 //      Mes_fonctions.php3
 
+
+//change truc@bidule.fr en truc_àbidule.fr
+function cache_email($texte){
+   list($a, $b) = split('@', $texte);
+   return $a.'_à_'.$b;
+}
+
+
+
+
+
+
+
+
 $GLOBALS['dossier_squelettes'] = 'caucuss-sq';
 
 
