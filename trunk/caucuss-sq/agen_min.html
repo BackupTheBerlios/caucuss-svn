@@ -78,9 +78,9 @@ $_dates=array();//liste des dates qui ont un evenement.
 			$_Time = mktime(0, 0, 0, $_M, $_TempD, $_Y);
 			$_case = '<td width="14%" class="agenda" ';
 			$_date=date('Ymd', $_Time);
-			if (isset($_events[$_date])){
+			/*if (isset($_events[$_date])){
 			$_case.='onmouseover="showEvents(this);" onmouseout="hideEvents(this);"';
-			}
+			}*/
 		  $_case .='>';
 			
 			if (isset($_events[$_date])) 
@@ -131,10 +131,10 @@ $_dates=array();//liste des dates qui ont un evenement.
 		
 		echo '"';
 		$_date=date('Ymd', $_Time);
-			if (isset($_events[$_date])){
+		/*	if (isset($_events[$_date])){
 			echo ' onmouseover="showEvents(this);" onmouseout="hideEvents(this);"';
 			}
-			
+			*/
 		if (isset($_events[$_date]))
 		{
 			//Pour voir les noms des events en passant la souris sur la case du jour.
