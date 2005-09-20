@@ -6,10 +6,18 @@
 
 		<ul>
 
-		<BOUCLE_rub (RUBRIQUES){racine}>
+		<li><a href="sommaire.php3">Taust</a>
+		<ul>
+		<li><a href="events.php3">Evénements</a></li>
+		<li><a href="albums.php3">Albums</a></li>
+		<!-- <li><a href="">Vie interne</a></li> -->
+		</ul>
+		</li>
+
+		<BOUCLE_rub (RUBRIQUES){racine}{tout}>
           <li><a href="#URL_RUBRIQUE">#TITRE</a>
                 <ul>
-                    <BOUCLE_ssrub (RUBRIQUES){id_parent}>
+                    <BOUCLE_ssrub (RUBRIQUES){id_parent}{tout}>
                         <li><a href="#URL_RUBRIQUE">#TITRE</a></li>
                         
                         <B_recursive>
@@ -23,17 +31,8 @@
                 </ul>
           </li>
 		</BOUCLE_rub>		
-	
 		
-		<li><a href="sommaire.php3">Taust</a>
-		<ul>
-		<li><a href="events.php3">Evénements</a></li>
-		<li><a href="albums.php3">Albums</a></li>
-		<!-- <li><a href="">Vie interne</a></li> -->
-		</ul>
-		</li>
-		
-		<li><a href="apropos.php3">à propos</a></li>
+		<!--<li><a href="apropos.php3">à propos</a></li>-->
 		</ul>
 	
 	</div>
