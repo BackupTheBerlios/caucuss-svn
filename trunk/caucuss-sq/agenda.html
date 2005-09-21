@@ -110,7 +110,7 @@ $events = array();
 					
 								<form name="navigation" method="get">
 								<a href="agenda.php3?date=<?php echo (($M - 1 > 0) ? $Y : ($Y - 1)); ?>-<?php printf('%02d', ($M - 1) > 0 ? 
-								($M - 1) : 12); ?>-01&amps;str_motcle=<?php echo $str_motcle ?>" ><img src="IMG/agt_back.png" alt="Précédent"/></a>
+								($M - 1) : 12); ?>-01&amp;str_motcle=<?php echo $str_motcle ?>" ><img src="IMG/agt_back.png" alt="Précédent"/></a>
                         
 								<select name="var_nav_month">
 								<?php
@@ -136,11 +136,11 @@ $events = array();
 								</select>
                         
 								<input type="button" value="Afficher" 
-								onclick="document.location.href='agenda.php3?date=' + window.document.navigation.var_nav_year.value + '-' + window.document.navigation.var_nav_month.value + '-01&amps;str_motcle=' + window.document.navigation.var_nav_cle.value ; return false;" />
+								onclick="document.location.href='agenda.php3?date=' + window.document.navigation.var_nav_year.value + '-' + window.document.navigation.var_nav_month.value + '-01&amp;str_motcle=' + window.document.navigation.var_nav_cle.value ; return false;" />
                         
-								<input type="button" value="Aujourd'hui" onclick="document.location.href='agenda.php3?date=<?php echo (date('Y-m-d')); ?>&amps;str_motcle=<?php echo $str_motcle ?>'; return false;" />
+								<input type="button" value="Aujourd'hui" onclick="document.location.href='agenda.php3?date=<?php echo (date('Y-m-d')); ?>&amp;str_motcle=<?php echo $str_motcle ?>'; return false;" />
                         
-								<a href="agenda.php3?date=<?php echo (($M + 1 < 13) ? $Y : ($Y + 1)); ?>-<?php printf('%02d', ($M + 1) < 13 ? ($M + 1) : 1); ?>-01&amps;str_motcle=<?php echo $str_motcle ?>"
+								<a href="agenda.php3?date=<?php echo (($M + 1 < 13) ? $Y : ($Y + 1)); ?>-<?php printf('%02d', ($M + 1) < 13 ? ($M + 1) : 1); ?>-01&amp;str_motcle=<?php echo $str_motcle ?>"
 								><img src="IMG/agt_forward.png" alt="Suivant"/></a>
 								</form>
 								</th></tr>
