@@ -52,7 +52,7 @@
 		<h3><img alt="" src="IMG/menu-calendar.png"/><a href="events.php3">Prochains évenements</a></h3>
 		<ul>
 		<BOUCLE_recent_events(ARTICLES){type_mot=Agenda}{age_redac<30}{par date_redac}{0,4}>
-			<li><a href=article.php3?id_article=#ID_ARTICLE>#TITRE</a></li>
+			<li><a href="article.php3?id_article=#ID_ARTICLE">#TITRE</a></li>
 		</BOUCLE_recent_events>
 		</ul>
 	</div>
@@ -66,7 +66,7 @@
 		<h3><img alt="" src="IMG/menu-albums.png"/><a href="albums.php3">Derniers albums</a></h3>
 		<ul>
 		<BOUCLE_recent_album(ARTICLES){type_mot=Album}{par date}{inverse}{0,4}>
-			<li><a href=article.php3?id_article=#ID_ARTICLE>#TITRE</a></li>
+			<li><a href="article.php3?id_article=#ID_ARTICLE">#TITRE</a></li>
 		</BOUCLE_recent_album>
 		</ul>
 	</div>

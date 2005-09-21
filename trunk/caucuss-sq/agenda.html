@@ -60,13 +60,14 @@ $events = array();
 
 ?>
 
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
+    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="fr">
 
-
-
-<html>
 	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
 		<title>#NOM_SITE_SPIP</title>
-		<link rel="stylesheet" type="text/css" href="taust.css" media="screen" title="defaut" />       
+		<link rel="stylesheet" type="text/css" href="taust.css" media="screen" title="defaut" />
 			<script type="text/javascript" language="JavaScript">
 		
 			
@@ -115,14 +116,14 @@ $events = array();
 			<select name="var_nav_month">
 			<?php
 			for($i=1;$i<13;$i++) 
-				echo '<option value='.sprintf('%02d',$i).' '.($i==$M?'selected=selected ':' ').'>'.$months[$i].'</option>';
+				echo '<option value="'.sprintf('%02d',$i).'" '.($i==$M?'selected="selected" ':' ').'>'.$months[$i].'</option>';
 			?>
 			</select>
 				
 			<select name="var_nav_year">
 			<?php
 				for($i=2000; $i<2010; $i++)
-					echo '<option value='.$i.' '.($i==$Y?' selected=selected ':' ').'>'.$i.'</option>';
+					echo '<option value="'.$i.'" '.($i==$Y?' selected="selected" ':' ').'>'.$i.'</option>';
 			?>
 			</select>
         	
@@ -131,14 +132,14 @@ $events = array();
 			<select name="var_nav_cle">
 			<?php
 			foreach($mot_cle as $key=>$value)
-				echo '<option value='.$key.($key==$str_motcle?' selected ':' ').'>'.($key=='Tout'?'':'-> ').$key.'</option>';
+				echo '<option value="'.$key.'"'.($key==$str_motcle?' selected="selected" ':' ').'>'.($key=='Tout'?'':'-> ').$key.'</option>';
 			?>
 			</select>
 			
 			<input type="button" value="Afficher" 
-			onClick="document.location.href='agenda.php3?date=' + window.document.navigation.var_nav_year.value + '-' + window.document.navigation.var_nav_month.value + '-01&str_motcle=' + window.document.navigation.var_nav_cle.value ; return false;" />
+			onclick="document.location.href='agenda.php3?date=' + window.document.navigation.var_nav_year.value + '-' + window.document.navigation.var_nav_month.value + '-01&str_motcle=' + window.document.navigation.var_nav_cle.value ; return false;" />
 			
-			<input type="button" value="Aujourd'hui" onClick="document.location.href='agenda.php3?date=<?php echo (date('Y-m-d')); ?>&str_motcle=<?php echo $str_motcle ?>'; return false;" />
+			<input type="button" value="Aujourd'hui" onclick="document.location.href='agenda.php3?date=<?php echo (date('Y-m-d')); ?>&str_motcle=<?php echo $str_motcle ?>'; return false;" />
 			
 			<a href="agenda.php3?date=<?php echo (($M + 1 < 13) ? $Y : ($Y + 1)); ?>-<?php printf('%02d', ($M + 1) < 13 ? ($M + 1) : 1); ?>-01&str_motcle=<?php echo $str_motcle ?>"
 			><img src="IMG/agt_forward.png" alt="Suivant"/></a>

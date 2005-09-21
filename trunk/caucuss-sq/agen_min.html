@@ -48,7 +48,7 @@ $_dates=array();//liste des dates qui ont un evenement.
 	<!-- agenda miniature: en tete -->	
 	<div id="menu-calendar" class="menu-left-block">
 	
-	<h3><img alt="" src="IMG/menu-calendar.png"/><a href=agenda.php3 title="Vue du mois">Calendrier</a></h3>
+	<h3><img alt="" src="IMG/menu-calendar.png"/><a href="agenda.php3" title="Vue du mois">Calendrier</a></h3>
 	
 	
 	
@@ -92,11 +92,9 @@ $_dates=array();//liste des dates qui ont un evenement.
 				$_case.='</ul>';
 
 
-				//if (count($_events[$_date]) == 1) {
-				//  $_case .= '<a href='.$_events[$_date][0]['link'].' title="'.$_events[$_date][0]['title'].'">';
-				//} else 	{
+				
 				$_case .= '<a href="agenda.php3?" title="agenda">';
-				//}
+				
 				$_case .= date('j', $_Time).'</a>';
 			} else {$_case .= date('j', $_Time);}
 			$_tmp = $_case.'</td>'.$_tmp;
@@ -110,7 +108,7 @@ $_dates=array();//liste des dates qui ont un evenement.
 	while((date('m', $_Time) == $_M) || (date('w', $_Time) != 1)) {
 		if(date('w', $_Time) == 1) { echo '</tr><tr>'; }
 		
-		echo '<td width="14%" align=center';
+		echo '<td width="14%" align="center"';
 		
 		echo ' class="agenda';
 		if(date('m', $_Time) == $_M)//mois?
@@ -159,12 +157,9 @@ $_dates=array();//liste des dates qui ont un evenement.
 			foreach ($_events[$_date] as $ev) { echo '<li><a href="'.$ev['link'].'">'.$ev['title'].'</a></li>'; }
 			echo '</ul>';
 
-			//Un lien dans la case du jour pour chaque event
-			//if (count($_events[$_date]) == 1) {
-			//  echo '<a href='.$_events[$_date][0]['link'].' title="'.$_events[$_date][0]['title'].'">';
-			//} else {
+			
 			echo '<a href="agenda.php3?" title="agenda">';
-			//}
+			
 			echo date('j', $_Time).'</a>';
 		} 
 		else 
@@ -181,6 +176,6 @@ $_dates=array();//liste des dates qui ont un evenement.
 	</tbody>
 	</table>
 	<!-- fausse div pour faire marcher l'insertion dynamique en javascript-->
-	<i id=bidon></i>
+	<!--<i id=bidon></i>-->
 	</div>
 	

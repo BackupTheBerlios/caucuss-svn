@@ -51,7 +51,7 @@ function paginationImage($id_article, $nb_images) {
 
 function lienPage($id_article, $image, $titre, $texte) {
     // affiche un lien avec les paramètres en argument
-    echo "<a href='article.php3?id_article=$id_article&debut_image=$image";
+    echo "<a href='\"article.php3?id_article=$id_article&debut_image=$image\"";
 	echo "#photo' title='" . htmlentities($titre, ENT_QUOTES) . "'>$texte</a>";
 }    
 ?>
