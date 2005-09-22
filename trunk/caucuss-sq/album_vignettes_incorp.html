@@ -75,7 +75,7 @@ function flecheGauche($id_article, $nb_images) {
     if ($nb_images > VIGNETTES_PAGE) {
         $debut_vignette = $_GET["debut_vignette"];
         if ($debut_vignette >= VIGNETTES_PAGE) 
-            lienPage($id_article, ($debut_vignette-VIGNETTES_PAGE), ($debut_vignette-VIGNETTES_PAGE), "vignettes précédentes", "<img src=\"IMG/agt_back.png\" class=\"fleches\" />");
+            lienPage($id_article, ($debut_vignette-VIGNETTES_PAGE), ($debut_vignette-VIGNETTES_PAGE), "vignettes précédentes", "<img src=\"IMG/back.png\" class=\"fleches\" />");
     }
 }
 
@@ -84,7 +84,7 @@ function flecheDroite($id_article, $nb_images) {
     if ($nb_images > VIGNETTES_PAGE) {
         $debut_vignette = $_GET["debut_vignette"];
         if ($debut_vignette < $nb_images-VIGNETTES_PAGE) 
-            lienPage($id_article, ($debut_vignette+VIGNETTES_PAGE), ($debut_vignette+VIGNETTES_PAGE), "vignettes suivantes", "<img src=\"IMG/agt_forward.png\" class=\"fleches\" />");
+            lienPage($id_article, ($debut_vignette+VIGNETTES_PAGE), ($debut_vignette+VIGNETTES_PAGE), "vignettes suivantes", "<img src=\"IMG/forward.png\" class=\"fleches\" />");
     }
 }
 

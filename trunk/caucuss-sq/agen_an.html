@@ -45,7 +45,7 @@ $mois='';
 				{ $events[]= '</ul>'.'<h3>[(#DATE_REDAC|nom_mois)] '.$Y.'</h3>'.'<ul>'; }
 				$mois = '[(#DATE_REDAC|nom_mois)]';
 			}
-			$events[]= '<li><a href=\"#URL_ARTICLE\" >[(#TITRE|texte_script)]  [<span class="date">&middot; (#DATE_REDAC|nom_jour)] [(#DATE_REDAC|jour)]</span></a>'.'</li>';
+			$events[]= '<li><a href=#URL_ARTICLE>[(#TITRE|texte_script)]  [<span class="date">&middot; (#DATE_REDAC|nom_jour)] [(#DATE_REDAC|jour)]</span></a>'.'</li>';
 		}
 	}
 
@@ -83,7 +83,7 @@ $mois='';
   <div id="agenda_an_nav">
     <form name="navigation" method="get">
      <p>
-	<a href="agen_an.php3?date=<?php echo ($Y - 1); ?>-01-01&str_motcle=<?php echo $str_motcle; ?>"><img src="IMG/agt_back.png" alt="Précédent"/></a> 
+	<a href="agen_an.php3?date=<?php echo ($Y - 1); ?>-01-01&str_motcle=<?php echo $str_motcle; ?>"><img src="IMG/back.png" alt="Précédent"/></a> 
           <select name="var_nav_year">
             <?php
 	    for($i = 2000; $i < 2011; $i++) 
@@ -105,7 +105,7 @@ $mois='';
 		/> 
 	
 	  <a href="agen_an.php3?date=<?php echo ($Y + 1); ?>-01-01&str_motcle=<?php echo $str_motcle ?>
-		&str_theme=<?php echo $str_theme ?>"><img src="IMG/agt_forward.png" alt="Suivant"/>
+		&str_theme=<?php echo $str_theme ?>"><img src="IMG/forward.png" alt="Suivant"/>
 	  </a>
 	  
         </p>
