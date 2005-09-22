@@ -21,14 +21,16 @@
 		<INCLURE (menu.php3)>
 			<div id="content">
 
-		
+
+		<BOUCLE_auteur (AUTEURS){id_auteur}>
 		<div>
-		[(#LOGO_AUTEUR|left)]
+		<!--[(#LOGO_AUTEUR|left)]-->
 		<h2 class="titre" id="titre_auteur">Tous les articles de #NOM</h2>
 		[<div class="auteur_infos">(#BIO)</div>]
 		[<div class="auteur_site"><strong>#NOM_SITE</strong> : <a href="(#URL_SITE)">#URL_SITE</a></div>]
 		[<div class="notes">(#NOTES)</div>]
 		</div>
+		</BOUCLE_auteur>
 		
 
 
@@ -55,10 +57,6 @@
 </div>
 
 
-
-
-		<!-- ###################### -->
-		
 	<div id="bottombar">
 		<div id="search">
 			
