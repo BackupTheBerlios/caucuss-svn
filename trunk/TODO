@@ -1,14 +1,5 @@
-
-- skinnage 
-	BUG images album qui debordent
-	manque des classes (mise en page doc joints) 
-	+ ajout des chapeaux et autres textes d'explication (#SURTITRE ...) sur articles
-	+ test ie
-	+ (tag d'entete (doctype...) et autres attributs de balise)
-	+ style mini_agenda.html agenda.html
-
-- trouver autre chose que la div id=bidon dans agen_min.html
+- ajout des chapeaux et autres textes d'explication (#SURTITRE ...) sur articles
 
 - étoffer la doc sur berlios
 
-- trouver des icones pour les rubriques
+
