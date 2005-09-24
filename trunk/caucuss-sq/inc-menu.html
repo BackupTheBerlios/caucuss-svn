@@ -2,7 +2,7 @@
 	
 	<div id="menu-rub" class="menu-left-block">
 	
-		<h3><img alt="" src="IMG/menu-rub.png"/>Rubriques</h3>
+		<h3><img alt="" src="#DOSSIER_SQUELETTE/IMG/menu-rub.png"/>Rubriques</h3>
 
 		<ul>
 		<BOUCLE_rub (RUBRIQUES){racine}{tout}>
@@ -27,18 +27,18 @@
 	</div>
 		
 	<div id="menu-search" class="menu-left-block">
-		<h3><img alt="" src="IMG/menu-recherche.png"/>Recherche</h3>
+		<h3><img alt="" src="#DOSSIER_SQUELETTE/IMG/menu-recherche.png"/>Recherche</h3>
 		#FORMULAIRE_RECHERCHE
 	</div>
 	
 	
 	
-	<INCLURE (agen_min.php3)>
+	<INCLURE (page.php3){fond=page}{fond=agen_min}>
 	
 	<!-- derniers evenements -->
 	<B_recent_events>
 		<div id="menu-events" class="menu-left-block">
-		<h3><img alt="" src="IMG/menu-calendar.png"/><a href="events.php3">Prochains événements</a></h3>
+		<h3><img alt="" src="#DOSSIER_SQUELETTE/IMG/menu-calendar.png"/><a href="events.php3">Prochains événements</a></h3>
 		<ul>
 		<BOUCLE_recent_events(ARTICLES){type_mot=Agenda}{age_redac<30}{par date_redac}{0,4}>
 			<li><a href="article.php3?id_article=#ID_ARTICLE">#TITRE</a></li>
@@ -52,7 +52,7 @@
 	<!-- articles recents contenants des galleries d'images -->
 	<B_recent_album>
 		<div id="menu-albums" class="menu-left-block">
-		<h3><img alt="" src="IMG/menu-albums.png"/><a href="albums.php3">Derniers albums</a></h3>
+		<h3><img alt="" src="#DOSSIER_SQUELETTE/IMG/menu-albums.png"/><a href="albums.php3">Derniers albums</a></h3>
 		<ul>
 		<BOUCLE_recent_album(ARTICLES){type_mot=Album}{par date}{inverse}{0,4}>
 			<li><a href="article.php3?id_article=#ID_ARTICLE">#TITRE</a></li>
@@ -63,7 +63,7 @@
 
 	<B_last_posts>
 	<div id="menu-forum" class="menu-left-block">
-		<h3><img alt="" src="IMG/menu-forum.png"/>Derniers commentaires</h3>
+		<h3><img alt="" src="#DOSSIER_SQUELETTE/IMG/menu-forum.png"/>Derniers commentaires</h3>
 		<ul>
 		<BOUCLE_last_posts(FORUMS){plat}{par date}{inverse}{0,3}>
 			<li class="lastpost">
@@ -84,7 +84,7 @@
 	
 	<B_sites>
 	<div id="menu-sites" class="menu-left-block">
-		<h3><img alt="" src="IMG/menu-liens.png"/><a href="sites.php3">Sur le web</a></h3>
+		<h3><img alt="" src="#DOSSIER_SQUELETTE/IMG/menu-liens.png"/><a href="sites.php3">Sur le web</a></h3>
 		<ul>
 			<BOUCLE_sites (SITES)>
 				<li><a href="#URL_SITE">#NOM_SITE</a></li>

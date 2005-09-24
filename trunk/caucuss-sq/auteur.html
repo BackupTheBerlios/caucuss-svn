@@ -1,26 +1,5 @@
 
-<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
-    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="fr">
-
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
-		<title>#NOM_SITE_SPIP</title>
-		<link rel="stylesheet" type="text/css" href="taust.css" media="screen" title="defaut" />       
-	</head>
-
-
-
-<body>
-	<a href="sommaire.php3"><img id="logo" src="IMG/logo_taust.png" alt="" /></a>
-	<h1>Le <span>Taust</span>, chauds et beurrés depuis 1991</h1>
-	
-	<div id="main">
-		<INCLURE (top.php3)>
-		<br class="separator"/>
-		<INCLURE (menu.php3)>
-			<div id="content">
-
+<INCLURE (page.php3) {fond=inc-top}>
 
 		<BOUCLE_auteur (AUTEURS){id_auteur}>
 		<div>
@@ -53,24 +32,4 @@
 [<div class="pagination">(#TOTAL_BOUCLE|pagination{debut_page,10}) </div>]
 </B_pagination>
 
-
-</div>
-
-
-	<div id="bottombar">
-		<div id="search">
-			
-		</div>
-	</div>
-
-	</div>
-
-	<br class="separator"/>
-	<INCLURE (bottom.php3)>
-		
-</body>
-</html>
-</BOUCLE_auteur_principal>
-
-
-
+<INCLURE (page.php3) {fond=inc-bottom}>

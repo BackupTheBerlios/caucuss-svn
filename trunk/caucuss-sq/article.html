@@ -1,28 +1,4 @@
-<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
-    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="fr">
-
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
-		<title>#NOM_SITE_SPIP</title>
-		<link rel="stylesheet" type="text/css" href="taust.css" media="screen" title="defaut" />       
-	</head>
-
-
-
-
-	<body> 
-
-
-	<a href="sommaire.php3"><img id="logo" src="IMG/logo_taust.png" alt="" /></a>
-	<h1>Le <span>Taust</span>, chauds et beurrés depuis 1991</h1>
-	
-	<div id="main">
-		<INCLURE (top.php3)>
-		<br class="separator"/>
-		<INCLURE (menu.php3)>
-			
-		<div id="content">
+<INCLURE (page.php3) {fond=inc-top}>
 			<!-- l'article demandé -->
 			<BOUCLE_article (ARTICLES) {id_article}>
 				<div class="article">
@@ -40,7 +16,7 @@
 				<B_mot_album_simple>
 					<div class=album>
 					<BOUCLE_mot_album_simple (MOTS){id_article}{type=Album}{titre=simple}>
-						<INCLURE (album_simple_incorp.php3){id_rubrique}{id_article}{debut_image}>
+						<INCLURE (page.php3){fond=album_simple_incorp}{id_rubrique}{id_article}{debut_image}>
 					</BOUCLE_mot_album_simple>
 					</div>
 				</B_mot_album_simple>
@@ -48,7 +24,7 @@
 				<B_mot_album_vign>
 					<div class=album>
 					<BOUCLE_mot_album_vign (MOTS){id_article}{type=Album}{titre=avec_vignettes}>
-						<INCLURE (album_vignettes_incorp.php3){id_rubrique}{id_article}{debut_image}{debut_vignette}>	
+						<INCLURE (page.php3){fond=album_vignettes_incorp}{id_rubrique}{id_article}{debut_image}{debut_vignette}>	
 					</BOUCLE_mot_album_vign>
 					</div>
 				</B_mot_album_vign>
@@ -56,7 +32,7 @@
 				<B_mot_album_full>
 					<div class=album>
 					<BOUCLE_mot_album_full (MOTS){id_article}{type=Album}{titre=full_vignettes}>
-						<INCLURE (album_full_vign.php3){id_rubrique}{id_article}{debut_image}{debut_vignette}>	
+						<INCLURE (page.php3){fond=album_full_vign}{id_rubrique}{id_article}{debut_image}{debut_vignette}>	
 					</BOUCLE_mot_album_full>
 					</div>
 				</B_mot_album_full>
@@ -65,7 +41,7 @@
 				
 				<B_docs>
 				<div class="article-block article-docjoints">
-                	<h3><img src="IMG/attach.png" alt="">Documents joints à cet article</h3>
+                	<h3><img src="#DOSSIER_SQUELETTE/IMG/attach.png" alt="">Documents joints à cet article</h3>
 					<ul>
                     	<BOUCLE_docs(DOCUMENTS){id_article}{extension !== jpg|png|gif}{mode=document}{doublons}>
 							<li><a href="#URL_DOCUMENT"> <!--#LOGO_DOCUMENT-->  #TITRE </a></li>
@@ -79,7 +55,7 @@
 		<br />
 		
 		<BOUCLE_reagir(ARTICLES){id_article}>
-			<a class="article-reagir" href="forum.php3?id_article=#ID_ARTICLE"><img src="IMG/reagir.png" alt=""> Réagir à cet article</a>
+			<a class="article-reagir" href="forum.php3?id_article=#ID_ARTICLE"><img src="#DOSSIER_SQUELETTE/IMG/reagir.png" alt=""> Réagir à cet article</a>
 			<br/>
 		</BOUCLE_reagir>
 
@@ -87,7 +63,7 @@
 		<!-- msg du forum de l'article -->
 		<B_forum>
 			<div class="article-block article-forum">
-				<h3><img src="IMG/forum.png" alt="">Forum de l'article</h3>
+				<h3><img src="#DOSSIER_SQUELETTE/IMG/forum.png" alt="">Forum de l'article</h3>
 			
 				<ul>
 					<BOUCLE_forum(FORUMS){id_article}{par date}{inverse}>
@@ -135,7 +111,7 @@
 				<!-- Articles dans la meme rubrique -->
 				<B_articles_meme_rubrique>
 				<div class="article-block article-memerub">
-					<h3><img src="IMG/memerub.png" alt="">Articles dans la même rubrique...</h3>
+					<h3><img src="#DOSSIER_SQUELETTE/IMG/memerub.png" alt="">Articles dans la même rubrique...</h3>
 					<ul>
 					<BOUCLE_articles_meme_rubrique(ARTICLES){id_rubrique}{exclus}{0,10}>
 						<li><a href="#URL_ARTICLE">[(#TITRE)] [&middot <span class="date">(#DATE|affdate_court)</span>]</a></li>
@@ -147,21 +123,7 @@
 		</BOUCLE_article>
 			
 			
-		</div>
-		
-		<div id="bottombar">
-			<div id="search">
-			</div>
-		</div>
-
-		</div>
-
-		<br class="separator"/>
-		<INCLURE (bottom.php3)>
-		
-	</body>
-</html>
-
+<INCLURE (page.php3) {fond=inc-bottom}>
 
 
 

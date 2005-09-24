@@ -55,27 +55,8 @@ $mois='';
 
 ?>
 
+<INCLURE (page.php3) {fond=inc-top}>
 
-<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
-    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="fr">
-
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
-		<title>#NOM_SITE_SPIP</title>
-		<link rel="stylesheet" type="text/css" href="taust.css" media="screen" title="defaut" />       
-	</head>
-
-<body>
-	<a href="sommaire.php3"><img id="logo" src="IMG/logo_taust.png" alt="" /></a>
-	<h1>Le <span>Taust</span>, chauds et beurrés depuis 1991</h1>
-	
-	<div id="main">
-		<INCLURE (top.php3)>
-		<br class="separator"/>
-		<INCLURE (menu.php3)>
-			<div id="content">
-  	
 
 <h2 class="titre" id="titre_agenda">Agenda</h2>
 
@@ -83,29 +64,29 @@ $mois='';
   <div id="agenda_an_nav">
     <form name="navigation" method="get">
      <p>
-	<a href="agen_an.php3?date=<?php echo ($Y - 1); ?>-01-01&str_motcle=<?php echo $str_motcle; ?>"><img src="IMG/back.png" alt="Précédent"/></a> 
+	<a href="page.php3?fond=agen_an&amp;date=<?php echo ($Y - 1); ?>-01-01&amp;str_motcle=<?php echo $str_motcle; ?>"><img src="#DOSSIER_SQUELETTE/IMG/back.png" alt="Précédent"/></a> 
           <select name="var_nav_year">
             <?php
 	    for($i = 2000; $i < 2011; $i++) 
 		echo '<option value="'.$i.'"'.($i == $Y ? ' selected="selected" ' : '').'>'.$i.'</option>';
 	    ?>
-          </select> 
+          </select>
 	  
           <!-- Menu sélection de mot clef -->
           <select name="var_nav_cle">;
 	        <?php
 		foreach($mot_cle as $key=>$value) 
-			echo '<option value="'.$value.($str_motcle==$value?' selected">':'">').$value.'</option>';
+			echo '<option value="'.$value.($str_motcle==$value?'" selected="selected">':'">').$value.'</option>';
 		?>
 	  </select>
 	   
 	   
 	   <input type="button" value="Ok" 
-	   	onClick="document.location.href='agen_an.php3?date=' + window.document.navigation.var_nav_year.value + '-01-01&str_motcle=' + window.document.navigation.var_nav_cle.value ; return false;" 
+	   	onClick="document.location.href='page.php3?fond=agen_an&amp;date=' + window.document.navigation.var_nav_year.value + '-01-01&amp;str_motcle=' + window.document.navigation.var_nav_cle.value ; return false;" 
 		/> 
 	
-	  <a href="agen_an.php3?date=<?php echo ($Y + 1); ?>-01-01&str_motcle=<?php echo $str_motcle ?>
-		&str_theme=<?php echo $str_theme ?>"><img src="IMG/forward.png" alt="Suivant"/>
+	  <a href="page.php3?fond=agen_an&amp;date=<?php echo ($Y + 1); ?>-01-01&amp;str_motcle=<?php echo $str_motcle ?>
+		&amp;str_theme=<?php echo $str_theme ?>"><img src="#DOSSIER_SQUELETTE/IMG/forward.png" alt="Suivant"/>
 	  </a>
 	  
         </p>
@@ -119,23 +100,6 @@ $mois='';
 	if (count($events)>0) { echo '</ul>'; }
   ?>
   </div>
-  </div>
-  
-  
-  		<!-- ###################### -->
-		
-	<div id="bottombar">
-		<div id="search">
-			
-		</div>
-	</div>
-
-	</div>
-
-	<br class="separator"/>
-	<INCLURE (bottom.php3)>
 
 
-
-</body>
-</html>
+<INCLURE (page.php3) {fond=inc-bottom}>

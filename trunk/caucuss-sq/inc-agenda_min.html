@@ -48,7 +48,7 @@ $_dates=array();//liste des dates qui ont un evenement.
 	<!-- agenda miniature: en tete -->	
 	<div id="menu-calendar" class="menu-left-block">
 	
-	<h3><img alt="" src="IMG/menu-calendar.png"/><a href="agenda.php3" title="Vue du mois">Calendrier</a></h3>
+	<h3><img alt="" src="#DOSSIER_SQUELETTE/IMG/menu-calendar.png"/><a href="agenda.php3" title="Vue du mois">Calendrier</a></h3>
 	
 	
 	
@@ -59,7 +59,7 @@ $_dates=array();//liste des dates qui ont un evenement.
 		<th colspan="7" class="agendaNav">
 		<?php
 			echo '<a href="agenda.php3" title="Vue du mois">'.$_months[$_M].'</a>&nbsp;';
-			echo '<a href="agen_an.php3" title="Vue de l\'année">'.$_Y.'</a>';
+			echo '<a href="page.php3?fond=agen_an" title="Vue de l\'année">'.$_Y.'</a>';
 		?>
 		</th> 
 	</tr>

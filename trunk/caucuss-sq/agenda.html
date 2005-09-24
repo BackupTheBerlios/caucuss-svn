@@ -51,30 +51,24 @@ $events = array();
                                  'rub' => '#ID_RUBRIQUE',
                                  'link' => '#URL_ARTICLE',
                                  'title' => '[(#TITRE|texte_script)]',
-                                 'logo' => '[<img src="IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)" />]');
+                                 'logo' => '[<img src="#DOSSIER_SQUELETTE/IMG/(#LOGO_ARTICLE_RUBRIQUE|fichier)" />]');
 									}
 }
 </BOUCLE_evts_com>
 
 ?>
 
-<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'
-    'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="fr">
-
-        <head>
-                <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
-                <title>#NOM_SITE_SPIP</title>
-                <link rel="stylesheet" type="text/css" href="taust.css" media="screen" title="defaut" />
-                        <script type="text/javascript" language="JavaScript">
+<INCLURE (page.php3) {fond=inc-top}>
+			
+				<script type="text/javascript" language="JavaScript">
                 
                         
-                        function showEvents(td){
+                       function showEvents(td){
                           events = td.getElementsByTagName('ul')[0];
-						 if(events){
-							 events.style.display='block';
-							 events.style.position='absolute';
-							 }
+						  if(events){
+							  events.style.display='block';
+							  events.style.position='absolute';
+						  }
 						}
                         
 						function hideEvents(td){
@@ -85,22 +79,8 @@ $events = array();
 							}
 						}
                 
-						</script>
-								</head>
-
-
-	<body>
-		<a href="sommaire.php3"><img id="logo" src="IMG/logo_taust.png" alt="" /></a>
-			<h1>Le <span>Taust</span>, chauds et beurrés depuis 1991</h1>
-      
-			<div id="main">
-        
-			<INCLURE (top.php3)>
-			<br class="separator"/>
-			<INCLURE (menu.php3)>
-                
-                
-			<div id="content">
+				</script>
+					
 					<h2 class="titre" id="titre_agenda">Agenda</h2>
 					<!-- Fabrication du tableau : l'en tête -->
 					<table id="agenda">
@@ -110,7 +90,7 @@ $events = array();
 					
 								<form name="navigation" method="get">
 								<a href="agenda.php3?date=<?php echo (($M - 1 > 0) ? $Y : ($Y - 1)); ?>-<?php printf('%02d', ($M - 1) > 0 ? 
-								($M - 1) : 12); ?>-01&amp;str_motcle=<?php echo $str_motcle ?>" ><img src="IMG/agt_back.png" alt="Précédent"/></a>
+								($M - 1) : 12); ?>-01&amp;str_motcle=<?php echo $str_motcle ?>" ><img src="#DOSSIER_SQUELETTE/IMG/agt_back.png" alt="Précédent"/></a>
                         
 								<select name="var_nav_month">
 								<?php
@@ -141,7 +121,7 @@ $events = array();
 								<input type="button" value="Aujourd'hui" onclick="document.location.href='agenda.php3?date=<?php echo (date('Y-m-d')); ?>&amp;str_motcle=<?php echo $str_motcle ?>'; return false;" />
                         
 								<a href="agenda.php3?date=<?php echo (($M + 1 < 13) ? $Y : ($Y + 1)); ?>-<?php printf('%02d', ($M + 1) < 13 ? ($M + 1) : 1); ?>-01&amp;str_motcle=<?php echo $str_motcle ?>"
-								><img src="IMG/agt_forward.png" alt="Suivant"/></a>
+								><img src="#DOSSIER_SQUELETTE/IMG/agt_forward.png" alt="Suivant"/></a>
 								</form>
 								</th></tr>
                         
@@ -243,23 +223,5 @@ $events = array();
 								</tr>
 								</table>
 
-								</div>
 
-
-
-								<div id="bottombar">
-								<div id="search">
-                        
-								</div>
-								</div>
-
-								</div>
-
-								<br class="separator"/>
-        
-								<INCLURE (bottom.php3)>
-        
-
-
-								</body>
-								</html>
+<INCLURE (page.php3) {fond=inc-bottom}>
