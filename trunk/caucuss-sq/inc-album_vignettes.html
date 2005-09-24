@@ -11,8 +11,7 @@
 
 <!-- affiche un lot de vignettes dont le rang de la 1ère est indiqué par debut_vignette -->
 <!--<center>-->
-<div id=album-photo>
-<br>#TITRE<br><a name=photo ></a>
+<div id="album-photo">
 <table>
 <tbody>
 <tr>
@@ -26,10 +25,9 @@
         ?>
     	<BOUCLE_vignettes(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}{debut_vignette,4}>
         	<?php 
-   				lienPage(#ID_ARTICLE, $debut_vignette, $id_vignette, "agrandir l'image", "[(#LOGO_DOCUMENT||reduire_image{150})]");
-            	$id_vignette++; 
+       lienPage(#ID_ARTICLE, $debut_vignette, $id_vignette, "agrandir l'image","[(#LOGO_DOCUMENT||reduire_image{150}||inserer_attribut{alt,#TITRE})]");
+            	$id_vignette++;
         	?>
-
     	</BOUCLE_vignettes>
     </B_vignettes>
 <!--</center>-->
@@ -45,7 +43,7 @@
     <BOUCLE_photo(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}{debut_image,1}>
      	<!--<img  src=#URL_DOCUMENT />-->
 			<div class="photo">
-		<a href="#URL_DOCUMENT"><img src="#URL_DOCUMENT" width="500px" /></a>
+		<a href="#URL_DOCUMENT"><img src="#URL_DOCUMENT" width="500px" alt="#TITRE" /></a>
         <!-- affichage de la légende (titre et descriptif) de la photo -->
 		[<h4>(#TITRE)</h4>]
             [<p>(#DESCRIPTIF)</p>]
@@ -66,7 +64,7 @@
 function lienPage($id_article, $vignette, $image, $titre, $texte) {
     // affiche un lien avec les paramètres en argument
     echo "<a href='article.php3?id_article=$id_article";
-    echo "&debut_vignette=$vignette&debut_image=$image";
+    echo "&amp;debut_vignette=$vignette&amp;debut_image=$image";
     echo "#photo' title='" . htmlentities($titre, ENT_QUOTES) . "'>$texte</a>";
 }    
 
@@ -75,7 +73,7 @@ function flecheGauche($id_article, $nb_images) {
     if ($nb_images > VIGNETTES_PAGE) {
         $debut_vignette = $_GET["debut_vignette"];
         if ($debut_vignette >= VIGNETTES_PAGE) 
-            lienPage($id_article, ($debut_vignette-VIGNETTES_PAGE), ($debut_vignette-VIGNETTES_PAGE), "vignettes précédentes", "<img src=\"#DOSSIER_SQUELETTE/IMG/back.png\" class=\"fleches\" />");
+            lienPage($id_article, ($debut_vignette-VIGNETTES_PAGE), ($debut_vignette-VIGNETTES_PAGE), "vignettes précédentes", "<img src=\"#DOSSIER_SQUELETTE/IMG/back.png\" class=\"fleches\" alt=\"fleche arriere\" />");
     }
 }
 
@@ -84,7 +82,7 @@ function flecheDroite($id_article, $nb_images) {
     if ($nb_images > VIGNETTES_PAGE) {
         $debut_vignette = $_GET["debut_vignette"];
         if ($debut_vignette < $nb_images-VIGNETTES_PAGE) 
-            lienPage($id_article, ($debut_vignette+VIGNETTES_PAGE), ($debut_vignette+VIGNETTES_PAGE), "vignettes suivantes", "<img src=\"#DOSSIER_SQUELETTE/IMG/forward.png\" class=\"fleches\" />");
+            lienPage($id_article, ($debut_vignette+VIGNETTES_PAGE), ($debut_vignette+VIGNETTES_PAGE), "vignettes suivantes", "<img src=\"#DOSSIER_SQUELETTE/IMG/forward.png\" class=\"fleches\" alt=\"fleche avant\" />");
     }
 }
 

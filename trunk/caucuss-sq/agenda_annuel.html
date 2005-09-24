@@ -64,7 +64,7 @@ $mois='';
   <div id="agenda_an_nav">
     <form name="navigation" method="get">
      <p>
-	<a href="page.php3?fond=agen_an&amp;date=<?php echo ($Y - 1); ?>-01-01&amp;str_motcle=<?php echo $str_motcle; ?>"><img src="#DOSSIER_SQUELETTE/IMG/back.png" alt="Précédent"/></a> 
+	<a href="page.php3?fond=agenda_annuel&amp;date=<?php echo ($Y - 1); ?>-01-01&amp;str_motcle=<?php echo $str_motcle; ?>"><img src="#DOSSIER_SQUELETTE/IMG/back.png" alt="Précédent"/></a> 
           <select name="var_nav_year">
             <?php
 	    for($i = 2000; $i < 2011; $i++) 
@@ -82,10 +82,10 @@ $mois='';
 	   
 	   
 	   <input type="button" value="Ok" 
-	   	onClick="document.location.href='page.php3?fond=agen_an&amp;date=' + window.document.navigation.var_nav_year.value + '-01-01&amp;str_motcle=' + window.document.navigation.var_nav_cle.value ; return false;" 
+	   	onClick="document.location.href='page.php3?fond=agenda_annuel&amp;date=' + window.document.navigation.var_nav_year.value + '-01-01&amp;str_motcle=' + window.document.navigation.var_nav_cle.value ; return false;" 
 		/> 
 	
-	  <a href="page.php3?fond=agen_an&amp;date=<?php echo ($Y + 1); ?>-01-01&amp;str_motcle=<?php echo $str_motcle ?>
+	  <a href="page.php3?fond=agenda_annuel&amp;date=<?php echo ($Y + 1); ?>-01-01&amp;str_motcle=<?php echo $str_motcle ?>
 		&amp;str_theme=<?php echo $str_theme ?>"><img src="#DOSSIER_SQUELETTE/IMG/forward.png" alt="Suivant"/>
 	  </a>
 	  

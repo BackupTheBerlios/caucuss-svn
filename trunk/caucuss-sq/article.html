@@ -14,25 +14,25 @@
 				
 				<!-- incorporation de l'Album (un peu crade car 2 boucles presque identiques) -->
 				<B_mot_album_simple>
-					<div class=album>
+					<div class="album">
 					<BOUCLE_mot_album_simple (MOTS){id_article}{type=Album}{titre=simple}>
-						<INCLURE (page.php3){fond=album_simple_incorp}{id_rubrique}{id_article}{debut_image}>
+						<INCLURE (page.php3){fond=inc-album_simple}{id_rubrique}{id_article}{debut_image}>
 					</BOUCLE_mot_album_simple>
 					</div>
 				</B_mot_album_simple>
 				
 				<B_mot_album_vign>
-					<div class=album>
+					<div class="album">
 					<BOUCLE_mot_album_vign (MOTS){id_article}{type=Album}{titre=avec_vignettes}>
-						<INCLURE (page.php3){fond=album_vignettes_incorp}{id_rubrique}{id_article}{debut_image}{debut_vignette}>	
+						<INCLURE (page.php3){fond=inc-album_vignettes}{id_rubrique}{id_article}{debut_image}{debut_vignette}>	
 					</BOUCLE_mot_album_vign>
 					</div>
 				</B_mot_album_vign>
 				
 				<B_mot_album_full>
-					<div class=album>
+					<div class="album">
 					<BOUCLE_mot_album_full (MOTS){id_article}{type=Album}{titre=full_vignettes}>
-						<INCLURE (page.php3){fond=album_full_vign}{id_rubrique}{id_article}{debut_image}{debut_vignette}>	
+						<INCLURE (page.php3){fond=inc-album_full_vign}{id_rubrique}{id_article}{debut_image}{debut_vignette}>	
 					</BOUCLE_mot_album_full>
 					</div>
 				</B_mot_album_full>
@@ -55,7 +55,7 @@
 		<br />
 		
 		<BOUCLE_reagir(ARTICLES){id_article}>
-			<a class="article-reagir" href="forum.php3?id_article=#ID_ARTICLE"><img src="#DOSSIER_SQUELETTE/IMG/reagir.png" alt=""> Réagir à cet article</a>
+			<a class="article-reagir" href="forum.php3?id_article=#ID_ARTICLE"><img src="#DOSSIER_SQUELETTE/IMG/reagir.png" alt="reagir" /> Réagir à cet article</a>
 			<br/>
 		</BOUCLE_reagir>
 
@@ -63,12 +63,13 @@
 		<!-- msg du forum de l'article -->
 		<B_forum>
 			<div class="article-block article-forum">
-				<h3><img src="#DOSSIER_SQUELETTE/IMG/forum.png" alt="">Forum de l'article</h3>
+				<h3><img src="#DOSSIER_SQUELETTE/IMG/forum.png" alt="logo forum" />Forum de l'article</h3>
 			
 				<ul>
 					<BOUCLE_forum(FORUMS){id_article}{par date}{inverse}>
 						<li class="commentaire">
-							<h4 name="#ID_FORUM">#TITRE</h4>
+							<!--<h4 name="#ID_FORUM">#TITRE</h4>-->
+							<h4>#TITRE</h4>
 							<div class="commentaire-infos">[(#DATE|affdate)][, <:par_auteur:> (#NOM)] 
 							[&middot; <a href="mailto:(#EMAIL)">mail</a>][ &middot; <a href="(#URL_SITE)">#NOM_SITE</a>]</div>
 							<div class="commentaire-texte">#TEXTE</div>

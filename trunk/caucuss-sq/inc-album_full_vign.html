@@ -5,7 +5,7 @@
 	<BOUCLE_vignettes(DOCUMENTS){id_article}{extension==jpg|png|gif}{mode=document}>
 	
 	<!--[(#TITRE)]-->
-	<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT||reduire_image{150})]</a>
+	<a href="#URL_DOCUMENT">[(#LOGO_DOCUMENT||reduire_image{150}||inserer_attribut{alt,#TITRE})]</a>
 	<!--[(#DESCRIPTIF)]-->
 
     </BOUCLE_vignettes>
