@@ -8,10 +8,10 @@
 function les_fichiers() {
   global $fichiers;
   $fichiers = array(/*'mes_options.php3',*/'taust.css','mes_fonctions.php3',/*'page.php3'*/);//page et inc_version sont des fichiers de spip patché pour le bug page.php3?fond=
-  $gabarit_html = array('agenda_annuel', 'inc-top','inc-bottom', 'album_full_vign','album_vignettes','album_simple','inc-menu','inc-agenda_min');
+  $gabarit_html = array('events','albums','sites','agenda_annuel', 'inc-top','inc-bottom', 'inc-album_full_vign','inc-album_vignettes','inc-album_simple','inc-menu','inc-agenda_min');
   $images = array('agendares.png','agt_back.png','agt_forward.png','albums.png','article.png','attach.png','auteur.png','background.jpg','billet.png','calendar.png','coin-bd.png','coin-bg.png','coin-hd.png','coin-hg.png','download.png','events.png','forum.png','info.png','internet.png','liens.png','lire.png','logo_auteur.png','logo_taust.png','logo_taust_petit.png','memerub.png','menu-albums.png','menu-calendar.png','menu-forum.png','menu-liens.png','menu-recherche.png','menu-rub.png','reagir.png','recherche.png','result_articles.png','result_breves.png','result_forum.png','result_liens.png','rubriques.png','suite.png','taust-enter.png','titre_auteur.png','titre_forum.png');
   
-  $couple = array('index', 'sites', 'albums', 'events', 'agenda', 'auteur', 'article', 'forum', 'recherche', 'rubrique', 'sommaire', 'mot');
+  $couple = array('index', 'agenda', 'auteur', 'article', 'forum', 'recherche', 'rubrique', 'sommaire', 'mot');
   
   foreach ($couple as $fichier) {$fichiers[]=$fichier.'.html'; $fichiers[]=$fichier.'.php3';}
   foreach ($images as $image) $fichiers[]='IMG/'.$image;
@@ -89,10 +89,15 @@ function install_fichiers() {
      if (!copie($fichier, 'caucuss-sq/'.$fichier.'.bak')) return FALSE;
   }
   */
+  //sauvegarde mes_options.php3 s'il existe deja
+  //if (!file_exists('ecrire/'.'mes_options.php3')) continue;
+  //if (!copie($fichier, 'caucuss-sq/'.$fichier.'.bak')) return FALSE;
+
   echo "<h3>Installation du squelette</h3>";//avec #DOSSIER_SQUELETTE on copie qu'un seul fichier :) (spip 1.8.2)
-  if (!copie('caucuss-sq/'.'mes_options.php3', 'ecrire/mes_options.php3')) return FALSE;
+  //if (!copie('caucuss-sq/'.'mes_options.php3', 'ecrire/mes_options.php3')) return FALSE;
   if (!copie('caucuss-sq/'.'page.php3', 'page.php3')) return FALSE;
-  if (!copie('caucuss-sq/'.'inc_version.php3', 'ecrire/inc_version.php3')) return FALSE;
+  if (!copie('caucuss-sq/'.'index.php3', 'index.php3')) return FALSE;
+  //if (!copie('caucuss-sq/'.'inc_version.php3', 'ecrire/inc_version.php3')) return FALSE;
   //if (!copie('caucuss-sq/'.'mes_fonctions.php3', 'mes_fonctions.php3')) return FALSE;
   //foreach ($fichiers as $fichier) {
   //   if (!copie('caucuss-sq/'.$fichier, $fichier)) return FALSE;
