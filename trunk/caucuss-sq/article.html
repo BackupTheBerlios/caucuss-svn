@@ -12,31 +12,16 @@
 					<div class="article-texte">#TEXTE</div>
 				</div>
 				
-				<!-- incorporation de l'Album (un peu crade car 2 boucles presque identiques) -->
+				<!-- incorporation de l'Album (un peu crade car 3 boucles presque identiques) 
+				TODO trouver une factorisation
+				-->
 				<B_mot_album_simple>
 					<div class="album">
 					<BOUCLE_mot_album_simple (MOTS){id_article}{type=Album}{titre=simple}>
-						<INCLURE (page.php3){fond=inc-album_simple}{id_rubrique}{id_article}{debut_image}>
+						<INCLURE (page.php3){fond=inc-album_#TITRE}{id_rubrique}{id_article}{debut_image}>
 					</BOUCLE_mot_album_simple>
 					</div>
 				</B_mot_album_simple>
-				
-				<B_mot_album_vign>
-					<div class="album">
-					<BOUCLE_mot_album_vign (MOTS){id_article}{type=Album}{titre=avec_vignettes}>
-						<INCLURE (page.php3){fond=inc-album_vignettes}{id_rubrique}{id_article}{debut_image}{debut_vignette}>	
-					</BOUCLE_mot_album_vign>
-					</div>
-				</B_mot_album_vign>
-				
-				<B_mot_album_full>
-					<div class="album">
-					<BOUCLE_mot_album_full (MOTS){id_article}{type=Album}{titre=full_vignettes}>
-						<INCLURE (page.php3){fond=inc-album_full_vign}{id_rubrique}{id_article}{debut_image}{debut_vignette}>	
-					</BOUCLE_mot_album_full>
-					</div>
-				</B_mot_album_full>
-
 				
 				
 				<B_docs>
