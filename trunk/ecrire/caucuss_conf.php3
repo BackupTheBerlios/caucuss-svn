@@ -4,12 +4,14 @@
 // http://www.spip-contrib.net/Squelette-Epona-v2-2?var_recherche=epona
 //
 
+function squelette_present(){return file_exists("../caucuss-sq/inc-agenda_min.html");}
+
 //sert à vérifier si tous les fichiers sont présents
 function les_fichiers() {
   global $fichiers;
-  $fichiers = array(/*'mes_options.php3',*/'taust.css','mes_fonctions.php3',/*'page.php3'*/);//page et inc_version sont des fichiers de spip patché pour le bug page.php3?fond=
+  $fichiers = array('taust.css','mes_fonctions.php3');
   $gabarit_html = array('events','albums','sites','agenda_annuel', 'inc-top','inc-bottom', 'inc-album_full_vignettes','inc-album_avec_vignettes','inc-album_simple','inc-menu','inc-agenda_min');
-  $images = array('agendares.png','agt_back.png','agt_forward.png','albums.png','article.png','attach.png','auteur.png','background.jpg','billet.png','calendar.png','coin-bd.png','coin-bg.png','coin-hd.png','coin-hg.png','download.png','events.png','forum.png','info.png','internet.png','liens.png','lire.png','logo_auteur.png','logo_taust.png','logo_taust_petit.png','memerub.png','menu-albums.png','menu-calendar.png','menu-forum.png','menu-liens.png','menu-recherche.png','menu-rub.png','reagir.png','recherche.png','result_articles.png','result_breves.png','result_forum.png','result_liens.png','rubriques.png','suite.png','taust-enter.png','titre_auteur.png','titre_forum.png');
+  $images = array('agendares.png','agt_back.png','agt_forward.png','albums.png','article.png','attach.png','auteur.png','background.jpg','billet.png','calendar.png','coin-bd.png','coin-bg.png','coin-hd.png','coin-hg.png','download.png','events.png','forum.png','getfirefox.png','info.png','internet.png','liens.png','lire.png','logo_auteur.png','logo_taust.png','logo_taust_petit.png','memerub.png','menu-albums.png','menu-calendar.png','menu-forum.png','menu-liens.png','menu-recherche.png','menu-rub.png','reagir.png','recherche.png','result_articles.png','result_breves.png','result_forum.png','result_liens.png','rss.png','rubriques.png','suite.png','taust-enter.png','titre_auteur.png','titre_forum.png');
   
   $couple = array('index', 'agenda', 'auteur', 'article', 'forum', 'recherche', 'rubrique', 'sommaire', 'mot');
   
@@ -28,6 +30,13 @@ function copie($src, $dst) {
   else
   {  echo basename($src)." ";  return TRUE;}
 }
+function mv($src, $dst) {
+  if (!rename('../'.$src, '../'.$dst)) {abandon("échec déplacement $src vers $dst"); return FALSE;}
+  else
+  {  echo basename($src)." ";  return TRUE;}
+}
+
+
 
 function abandon($msg) {
   echo "<b><font color=red>$msg</font></b><br>";
@@ -95,8 +104,11 @@ function install_fichiers() {
 
   echo "<h3>Installation du squelette</h3>";//avec #DOSSIER_SQUELETTE on copie qu'un seul fichier :) (spip 1.8.2)
 
-  if (!copie('caucuss-sq/'.'page.php3', 'page.php3')) return FALSE;
-  if (!copie('caucuss-sq/'.'index.php3', 'index.php3')) return FALSE;
+  if (!copie('caucuss-sq/'.'page.php3', 'page.php3')) return FALSE; else {avertir("<br/>remplacement page.php3 par page.php3 patché svn");}
+  //comme on remplace le index index.php3 de spip on le sauvegarde avant pour une restauration lors de la desinstall
+  backup("index.php3");
+
+  if(!copie('caucuss-sq/'.'index.php3', 'index.php3')) return FALSE;
 
   //foreach ($fichiers as $fichier) {
   //   if (!copie('caucuss-sq/'.$fichier, $fichier)) return FALSE;
@@ -106,6 +118,14 @@ function install_fichiers() {
   return TRUE;
 }
 
+function backup($f)
+{
+	if (file_exists("../$f")) 
+	{	
+		avertir( "<br/>backup de $f en $f.bak dans caucuss-sq/</br>");
+		if(!mv($f,"caucuss-sq/$f.bak")) return FALSE;
+	}
+}
 
 //
 // Contrôles d'accès en écriture avant restauration fichiers squelette
@@ -233,6 +253,7 @@ function desinstall() {
   //if (!pre_restaure_fichiers()) return;
   if (!pre_desactive_groupe('Album')) return;
   if (!pre_desactive_groupe('Agenda')) return;
+  if (!pre_desactive_groupe('Meta')) return;
   //if (!efface_fichiers()) return;
 
   if (squelette_off()) return;
@@ -240,6 +261,7 @@ function desinstall() {
   echo "<h3>Effacement en base</h3>";
   desactive_groupe('Album');
   desactive_groupe('Agenda');
+  desactive_groupe('Meta');
   echo "<h1>Exécution complète</h1>";
 }
 
@@ -254,6 +276,7 @@ function squelette_on() {
   echo "<br/>";
   active_groupe('Agenda',$motsAgenda, 'non');
   active_groupe('Album', $motsAlbum, 'oui');
+  active_groupe('Album', array('cacher'), 'non');
   
   active_antidatage();
   active_preview();
@@ -262,15 +285,31 @@ function squelette_on() {
 }
 
 
+function restaureFichier($f)
+{
+if(file_exists('../caucuss-sq/'.$f.'.bak'))
+		{
+			avertir('restauration de '.$f.' à la racine.');
+			if(!mv('caucuss-sq/'.$f.'.bak',$f)) avertir("restauration impossible");
+		}
+	else
+		{avertir('y avait pas de sauvegarde du '.$f.' dans caucuss-sq');}
+}
+
 function squelette_off() {
-  echo "<h1>Désinstallation du squelette caucuss (sans modif des mots clefs)</h1>";
+  echo "<h1>Désinstallation des fichiers du squelette caucuss placé à la racine (sans modif des mots clefs)</h1>";
   //if (!pre_restaure_fichiers()) return;
 
+  restaureFichier('index.php3');
+
+
   //restaure mes_options.php3.bak si il existait 
-  if (!unlink('ecrire/mes_options.php3')) 
-	{abandon("échec effacement mes_fontions.php3..."); return FALSE;}
-  if (file_exists('ecrire/mes_options.php3.bak')) 
-	{mv('ecrire/mes_options.php3.bak', 'ecrire/mes_options.php3');} 
+//   if (!unlink('../ecrire/mes_options.php3'))
+// 	{abandon("échec effacement mes_options.php3..."); return FALSE;}
+  /*if (file_exists('../ecrire/mes_options.php3.bak')) 
+	{ if (!mv('../ecrire/mes_options.php3.bak', '../ecrire/mes_options.php3'))
+			{abandon("échec effacement mes_fontions.php3..."); return FALSE;}
+	}*/ 
 
   //if (!efface_fichiers()) return;
   echo "<h1>Exécution complète</h1>";
@@ -290,7 +329,7 @@ echo "<h2>activation des miniatures</h2><br>";
 //
 // Main
 //
-$groupes_mots = array('Agenda', 'Album');
+$groupes_mots = array('Agenda', 'Album', 'Meta');
 $motsAgenda =   array('clowns','Impros');
 $motsAlbum =    array('full_vignettes','simple','avec_vignettes');
 
@@ -325,7 +364,9 @@ echo "<hr>";
 echo '<a href="../sommaire.php3?recalcul=oui">Page d\'accueil</a>';
 echo "<br><a href=.>Espace privé</a><br><br>";
 
-if(file_exists("../agen_min.html"))
+
+
+if(squelette_present())
 {
   echo "<a href=\"caucuss_conf.php3?action=desinstall\">Tout désinstaller (fichiers+mot clefs)</a><br>";
   echo "<a href=\"caucuss_conf.php3?action=squelette_off\">Désinstaller les fichiers du squelette</a>";
@@ -347,7 +388,7 @@ echo "</ul>";
 
 echo "<h2>Etat de la configuration:</h2>";
 
-if (!file_exists("../agen_min.html")) 
+if (!squelette_present()) 
   echo "Squelette : absent<br>";
   	else 
   Echo "Squelette : présent<br>";
