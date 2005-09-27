@@ -1,6 +1,11 @@
 <INCLURE (page.php3) {fond=inc-top}>
+
+			<!-- Exclusions des articles cachés -->
+			<BOUCLE_exclurec(ARTICLES){titre_mot==cacher}{par date}{doublons}>
+			</BOUCLE_exclurec>
+
 			<B_articles_recents>
-			<BOUCLE_articles_recents (ARTICLES){par date}{inverse}{debut_page,10}>
+			<BOUCLE_articles_recents (ARTICLES){par date}{inverse}{debut_page,10}{doublons}>
 				<div class="billet">
 					<!--#LOGO_ARTICLE_RUBRIQUE-->
 					<h3><a href="#URL_ARTICLE">#TITRE</a></h3>
