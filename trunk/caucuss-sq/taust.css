@@ -420,6 +420,10 @@ font-size:0.9em;
 margin-top:5px;
 }
 
+#credits a img{
+border:none;
+}
+
 
 #credits span{
 font-weight:bold;
