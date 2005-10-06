@@ -1,4 +1,11 @@
-<INCLURE (page.php3) {fond=inc-top}>
+
+<INCLURE (page.php3){fond=inc-top}> 
+
+<INCLURE (page.php3){fond=inc-menu}{id_article}>
+		
+	<div id="content">
+
+
 			<!-- l'article demandé -->
 			<BOUCLE_article (ARTICLES) {id_article}>
 				<div class="article">
@@ -9,12 +16,14 @@
 						</BOUCLE_auteurs_recents>
 					[ &middot; <span class="article-date">(#DATE|affdate_court)</span>]
 					</div>
+
+					<br>[(#DATE|affdate_court)]<br>
+					[(#DATE_REDAC|affdate_court)]<br>
+
 					<div class="article-texte">#TEXTE</div>
 				</div>
 				
-				<!-- incorporation de l'Album (un peu crade car 3 boucles presque identiques) 
-				TODO trouver une factorisation
-				-->
+				<!-- incorporation de l'Album éventuel-->
 				<B_mot_album_simple>
 					<div class="album">
 					<BOUCLE_mot_album_simple (MOTS){id_article}{type=Album}>
@@ -29,7 +38,7 @@
                 	<h3><img src="#DOSSIER_SQUELETTE/IMG/attach.png" alt="">Documents joints à cet article</h3>
 					<ul>
                     	<BOUCLE_docs(DOCUMENTS){id_article}{extension !== jpg|png|gif}{mode=document}{doublons}>
-							<li><a href="#URL_DOCUMENT"> <!--#LOGO_DOCUMENT-->  #TITRE </a></li>
+							<li><a href="#URL_DOCUMENT"> #TITRE </a></li>
 						</BOUCLE_docs>
 					</ul>
 				</div>
@@ -94,19 +103,19 @@
 			</div>
 		</B_forum>
 			
-				<!-- Articles dans la meme rubrique -->
-				<B_articles_meme_rubrique>
+			<!-- Articles dans la meme rubrique -->
+			<B_articles_meme_rubrique>
 				<div class="article-block article-memerub">
 					<h3><img src="#DOSSIER_SQUELETTE/IMG/memerub.png" alt="">Articles dans la même rubrique...</h3>
 					<ul>
 					<BOUCLE_articles_meme_rubrique(ARTICLES){id_rubrique}{exclus}{0,10}>
 						<li><a href="#URL_ARTICLE">[(#TITRE)] [&middot <span class="date">(#DATE|affdate_court)</span>]</a></li>
 					</BOUCLE_articles_meme_rubrique>
-				</ul>
+					</ul>
 				</div>
 			</B_articles_meme_rubrique>
 			
-		</BOUCLE_article>
+	</BOUCLE_article>
 			
 			
 <INCLURE (page.php3) {fond=inc-bottom}>

@@ -2,14 +2,14 @@
 	
 	<div id="menu-rub" class="menu-left-block">
 	
-		<h3><img alt="" src="#DOSSIER_SQUELETTE/IMG/menu-rub.png"/>Rubriques</h3>
+		<h3><img alt="" src="#DOSSIER_SQUELETTE/IMG/menu-rub.png"/><a href="sommaire.php3">Rubriques</a></h3>
 
 		<ul>
 		<BOUCLE_rub (RUBRIQUES){racine}{tout}>
-          <li><a href="#URL_RUBRIQUE">#TITRE</a>
+		<li>[(#EXPOSE{<strong>,})]<a href="#URL_RUBRIQUE">#TITRE</a>[(#EXPOSE{</strong>,})]
                 <ul>
                     <BOUCLE_ssrub (RUBRIQUES){id_parent}{tout}>
-                        <li><a href="#URL_RUBRIQUE">#TITRE</a></li>
+                        <li>[(#EXPOSE{<strong>,})]<a [(#EXPOSE{id="expose",})] href="#URL_RUBRIQUE">#TITRE</a>[(#EXPOSE{</strong>,})]</li>
                         
                         <B_recursive>
                         	<li><ul>

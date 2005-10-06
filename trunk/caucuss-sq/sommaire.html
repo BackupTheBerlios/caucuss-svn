@@ -1,4 +1,7 @@
-<INCLURE (page.php3) {fond=inc-top}>
+<INCLURE (page.php3){fond=inc-top}>
+<INCLURE (page.php3){fond=inc-menu}>
+		
+	<div id="content">
 
 			<!-- Exclusions des articles cachés -->
 			<BOUCLE_exclurec(ARTICLES){titre_mot==cacher}{par date}{doublons}>
@@ -16,6 +19,7 @@
 					<span class="billet-date">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
 					</div>
 					[<p>(#INTRODUCTION)</p>]
+			
 					<a class="billet-suite" href="#URL_ARTICLE">lire la suite</a>
 					<hr class="billet-separator" />
 				</div>
