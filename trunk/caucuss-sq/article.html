@@ -17,24 +17,30 @@
 					[ &middot; <span class="article-date">(#DATE|affdate_court)</span>]
 					</div>
 					<div class="article-texte">#TEXTE</div>
+
 				</div>
 				
 				<!-- incorporation de l'Album éventuel-->
-				<B_mot_album_simple>
+				<B_mot_album>
 					<div class="album">
-					<BOUCLE_mot_album_simple (MOTS){id_article}{type=Album}>
+					<BOUCLE_mot_album (MOTS){id_article}{type=Album}>
 						<INCLURE (page.php3){fond=inc-album_#TITRE}{id_rubrique}{id_article}{debut_image}>
-					</BOUCLE_mot_album_simple>
+					</BOUCLE_mot_album>
 					</div>
-				</B_mot_album_simple>
+				</B_mot_album>
 				
 				
+				</BOUCLE_album>
+					<BOUCLE_img(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{doublons img}>
+					</BOUCLE_img>
+				</BOUCLE_album>
+
 				<B_docs>
 				<div class="article-block article-docjoints">
                 	<h3><img src="#DOSSIER_SQUELETTE/IMG/attach.png" alt="">Documents joints à cet article</h3>
 					<ul>
-                    	<BOUCLE_docs(DOCUMENTS){id_article}{extension !== jpg|png|gif}{mode=document}{doublons}>
-							<li><a href="#URL_DOCUMENT"> #TITRE </a></li>
+                    	<BOUCLE_docs(DOCUMENTS){id_article}{mode=document}>
+							<li><a href="#URL_DOCUMENT">[(#TITRE)]</a></li>
 						</BOUCLE_docs>
 					</ul>
 				</div>

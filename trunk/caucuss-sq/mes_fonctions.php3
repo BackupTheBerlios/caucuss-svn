@@ -3,7 +3,7 @@
 //change truc@bidule.fr en truc_chez_bidule.fr
 function cache_email($texte){
    list($a, $b) = split('@', $texte);
-   return $a.'_chez_'.$b;
+   return $a.' chez '.$b;
 }
 
 //GLOBALS['dossier_squelettes'] = 'caucuss-sq';

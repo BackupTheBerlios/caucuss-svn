@@ -119,11 +119,16 @@ margin-bottom:0.5em;
 margin-right:5px;
 }
 
+#test {
+background:#76A0CB;
+color:white;
+text-decoration:none;
+}
+
 #menu-rub li a{
 background:#76A0CB;
 color:white;
 text-decoration:none;
-
 }
 
 #menu-rub li li a{
@@ -748,6 +753,13 @@ h2#titre_forum{
 	padding-left:20px;
 	background: url(IMG/internet.png) no-repeat center left;
 }
+.auteur_email{
+	margin: 1em;
+	min-height:18px;
+	padding-left:20px;
+	background: url(IMG/email.png) no-repeat center left;
+}
+
 ul.resultats_recherche{
 	margin:0;
 }
