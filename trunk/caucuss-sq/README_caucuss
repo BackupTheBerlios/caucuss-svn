@@ -1,9 +1,0 @@
-
-INSTALL
-
-- installer spip 1.8.2
-- copier le dossier caucuss-sq à la racine de spip
-- copier le dossier ecrire sans écraser le dossier existant
-
-- ouvrir http://monsitespip/ecrire/caucuss_conf.php3 pour completer l'install
-
