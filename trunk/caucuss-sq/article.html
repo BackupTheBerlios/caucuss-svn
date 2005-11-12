@@ -6,10 +6,10 @@
 	<div id="content">
 
 
-			<!-- l'article demandé -->
+			<!-- l'article demande-->
 			<BOUCLE_article (ARTICLES) {id_article}>
 				<div class="article">
-					<h3>#TITRE</h3>
+					<h2>#TITRE</h2>
 					<div class="article-infos">
 					<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
 							[<span class="article-auteur"><a href="#URL_AUTEUR">(#NOM)</a></span>]
@@ -20,7 +20,7 @@
 
 				</div>
 				
-				<!-- incorporation de l'Album éventuel-->
+				<!-- incorporation de l'Album eventuel-->
 				<B_mot_album>
 					<div class="album">
 					<BOUCLE_mot_album (MOTS){id_article}{type=Album}>
@@ -39,7 +39,7 @@
 
 				<B_docs>
 				<div class="article-block article-docjoints">
-                	<h3><img src="#DOSSIER_SQUELETTE/IMG/attach.png" alt="">Documents joints à cet article</h3>
+                	<h3><img src="#DOSSIER_SQUELETTE/IMG/attach.png" alt="">Documents joints Ã  cet article</h3>
 					<ul>
                     	<BOUCLE_docs(DOCUMENTS){id_article}{mode=document}{doublons img}>
 							<li><a href="#URL_DOCUMENT">[(#TITRE)]</a></li>
@@ -53,7 +53,7 @@
 		<br />
 		
 		<BOUCLE_reagir(ARTICLES){id_article}>
-			<a class="article-reagir" href="forum.php3?id_article=#ID_ARTICLE"><img src="#DOSSIER_SQUELETTE/IMG/reagir.png" alt="reagir" /> Réagir à cet article</a>
+			<a class="article-reagir" href="forum.php3?id_article=#ID_ARTICLE"><img src="#DOSSIER_SQUELETTE/IMG/reagir.png" alt="reagir" /> RÃ©agir Ã  cet article</a>
 			<br/>
 		</BOUCLE_reagir>
 
@@ -92,7 +92,7 @@
 									<B_Forum_Boucle>
 									<ul>
 									<BOUCLE_Forum_Boucle(boucle_forum_fils)>
-										<!-- appel récursif -->
+										<!-- appel recursif -->
 									</BOUCLE_Forum_Boucle>
 									</ul>
 									</B_Forum_Boucle>
@@ -110,7 +110,7 @@
 			<!-- Articles dans la meme rubrique -->
 			<B_articles_meme_rubrique>
 				<div class="article-block article-memerub">
-					<h3><img src="#DOSSIER_SQUELETTE/IMG/memerub.png" alt="">Articles dans la même rubrique...</h3>
+					<h3><img src="#DOSSIER_SQUELETTE/IMG/memerub.png" alt="">Articles dans la mÃªme rubrique</h3>
 					<ul>
 					<BOUCLE_articles_meme_rubrique(ARTICLES){id_rubrique}{exclus}{0,10}>
 						<li><a href="#URL_ARTICLE">[(#TITRE)] [&middot <span class="date">(#DATE|affdate_court)</span>]</a></li>
@@ -123,14 +123,3 @@
 			
 			
 <INCLURE (page.php3) {fond=inc-bottom}>
-
-
-
-
-
-
-
-
-
-
-

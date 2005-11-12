@@ -3,7 +3,7 @@
 		
 	<div id="content">
 
-			<!-- Exclusions des articles cachés -->
+			<!-- Exclusions des articles caches -->
 			<BOUCLE_exclurec(ARTICLES){titre_mot==cacher}{par date}{doublons}>
 			</BOUCLE_exclurec>
 
@@ -30,5 +30,5 @@
 			</BOUCLE_articles_pagination>
 			[<div class="pagination">(#TOTAL_BOUCLE|pagination{debut_page,10})</div>]
 			</B_articles_pagination>
-			
+
 <INCLURE (page.php3) {fond=inc-bottom}>

@@ -9,7 +9,7 @@
 
 
 
-<!-- affiche un lot de vignettes dont le rang de la 1ère est indiqué par debut_vignette -->
+<!-- affiche un lot de vignettes dont le rang de la 1ere est indiquee par debut_vignette -->
 <!--<center>-->
 <div id="album-photo">
 <table>
@@ -44,7 +44,7 @@
      	<!--<img  src=#URL_DOCUMENT />-->
 			<div class="photo">
 		<a href="#URL_DOCUMENT"><img src="#URL_DOCUMENT" width="500px" alt="#TITRE" /></a>
-        <!-- affichage de la légende (titre et descriptif) de la photo -->
+        <!-- affichage de la legende (titre et descriptif) de la photo -->
 		[<h4>(#TITRE)</h4>]
             [<p>(#DESCRIPTIF)</p>]
         
@@ -62,23 +62,23 @@
 
 <?php 
 function lienPage($id_article, $vignette, $image, $titre, $texte) {
-    // affiche un lien avec les paramètres en argument
+    // affiche un lien avec les parametres en argument
     echo "<a href='article.php3?id_article=$id_article";
     echo "&amp;debut_vignette=$vignette&amp;debut_image=$image";
     echo "#photo' title='" . htmlentities($titre, ENT_QUOTES) . "'>$texte</a>";
 }    
 
 function flecheGauche($id_article, $nb_images) {
-    // affiche des liens permettant d'afficher les vignettes précédentes et suivantes par lot de 10
+    // affiche des liens permettant d'afficher les vignettes precedentes et suivantes par lot de 10
     if ($nb_images > VIGNETTES_PAGE) {
         $debut_vignette = $_GET["debut_vignette"];
         if ($debut_vignette >= VIGNETTES_PAGE) 
-            lienPage($id_article, ($debut_vignette-VIGNETTES_PAGE), ($debut_vignette-VIGNETTES_PAGE), "vignettes précédentes", "<img src=\"#DOSSIER_SQUELETTE/IMG/back.png\" class=\"fleches\" alt=\"fleche arriere\" />");
+            lienPage($id_article, ($debut_vignette-VIGNETTES_PAGE), ($debut_vignette-VIGNETTES_PAGE), "vignettes prÃ©cÃ©dentes", "<img src=\"#DOSSIER_SQUELETTE/IMG/back.png\" class=\"fleches\" alt=\"fleche arriere\" />");
     }
 }
 
 function flecheDroite($id_article, $nb_images) {
-    // affiche des liens permettant d'afficher les vignettes précédentes et suivantes par lot de 10
+    // affiche des liens permettant d'afficher les vignettes precedentes et suivantes par lot de 10
     if ($nb_images > VIGNETTES_PAGE) {
         $debut_vignette = $_GET["debut_vignette"];
         if ($debut_vignette < $nb_images-VIGNETTES_PAGE) 

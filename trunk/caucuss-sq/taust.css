@@ -666,8 +666,12 @@ padding-bottom:2px;
 }
 
 
-
 .article  h3{
+	text-align:center;
+	padding:1px;
+}
+
+.article  h2{
 	font-size:1.3em;
 background:gray url(IMG/billet.png) no-repeat 97% 50%;
 border:1px solid gray;

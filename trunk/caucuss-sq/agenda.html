@@ -10,7 +10,7 @@ $D = date('d', $cal_day);
 $M = date('m', $cal_day);
 $Y = date('Y', $cal_day);
 
-// Le Menu de sélection de genre
+// Le Menu de sï¿½ection de genre
 $mot_cle = array();
 $mot_cle['Tout'] = 'Tout';
 
@@ -35,7 +35,7 @@ $str_motcle = strlen($str_motcle)>0 ? $str_motcle : 'Tout';
 $date=!isset($date) ? date("Y-m-01") : $date;
 
 
-// Construction liste des événements (1 liste par jour => liste des jours)
+// Construction liste des ï¿½ï¿½ements (1 liste par jour => liste des jours)
 $events = array();
 
 //les articles contenant au moins un des mots clef du groupe agenda
@@ -101,7 +101,7 @@ $events = array();
 				</script>
 					
 					<h2 class="titre" id="titre_agenda">Agenda</h2>
-					<!-- Fabrication du tableau : l'en tête -->
+					<!-- Fabrication du tableau : l'en tete -->
 					<table id="agenda">
                         
 					<tr>
@@ -109,7 +109,7 @@ $events = array();
 					
 								<form name="navigation" method="get">
 								<a href="agenda.php3?date=<?php echo (($M - 1 > 0) ? $Y : ($Y - 1)); ?>-<?php printf('%02d', ($M - 1) > 0 ? 
-								($M - 1) : 12); ?>-01&amp;str_motcle=<?php echo $str_motcle ?>" ><img src="#DOSSIER_SQUELETTE/IMG/agt_back.png" alt="Précédent"/></a>
+								($M - 1) : 12); ?>-01&amp;str_motcle=<?php echo $str_motcle ?>" ><img src="#DOSSIER_SQUELETTE/IMG/agt_back.png" alt="PrÃ©cÃ©dent"/></a>
                         
 								<select name="var_nav_month">
 								<?php
@@ -125,7 +125,7 @@ $events = array();
 						?>
 								</select>
                 
-								<!-- Construction Menu sélection  attention double niveau car plusieurs groupes de mots-clés !
+								<!-- Construction Menu selection  attention double niveau car plusieurs groupes de mots-clef !
 								-->
 								<select name="var_nav_cle">
 								<?php
@@ -146,7 +146,7 @@ $events = array();
                         
 
 								<!-- les cases des jours -->
-								<!-- Fabrication du tableau : les données -->
+								<!-- Fabrication du tableau : les donnees -->
 								<tr>
 								<?php
                         
