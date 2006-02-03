@@ -3,15 +3,23 @@
 		
 	<div id="content">
 
+
+
 			<!-- Exclusions des articles caches -->
 			<BOUCLE_exclurec(ARTICLES){titre_mot==cacher}{par date}{doublons}>
 			</BOUCLE_exclurec>
+			
+			
 
-
+			
                         <BOUCLE_articles_pagination1(ARTICLES){par date}{inverse}>
 			</BOUCLE_articles_pagination1>
 			[<div class="pagination">(#TOTAL_BOUCLE|pagination{debut_page,10})</div>]
 			</B_articles_pagination1>
+			
+			<div class="billet">
+                            <hr class="billet-separator" />
+                        </div>
 			
 			<B_articles_recents>
 			<BOUCLE_articles_recents (ARTICLES){par date}{inverse}{debut_page,10}{doublons}>
