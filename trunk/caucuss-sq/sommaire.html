@@ -7,6 +7,12 @@
 			<BOUCLE_exclurec(ARTICLES){titre_mot==cacher}{par date}{doublons}>
 			</BOUCLE_exclurec>
 
+
+                        <BOUCLE_articles_pagination1(ARTICLES){par date}{inverse}>
+			</BOUCLE_articles_pagination1>
+			[<div class="pagination">(#TOTAL_BOUCLE|pagination{debut_page,10})</div>]
+			</B_articles_pagination1>
+			
 			<B_articles_recents>
 			<BOUCLE_articles_recents (ARTICLES){par date}{inverse}{debut_page,10}{doublons}>
 				<div class="billet">
@@ -20,7 +26,7 @@
 					</div>
 					[<p>(#INTRODUCTION)</p>]
 			
-					<a class="billet-suite" href="#URL_ARTICLE">lire la suite</a>
+					<a class="billet-suite" href="#URL_ARTICLE">Lire la suite</a>
 					<hr class="billet-separator" />
 				</div>
 			</BOUCLE_articles_recents>
