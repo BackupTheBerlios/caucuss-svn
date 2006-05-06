@@ -29,9 +29,9 @@
 					</div>
 				</B_mot_album>
 				
-				<!-- utilise doublons-->
+				<!-- utilise doublons img-->
 				<BOUCLE_mot (MOTS){id_article}{type=Album}>
-				</BOUCLE_album>
+				<BOUCLE_album>
 					<BOUCLE_img(DOCUMENTS){id_article}{extension == jpg|png|gif}{mode=document}{doublons img}>
 					</BOUCLE_img>
 				</BOUCLE_album>
@@ -39,10 +39,18 @@
 
 				<B_docs>
 				<div class="article-block article-docjoints">
-                	<h3><img src="#DOSSIER_SQUELETTE/IMG/attach.png" alt="">Documents joints à cet article</h3>
+                	<h3>
+                	<!--<img src="#DOSSIER_SQUELETTE/IMG/result_articles.png" alt="">-->
+                	<img src="#DOSSIER_SQUELETTE/IMG/ttach.png" alt="">
+                	Documents joints à cet article</h3>
 					<ul>
+					
+					[<li> [(#LOGO_ARTICLE)<br>] (#SURTITRE)]
+					
                     	<BOUCLE_docs(DOCUMENTS){id_article}{mode=document}{doublons img}>
-							<li><a href="#URL_DOCUMENT">[(#TITRE)]</a></li>
+							<li><a href="#URL_DOCUMENT">
+							[<strong>(#TITRE)</strong>] [(#DESCRIPTIF)] (#TYPE_DOCUMENT, [(#TAILLE|taille_en_octets)])
+							</a></li>
 						</BOUCLE_docs>
 					</ul>
 				</div>
