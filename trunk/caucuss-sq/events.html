@@ -2,34 +2,11 @@
 <INCLURE (page.php3){fond=inc-menu}>
 		
 	<div id="content">
-
-			<h2 class="titre" id="titre_events">Les Evénements</h2>
+<!--<?php 
+if (isset($date)) echo "$date";
+?>-->
+			<h2 class="titre" id="titre_events">Les Evénements du $date</h2>
 			
 			
-			<B_articles_recents>
-			
-			<BOUCLE_articles_recents (ARTICLES){type_mot == Agenda}{par date}{inverse}{debut_page,10}>
-				
-				<div class="billet">
-					<!--#LOGO_ARTICLE_RUBRIQUE-->
-					<h3><a href="#URL_ARTICLE">#TITRE</a></h3>
-					<div class="billet-infos">
-					<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
-						<span class="billet-auteur"><a href="#URL_AUTEUR"><!--[(#LOGO_AUTEUR|left)]--> #NOM</a></span>
-					</BOUCLE_auteurs_recents>
-					<span class="billet-date">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
-					</div>
-					[<p>(#INTRODUCTION)</p>]
-					<a class="billet-suite" href="#URL_ARTICLE">lire la suite</a>
-					<hr class="billet-separator" />
-				</div>
-			</BOUCLE_articles_recents>
-			</B_articles_recents>
-			
-			<!-- Pagination -->
-			<BOUCLE_pagination(ARTICLES){type_mot == Agenda}{par date}{inverse}>
-			</BOUCLE_pagination>
-			[<div class="page">Pages: (#TOTAL_BOUCLE|pagination{debut_page,10}) </div>]
-			</B_pagination>
 			
 <INCLURE (page.php3) {fond=inc-bottom}>

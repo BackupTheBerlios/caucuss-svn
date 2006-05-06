@@ -7,10 +7,11 @@
 		<BOUCLE_auteur (AUTEURS){id_auteur}>
 		<div>
 		<h2 class="titre" id="titre_auteur">#NOM</h2>
-		[(#LOGO_AUTEUR|right)]
+		<!--[(#LOGO_AUTEUR|right)]-->
+		[(#LOGO_AUTEUR|right||reduire_image{150})]
 		[<div class="auteur_infos">(#BIO)</div>]
 		[<div class="auteur_site"><strong>#NOM_SITE</strong> : <a href="(#URL_SITE)">#URL_SITE</a></div>]
-		[<div class="auteur_email"><strong>adresse email</strong> : (#EMAIL|cache_email)</div>]
+		[<div class="auteur_email"><strong>adresse email</strong> : (#EMAIL||cache_email)</div>]
 		[<div class="notes">(#NOTES)</div>]
 		</div>
 		</BOUCLE_auteur>

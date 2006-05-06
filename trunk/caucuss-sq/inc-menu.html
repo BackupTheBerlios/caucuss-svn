@@ -39,9 +39,9 @@
 	<!-- derniers evenements -->
 	<B_recent_events>
 		<div id="menu-events" class="menu-left-block">
-		<h3><img alt="" src="#DOSSIER_SQUELETTE/IMG/menu-calendar.png"/><a href="page.php3?fond=events">Prochains événements</a></h3>
+		<h3><img alt="calendar-icon" src="#DOSSIER_SQUELETTE/IMG/menu-calendar.png"/><a href="page.php3?fond=events">Prochains événements</a></h3>
 		<ul>
-		<BOUCLE_recent_events(ARTICLES){type_mot=Agenda}{age<30}{par date}{0,6}>
+		<BOUCLE_recent_events(ARTICLES){type_mot=Agenda}{age_redac<=0}{par date}{0,6}>
 			<li><a href="article.php3?id_article=#ID_ARTICLE">#TITRE</a></li>
 		</BOUCLE_recent_events>
 		</ul>
@@ -54,7 +54,7 @@
 		<div id="menu-albums" class="menu-left-block">
 		<h3><img alt="" src="#DOSSIER_SQUELETTE/IMG/menu-albums.png"/><a href="page.php3?fond=albums">Derniers albums</a></h3>
 		<ul>
-		<BOUCLE_recent_album(ARTICLES){type_mot=Album}{par date}{inverse}{0,4}>
+		<BOUCLE_recent_album(ARTICLES){type_mot=Album}{par date}{inverse}{0,7}>
 			<li><a href="article.php3?id_article=#ID_ARTICLE">#TITRE</a></li>
 		</BOUCLE_recent_album>
 		</ul>
@@ -65,13 +65,13 @@
 	<div id="menu-forum" class="menu-left-block">
 		<h3><img alt="" src="#DOSSIER_SQUELETTE/IMG/menu-forum.png"/>Derniers commentaires</h3>
 		<ul>
-		<BOUCLE_last_posts(FORUMS){plat}{par date}{inverse}{0,3}>
+		<BOUCLE_last_posts(FORUMS){plat}{par date}{inverse}{0,4}>
 			<li class="lastpost">
 			<h4>#TITRE</h4> 
 			<div class="lastpost-infos">
 			[(#NOM) &middot; ][(#DATE|affdate_court)] 
 			</div>
-			[<p>(#TEXTE|couper{50})</p>]
+			[<p>(#TEXTE|couper{30})</p>]
 			<a class="lire" href="#URL_FORUM">Lire</a>
 
 			</li>

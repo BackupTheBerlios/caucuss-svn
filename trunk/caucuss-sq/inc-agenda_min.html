@@ -18,18 +18,22 @@ function _jourSuivant($x){
 	return $jourSuiv;
 }
 
+function _jourSuivants($day,$nb){
+        if($nb<=1) return $day;
+	else 	           return _jourSuivants(_jourSuivant($day),$nb-1);
+	}
 
 	/* construction liste evenements */
 	
 	<BOUCLE_evenements(ARTICLES){tout}{type_mot == ^Agenda}>
 		//{
 			
-			$_dateDebut = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE');
-			//si pas de date de redac anterieure on l'evenement dure un seul jour
-			if('#DATE_REDAC' != '')
-				$_dateFin = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_REDAC');
-			else
-				$_dateFin = $_dateDebut;
+			$_dateDebut = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_REDAC');
+			$_sstitre='#SOUSTITRE';
+			$_nb_jours[1]=1;
+			ereg("([0-9]+) +jour[s]?", $_sstitre, $_nb_jours);
+			if ($_nb_jours[1]=="") $_nb_jours[1]=1;
+			$_dateFin=_jourSuivants($_dateDebut,$_nb_jours[1]);
 		
 			for($_d=$_dateDebut; $_d <= $_dateFin; $_d = _jourSuivant($_d)) 
 			{

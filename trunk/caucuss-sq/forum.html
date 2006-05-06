@@ -1,5 +1,9 @@
 <INCLURE (page.php3) {fond=inc-top}>
 
+<INCLURE (page.php3){fond=inc-menu}{id_article}>
+<div id="content">
+			
+			
 			<!-- Contenu : poster un message dans le forum -->
 			<h2 class="titre" id="titre_forum"><:poster_message:></h2>
 			<div class="reponse">
@@ -10,7 +14,7 @@
 				<!--[(#LOGO_ARTICLE|left)]-->
 				[(#SURTITRE)]
 				<h4><a href="#URL_ARTICLE">#TITRE</a></h4>
-				[(#SOUSTITRE)]
+				
 				<span class="infos">[(#DATE|nom_jour)] [(#DATE|affdate)]
 				
 				<B_auteurs_un>
