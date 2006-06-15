@@ -7,20 +7,24 @@
 		<ul>
 		<BOUCLE_rub (RUBRIQUES){racine}{tout}{par titre}>
 		<li>[(#EXPOSE{<strong>,})]<a href="#URL_RUBRIQUE">#TITRE</a>[(#EXPOSE{</strong>,})]
+                
+                <B_ssrub>
                 <ul>
                     <BOUCLE_ssrub (RUBRIQUES){id_parent}{tout}{par titre}>
                         <li>[(#EXPOSE{<strong>,})]<a [(#EXPOSE{id="expose",})] href="#URL_RUBRIQUE">#TITRE</a>[(#EXPOSE{</strong>,})]</li>
-                        
+
                         <B_recursive>
-                        	<li><ul>
+                        	<!--<li><ul>-->
                         	<BOUCLE_recursive(BOUCLE_ssrub)>
                         	</BOUCLE_recursive>
-                        	</ul></li>
+                        	<!--</ul></li>-->
                         </B_recursive>
-                        
+
                     </BOUCLE_ssrub>
-                </ul>
-          </li>
+                    </ul>
+                    </B_ssrub>
+                
+                </li>
 		</BOUCLE_rub>
 		<li><a href="ecrire">Espace Rédacteurs</a></li>
 		</ul>
@@ -73,7 +77,6 @@
 			</div>
 			[<p>(#TEXTE|couper{30})</p>]
 			<a class="lire" href="#URL_FORUM">Lire</a>
-
 			</li>
 		</BOUCLE_last_posts>
 		</ul>
