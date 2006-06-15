@@ -11,18 +11,18 @@
                 <B_ssrub>
                 <ul>
                     <BOUCLE_ssrub (RUBRIQUES){id_parent}{tout}{par titre}>
-                        <li>[(#EXPOSE{<strong>,})]<a [(#EXPOSE{id="expose",})] href="#URL_RUBRIQUE">#TITRE</a>[(#EXPOSE{</strong>,})]</li>
-
+                        <li>[(#EXPOSE{<strong>,})]<a [(#EXPOSE{id="expose",})] href="#URL_RUBRIQUE">#TITRE</a>[(#EXPOSE{</strong>,})]
                         <B_recursive>
-                        	<!--<li><ul>-->
+                        	
                         	<BOUCLE_recursive(BOUCLE_ssrub)>
                         	</BOUCLE_recursive>
-                        	<!--</ul></li>-->
+                        	
                         </B_recursive>
+                        </li>
 
                     </BOUCLE_ssrub>
-                    </ul>
-                    </B_ssrub>
+                  </ul>
+                  </B_ssrub>
                 
                 </li>
 		</BOUCLE_rub>
