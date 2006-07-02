@@ -1,3 +1,7 @@
+img {
+	border:none;
+}
+
 html {
 	background:#E9ECF4;
 	margin:25px 20px;
@@ -340,9 +344,13 @@ min-width:20%;
 	
 	font-size: 0.9em;
 	color:gray;
-	padding-right: 20px;
+	padding-right: 30px;
 	min-height:18px;
+	text-decoration:none;
+	background: url(IMG/lire_blanc.png) no-repeat center right;
+	font-weight:bold;
 }
+
 
 .billet-separator{
 	clear: right;
@@ -373,6 +381,7 @@ display:block;
 .billet .billet-auteur, .billet .billet-date a{
 	min-height:24px;
 }
+
 
 .billet .billet-date{
 background:url("IMG/calendar.png") no-repeat center left;
@@ -584,8 +593,8 @@ padding:0;
 	color:white;
 	text-decoration:none;
 }
+
 .article-forum .repondre{
-	
 	text-align:right;
 	padding:1px 3px;
 	font-size: 0.9em;
@@ -605,7 +614,6 @@ padding:0;
 
 .article-forum li{
 	list-style:none;
-	
 }
 
 

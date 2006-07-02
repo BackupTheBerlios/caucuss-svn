@@ -3,6 +3,7 @@
 
 <INCLURE (page.php3){fond=inc-menu}{id_article}>
 		
+	<!-- debut squelette article.html -->
 	<div id="content">
 
 
@@ -24,24 +25,6 @@
 				
 				<!-- incorporation de l'Album eventuel-->
 				<B_mot_album>
-					
-					
-					
-					<!-- sauvegarde le type d album utilise-->
-					<BOUCLE_save_monmenu(MOTS){id_article}{type=Album}{doublons}>
-					</BOUCLE_save_monmenu>
-					
-					<B_monmenu>
-					<form action="#URL_ARTICLE" method="get">
-					<select name="type_album"><input type="button" name="send"></input>
-					<BOUCLE_monmenu(MOTS){type=Album}{doublons}>
-						<option value="#TITRE">#TITRE</OPTION>
-					</BOUCLE_monmenu>
-					</select>
-					<input value="OK" type="submit"/>
-					</form>
-					<//BOUCLE_monmenu>
-					
 					<div class="album">
 					<BOUCLE_mot_album (MOTS){id_article}{type=Album}>
 						<INCLURE (page.php3){fond=inc-album_#TITRE}{id_rubrique}{id_article}{debut_image}>
@@ -94,42 +77,44 @@
 		<B_forum>
 			<div class="article-block article-forum">
 				<h3><img src="#DOSSIER_SQUELETTE/IMG/forum.png" alt="logo forum" />Forum de l'article</h3>
-			
+
 				<ul>
 					<BOUCLE_forum(FORUMS){id_article}{par date}{inverse}>
-						<li class="commentaire">
-							<!--<h4 name="#ID_FORUM">#TITRE</h4>-->
+						<li>
+						<div class="commentaire">
 							<h4>#TITRE</h4>
-							<div class="commentaire-infos">[(#DATE|affdate)][, <:par_auteur:> (#NOM)] 
+							<div class="commentaire-infos">[(#DATE|nom_jour)][(#DATE|affdate)][, <:par_auteur:> (#NOM)] 
 							[&middot; <a href="mailto:(#EMAIL)">mail</a>][ &middot; <a href="(#URL_SITE)">#NOM_SITE</a>]</div>
 							<div class="commentaire-texte">#TEXTE</div>
 
 							[<div class="repondre"><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a></div>]
-						</li>
+						</div>
 						
 						<B_forum_fils>
-							
 							<ul>
 								<BOUCLE_forum_fils(FORUMS){id_parent}{par date}>
-									<li class="commentaire">
+									<li>
+									
+									<div class="commentaire">
 										<h4>#TITRE</h4>
 										<div class="commentaire-infos">[(#DATE|nom_jour)] [(#DATE|affdate)][, <:par_auteur:> (#NOM)] 
 										[ &middot; <a href="mailto:(#EMAIL)">mail</a>][ &middot; <a href="(#URL_SITE)">#NOM_SITE</a>]</div>
-							
 										<div class="commentaire-texte">#TEXTE</div>
-					
 										[<div class="repondre"><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a></div>]
-									</li>
+									</div>
 									
+									<B_Forum_Boucle>
 									<BOUCLE_Forum_Boucle(boucle_forum_fils)>
 										<!-- appel recursif -->
 									</BOUCLE_Forum_Boucle>
+									</B_Forum_Boucle>
+									
+									</li>
 									
 								</BOUCLE_forum_fils>
 							</ul>
-							
 						</B_forum_fils>
-					
+					       </li>
 					</BOUCLE_forum>
 				</ul>
 			</div>
@@ -149,5 +134,6 @@
 			
 	</BOUCLE_article>
 			
+	<!-- fin squelette article.html -->
 			
 <INCLURE (page.php3) {fond=inc-bottom}>
