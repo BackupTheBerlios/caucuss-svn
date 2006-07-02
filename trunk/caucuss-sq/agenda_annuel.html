@@ -55,8 +55,8 @@ $mois='';
 
 ?>
 
-<INCLURE (page.php3) {fond=inc-top}>
-<INCLURE (page.php3){fond=inc-menu}>
+<INCLURE {fond=inc-top}>
+<INCLURE {fond=inc-menu}>
 	
 	<div id="content">
 
@@ -65,9 +65,9 @@ $mois='';
 
   <!-- Menu de navigation -->
   <div id="agenda_an_nav">
-    <form name="navigation" method="get" action="page.php3?fond=agenda_annuel">
+    <form name="navigation" method="get" action="spip.php?page=agenda_annuel">
     <p>
-	<a href="page.php3?fond=agenda_annuel&amp;date=<?php echo ($Y - 1); ?>-01-01&amp;str_motcle=<?php echo $str_motcle; ?>"><img src="#DOSSIER_SQUELETTE/IMG/back.png" alt="Précédent"/></a> 
+	<a href="spip.php?page=agenda_annuel&amp;date=<?php echo ($Y - 1); ?>-01-01&amp;str_motcle=<?php echo $str_motcle; ?>"><img src="#CHEMIN{IMG/back.png}" alt="Précédent"/></a> 
           <select name="var_nav_year">
             <?php
 	    for($i = 2000; $i < 2011; $i++)
@@ -83,11 +83,11 @@ $mois='';
 		?>
 	  </select>
 
-	   <input type="button" value="Ok" onclick="document.location.href='page.php3?fond=agenda_annuel&amp;date=' + window.document.navigation.var_nav_year.value + '-01-01&amp;str_motcle=' + window.document.navigation.var_nav_cle.value ; return false;" 
+	   <input type="button" value="Ok" onclick="document.location.href='spip.php?page=agenda_annuel&amp;date=' + window.document.navigation.var_nav_year.value + '-01-01&amp;str_motcle=' + window.document.navigation.var_nav_cle.value ; return false;" 
 		/> 
 	
-	  <a href="page.php3?fond=agenda_annuel&amp;date=<?php echo ($Y + 1); ?>-01-01&amp;str_motcle=<?php echo $str_motcle ?>
-		&amp;str_theme=<?php echo $str_theme ?>"><img src="#DOSSIER_SQUELETTE/IMG/forward.png" alt="Suivant"/>
+	  <a href="spip.php?page=agenda_annuel&amp;date=<?php echo ($Y + 1); ?>-01-01&amp;str_motcle=<?php echo $str_motcle ?>
+		&amp;str_theme=<?php echo $str_theme ?>"><img src="##CHEMIN{IMG/forward.png}" alt="Suivant"/>
 	  </a>
 	  
         </p>
@@ -103,4 +103,4 @@ $mois='';
   </div>
 
 
-<INCLURE (page.php3) {fond=inc-bottom}>
+<INCLURE {fond=inc-bottom}>

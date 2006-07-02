@@ -15,7 +15,7 @@
 
 <BOUCLE_photo(DOCUMENTS){mode=document}{id_article}{extension==jpg|png|gif}{debut_image,1}>
     <!--<div class="album-photo">-->
-    	
+
 		<a href="#URL_DOCUMENT"><img src="#URL_DOCUMENT" width="500" alt="" /></a>
 		<br/>
     <!--</div>-->
@@ -41,18 +41,18 @@ function paginationImage($id_article, $nb_images) {
     if ($nb_images > 1) {
         $debut_image = $_GET["debut_image"];
         if ($debut_image > 0) {
-            lienPage($id_article, ($debut_image-1), "image precedente", "<img alt=\"img precedente\" src=\"#DOSSIER_SQUELETTE/IMG/back.png\" />");
+            lienPage($id_article, ($debut_image-1), "image precedente", "<img alt=\"img precedente\" src=\"#CHEMIN{IMG/back.png}\" />");
         }
 	$num = $debut_image +1;
     echo ' Image '.$num.' / '.$nb_images.' ';
     if ($debut_image < $nb_images-1) 
-            lienPage($id_article, ($debut_image+1), "image suivante", "<img alt=\"img suivante\" src=\"#DOSSIER_SQUELETTE/IMG/forward.png\" />");
+            lienPage($id_article, ($debut_image+1), "image suivante", "<img alt=\"img suivante\" src=\"#CHEMIN{IMG/forward.png}\" />");
     }
 }
 
 function lienPage($id_article, $image, $titre, $texte) {
     // affiche un lien avec les parametres en argument
-    echo "<a href='article.php3?id_article=$id_article&amp;debut_image=$image";
+    echo "<a href='spip.php?article$id_article&amp;debut_image=$image";
 	echo "#photo' title='" . htmlentities($titre, ENT_QUOTES) . "'>$texte</a>";
 }    
 ?>

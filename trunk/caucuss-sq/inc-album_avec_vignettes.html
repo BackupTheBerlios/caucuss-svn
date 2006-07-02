@@ -63,17 +63,17 @@
 <?php 
 function lienPage($id_article, $vignette, $image, $titre, $texte) {
     // affiche un lien avec les parametres en argument
-    echo "<a href='article.php3?id_article=$id_article";
+    echo "<a href='spip.php?article$id_article";
     echo "&amp;debut_vignette=$vignette&amp;debut_image=$image";
     echo "#photo' title='" . htmlentities($titre, ENT_QUOTES) . "'>$texte</a>";
-}    
+}
 
 function flecheGauche($id_article, $nb_images) {
     // affiche des liens permettant d'afficher les vignettes precedentes et suivantes par lot de 10
     if ($nb_images > VIGNETTES_PAGE) {
         $debut_vignette = $_GET["debut_vignette"];
         if ($debut_vignette >= VIGNETTES_PAGE) 
-            lienPage($id_article, ($debut_vignette-VIGNETTES_PAGE), ($debut_vignette-VIGNETTES_PAGE), "vignettes précédentes", "<img src=\"#DOSSIER_SQUELETTE/IMG/back.png\" class=\"fleches\" alt=\"fleche arriere\" />");
+            lienPage($id_article, ($debut_vignette-VIGNETTES_PAGE), ($debut_vignette-VIGNETTES_PAGE), "vignettes précédentes", "<img src=\"#CHEMIN{IMG/back.png}\" class=\"fleches\" alt=\"fleche arriere\" />");
     }
 }
 
@@ -82,7 +82,7 @@ function flecheDroite($id_article, $nb_images) {
     if ($nb_images > VIGNETTES_PAGE) {
         $debut_vignette = $_GET["debut_vignette"];
         if ($debut_vignette < $nb_images-VIGNETTES_PAGE) 
-            lienPage($id_article, ($debut_vignette+VIGNETTES_PAGE), ($debut_vignette+VIGNETTES_PAGE), "vignettes suivantes", "<img src=\"#DOSSIER_SQUELETTE/IMG/forward.png\" class=\"fleches\" alt=\"fleche avant\" />");
+            lienPage($id_article, ($debut_vignette+VIGNETTES_PAGE), ($debut_vignette+VIGNETTES_PAGE), "vignettes suivantes", "<img src=\"#CHEMIN{IMG/forward.png}\" class=\"fleches\" alt=\"fleche avant\" />");
     }
 }
 

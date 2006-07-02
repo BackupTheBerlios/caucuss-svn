@@ -1,7 +1,7 @@
 
-<INCLURE (page.php3){fond=inc-top}>
+<INCLURE {fond=inc-top}>
 
-<INCLURE (page.php3){fond=inc-menu}{id_article}>
+<INCLURE {fond=inc-menu}{id_article}>
 		
 	<!-- debut squelette article.html -->
 	<div id="content">
@@ -27,7 +27,7 @@
 				<B_mot_album>
 					<div class="album">
 					<BOUCLE_mot_album (MOTS){id_article}{type=Album}>
-						<INCLURE (page.php3){fond=inc-album_#TITRE}{id_rubrique}{id_article}{debut_image}>
+						<INCLURE {fond=inc-album_#TITRE}{id_rubrique}{id_article}{debut_image}>
 					</BOUCLE_mot_album>
 					</div>
 				</B_mot_album>
@@ -46,9 +46,8 @@
 				
 				<B_docs>
 				<div class="article-block article-docjoints">
-                	<h3>
-                	<!--<img src="#DOSSIER_SQUELETTE/IMG/result_articles.png" alt="">-->
-                	<img src="#DOSSIER_SQUELETTE/IMG/attach.png" alt="">
+			<h3>
+			<img src="#CHEMIN{IMG/attach.png}" alt="">
                 	Documents joints à cet article</h3>
 					<ul>
 					
@@ -68,7 +67,7 @@
 		<br />
 		
 		<BOUCLE_reagir(ARTICLES){id_article}>
-			<a class="article-reagir" href="forum.php3?id_article=#ID_ARTICLE"><img src="#DOSSIER_SQUELETTE/IMG/reagir.png" alt="reagir" /> Réagir à cet article</a>
+			<a class="article-reagir" href="spip.php?page=forum.php&amp;id_article=#ID_ARTICLE"><img src="#CHEMIN{IMG/reagir.png}" alt="reagir" /> Réagir à cet article</a>
 			<br/>
 		</BOUCLE_reagir>
 
@@ -76,7 +75,7 @@
 		<!-- msg du forum de l'article -->
 		<B_forum>
 			<div class="article-block article-forum">
-				<h3><img src="#DOSSIER_SQUELETTE/IMG/forum.png" alt="logo forum" />Forum de l'article</h3>
+				<h3><img src="#CHEMIN{IMG/forum.png}" alt="logo forum" />Forum de l'article</h3>
 
 				<ul>
 					<BOUCLE_forum(FORUMS){id_article}{par date}{inverse}>
@@ -87,7 +86,7 @@
 							[&middot; <a href="mailto:(#EMAIL)">mail</a>][ &middot; <a href="(#URL_SITE)">#NOM_SITE</a>]</div>
 							<div class="commentaire-texte">#TEXTE</div>
 
-							[<div class="repondre"><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a></div>]
+							[<div class="repondre"><a href="spip.php?pag=forum.php&amp;(#PARAMETRES_FORUM)"><:repondre_message:></a></div>]
 						</div>
 						
 						<B_forum_fils>
@@ -100,7 +99,7 @@
 										<div class="commentaire-infos">[(#DATE|nom_jour)] [(#DATE|affdate)][, <:par_auteur:> (#NOM)] 
 										[ &middot; <a href="mailto:(#EMAIL)">mail</a>][ &middot; <a href="(#URL_SITE)">#NOM_SITE</a>]</div>
 										<div class="commentaire-texte">#TEXTE</div>
-										[<div class="repondre"><a href="forum.php3?(#PARAMETRES_FORUM)"><:repondre_message:></a></div>]
+										[<div class="repondre"><a href="spip.php?page=forum&amp;(#PARAMETRES_FORUM)"><:repondre_message:></a></div>]
 									</div>
 									
 									<B_Forum_Boucle>
@@ -123,7 +122,7 @@
 			<!-- Articles dans la meme rubrique -->
 			<B_articles_meme_rubrique>
 				<div class="article-block article-memerub">
-					<h3><img src="#DOSSIER_SQUELETTE/IMG/memerub.png" alt="" />Articles dans la même rubrique</h3>
+					<h3><img src="#CHEMIN{IMG/memerub.png}" alt="" />Articles dans la même rubrique</h3>
 					<ul>
 					<BOUCLE_articles_meme_rubrique(ARTICLES){id_rubrique}{exclus}{0,10}>
 						<li><a href="#URL_ARTICLE">[(#TITRE)] [&middot; <span class="date">(#DATE|affdate_court)</span>]</a></li>
@@ -136,4 +135,4 @@
 			
 	<!-- fin squelette article.html -->
 			
-<INCLURE (page.php3) {fond=inc-bottom}>
+<INCLURE {fond=inc-bottom}>

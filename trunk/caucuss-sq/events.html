@@ -1,12 +1,25 @@
 <INCLURE (page.php3) {fond=inc-top}>
 <INCLURE (page.php3){fond=inc-menu}>
 		
-	<div id="content">
-<!--<?php 
-if (isset($date)) echo "$date";
-?>-->
-			<h2 class="titre" id="titre_events">Les Evénements du $date</h2>
+<div id="content">
+
+<h2 class="titre" id="titre_events">Les événements à venir</h2>
 			
-			
-			
+
+<BOUCLE_articles(ARTICLES) {age_redac<=0}{par date_redac}{debut_page,10}>
+				<div class="billet">
+					<!--#LOGO_ARTICLE_RUBRIQUE-->
+					<h3><a href="#URL_ARTICLE">#TITRE</a></h3>
+					<div class="billet-infos">
+					<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
+						<span class="billet-auteur"><a href="#URL_AUTEUR"><!--[(#LOGO_AUTEUR|left)]-->#NOM</a></span>
+					</BOUCLE_auteurs_recents>
+					<span class="billet-date">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
+					</div>
+					[<p>(#INTRODUCTION)</p>]
+					<a class="billet-suite" href="#URL_ARTICLE">lire la suite</a>
+					<hr class="billet-separator" />
+				</div>
+</BOUCLE_articles>
+
 <INCLURE (page.php3) {fond=inc-bottom}>
