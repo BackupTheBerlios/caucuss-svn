@@ -1,3 +1,4 @@
+#CACHE{2*3600}
 <BOUCLE_principale(ARTICLES){id_article}>
 
 <?php define("VIGNETTES_PAGE", 4); ?>
@@ -81,7 +82,7 @@ function flecheDroite($id_article, $nb_images) {
     // affiche des liens permettant d'afficher les vignettes precedentes et suivantes par lot de 10
     if ($nb_images > VIGNETTES_PAGE) {
         $debut_vignette = $_GET["debut_vignette"];
-        if ($debut_vignette < $nb_images-VIGNETTES_PAGE) 
+        if ($debut_vignette < $nb_images-VIGNETTES_PAGE)
             lienPage($id_article, ($debut_vignette+VIGNETTES_PAGE), ($debut_vignette+VIGNETTES_PAGE), "vignettes suivantes", "<img src=\"#CHEMIN{IMG/forward.png}\" class=\"fleches\" alt=\"fleche avant\" />");
     }
 }

@@ -1,3 +1,4 @@
+#CACHE{2*3600}
 
 <INCLURE  {fond=inc-top}>
 <INCLURE {fond=inc-menu}>
@@ -17,23 +18,21 @@
 		</BOUCLE_auteur>
 
 
-
+<B_articles>
+[<p class="pagination">(#PAGINATION)</p>]
 <ul  id="result_auteur">
-<BOUCLE_articles(ARTICLES) {id_auteur}{par date}{inverse}{debut_page,10}>
+<BOUCLE_articles(ARTICLES) {id_auteur}{par date}{inverse}>
 	<li><h3><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h3>
 	<div class="resultats_infos">
 	[(#DATE|nom_jour)] [(#DATE|affdate)]
 	<B_auteurs> &middot; 
 	<BOUCLE_auteurs(AUTEURS) {id_article} {", "}>#NOM</BOUCLE_auteurs>
-</div>
+	</div>
 	</li>
 </BOUCLE_articles>
 </ul>
+[<p class="pagination">(#PAGINATION)</p>]
+</B_articles>
 
-<!-- Pagination -->
-<BOUCLE_pagination(ARTICLES){id_auteur}{par date}{inverse}>
-</BOUCLE_pagination>
-[<div class="pagination">(#TOTAL_BOUCLE|pagination{debut_page,10}) </div>]
-</B_pagination>
 
 <INCLURE  {fond=inc-bottom}>

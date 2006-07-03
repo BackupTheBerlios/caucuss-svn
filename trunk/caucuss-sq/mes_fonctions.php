@@ -9,23 +9,10 @@ function cache_email($texte){
     return '';
 }
 
-/*
- *   +----------------------------------+
- *    Nom du Filtre :    pagination                                               
- *   +----------------------------------+
- *    Date : dimanche 22 aot 2004
- *    Auteur :  James (klike<at>free.fr)
- *   +-------------------------------------+
- *    Fonctions de ce filtre :
- *     affiche la liste des pages d'une boucle contenant
- *     un crit�e de limite du type {debut_xxx, yyy}
- *   +-------------------------------------+ 
- *  
- * Pour toute suggestion, remarque, proposition d'ajout
- * reportez-vous au forum de l'article :
- * http://www.uzine.net/spip_contrib/article.php3?id_article=663
-*/
+?>
 
+<?php
+/*
 function pagination($total, $position=0, $pas=1, $fonction='') {
   global $clean_link;
   global $pagination_item_avant, $pagination_item_apres, $pagination_separateur;
@@ -59,5 +46,5 @@ function pagination($total, $position=0, $pas=1, $fonction='') {
   }
   return '';
 }
-
+*/
 ?>

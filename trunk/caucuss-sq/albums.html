@@ -1,18 +1,18 @@
+#CACHE{2*3600}
 <INCLURE {fond=inc-top}>
 <INCLURE {fond=inc-menu}>
-		
+
 	<div id="content">
 		
 		<h2 class="titre" id="titre_albums">Les albums</h2>
 			<B_articles_recents>
-			
-			<BOUCLE_articles_recents (ARTICLES){type_mot == Album}{par date}{inverse}{debut_page,10}>
+			[<p class="pagination">(#PAGINATION)</p>]
+			<BOUCLE_articles_recents (ARTICLES){type_mot == Album}{par date}{inverse}{pagination}>
 				<div class="billet">
-					<!--#LOGO_ARTICLE_RUBRIQUE-->
 					<h3><a href="#URL_ARTICLE">#TITRE</a></h3>
 					<div class="billet-infos">
 					<BOUCLE_auteurs_recents(AUTEURS) {id_article} {", "}>
-						<span class="billet-auteur"><a href="#URL_AUTEUR"><!--[(#LOGO_AUTEUR|left)]-->#NOM</a></span>
+						<span class="billet-auteur"><a href="#URL_AUTEUR">#NOM</a></span>
 					</BOUCLE_auteurs_recents>
 					<span class="billet-date">[(#DATE|nom_jour)] [(#DATE|affdate)]</span>
 					</div>
@@ -21,12 +21,8 @@
 					<hr class="billet-separator" />
 				</div>
 			</BOUCLE_articles_recents>
+			[<p class="pagination">(#PAGINATION)</p>]
 			</B_articles_recents>
 			
-			<!-- Pagination -->
-			<BOUCLE_pagination(ARTICLES){type_mot == Album}{par date}{inverse}>
-			</BOUCLE_pagination>
-			[<div class="page">Pages: (#TOTAL_BOUCLE|pagination{debut_page,10}) </div>]
-			</B_pagination>
 			
 <INCLURE {fond=inc-bottom}>
