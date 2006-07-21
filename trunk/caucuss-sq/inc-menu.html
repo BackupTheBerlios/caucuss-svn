@@ -34,7 +34,16 @@
 	
 	<div id="menu-search" class="menu-left-block">
 		<h3><img alt="" src="#CHEMIN{IMG/menu-recherche.png}"/>Recherche</h3>
-		#FORMULAIRE_RECHERCHE
+
+
+<form action="http://www.taust.free.fr/spip.php?page=recherche" method="get">
+<input name="page" value="recherche" type="hidden">
+	<!--llabel for="recherche">Rechercher</label>-->
+	<input class="forml" name="recherche" id="recherche" value="Rechercher" onfocus="this.value='';" type="text">
+</form>
+
+      <!--#FORMULAIRE_RECHERCHE-->
+
 	</div>
 	
 	
@@ -99,4 +108,10 @@
 	
 	
 	
+
 </div>
+
+
+<div id="content">
+
+	

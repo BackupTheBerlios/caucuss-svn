@@ -6,66 +6,66 @@ $_days = array('D', 'L', 'M', 'M', 'J', 'V', 'S');
 $_M = intval(date('m', time()));
 $_Y = intval(date('Y', time()));
 $_events = array();
-$_dates=array();//liste des dates qui ont un evenement.
+
+//liste des dates qui ont un evenement.
+$_dates=array();
 
 function _jourSuivant($x){
 	//x est une date au format ymd
-	//return le jour suivant au meme format
-	$m = ereg_replace("^([0-9]{4})([0-9]{2})([0-9]{2}).*$", "\\2", $x);
-	$d = ereg_replace("^([0-9]{4})([0-9]{2})([0-9]{2}).*$", "\\3", $x);
-	$y = ereg_replace("^([0-9]{4})([0-9]{2})([0-9]{2}).*$", "\\1", $x);
+	//retourne le jour suivant au meme format (ymd)
+	$m = intval(ereg_replace("^([0-9]{4})([0-9]{2})([0-9]{2}).*$", "\\2", $x));
+	$d = intval(ereg_replace("^([0-9]{4})([0-9]{2})([0-9]{2}).*$", "\\3", $x));
+	$y = intval(ereg_replace("^([0-9]{4})([0-9]{2})([0-9]{2}).*$", "\\1", $x));
 	$jourSuiv = date('Y-m-d',mktime(0,0,0,$m,$d,$y) + (1 * 24 * 60 * 60));
 	$jourSuiv = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2})", "\\1\\2\\3", $jourSuiv);
 	return $jourSuiv;
 }
 
-function _jourSuivants($day,$nb){
+function _joursSuivants($day,$nb){
         if($nb<=1) return $day;
-	else 	           return _jourSuivants(_jourSuivant($day),$nb-1);
-	}
+	else 	           return _joursSuivants(_jourSuivant($day),$nb-1);
+}
 
-	/* construction liste evenements */
-	
-	<BOUCLE_evenements(ARTICLES){tout}{type_mot == ^Agenda}>
-		//{
-			
+/* construction liste evenements */
+<BOUCLE_evenements(EVENEMENTS){tout}>
+	<BOUCLE_articles(ARTICLES){id_article}>
 			$_dateDebut = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_REDAC');
 			$_sstitre='#SOUSTITRE';
 			$_nb_jours[1]=1;
 			ereg("([0-9]+) +jour[s]?", $_sstitre, $_nb_jours);
 			if ($_nb_jours[1]=="") $_nb_jours[1]=1;
-			$_dateFin=_jourSuivants($_dateDebut,$_nb_jours[1]);
+			$_dateFin=_joursSuivants($_dateDebut,$_nb_jours[1]);
 		
-			for($_d=$_dateDebut; $_d <= $_dateFin; $_d = _jourSuivant($_d)) 
+			for($_d=$_dateDebut; $_d <= $_dateFin; $_d = _jourSuivant($_d))
 			{
-				if (!isset($_events[$_d])) { $_events[$_d] = array(); }
+				if (!isset($_events[$_d])) 
+				{ $_events[$_d] = array();}
 				$_events[$_d][] = array('link' => '#URL_ARTICLE', 'title' => '[(#TITRE)]');
 			}
-		
-	</BOUCLE_evenements>
-?>
+	</BOUCLE_articles>
+</BOUCLE_evenements>
 
-<?php  ?>
+?>
 
 
 	<script type="text/javascript" language="JavaScript">
 		
 			
-			function showEvents(td){
-							 events = td.getElementsByTagName('ul')[0];
-							 if(events){
-							 						events.style.display='block';
-													events.style.position='absolute';
-							 }
+		function showEvents(td){
+			 events = td.getElementsByTagName('ul')[0];
+			 if(events){
+ 						events.style.display='block';
+						events.style.position='absolute';
+			 }
+		}
+		
+		function hideEvents(td){
+			 events = td.getElementsByTagName('ul')[0];
+			 if(events){
+ 						events.style.display='none';
+						/*events.style.position='relative';*/
 			}
-			
-			function hideEvents(td){
-							 events = td.getElementsByTagName('ul')[0];
-							 if(events){
-							 						events.style.display='none';
-													/*events.style.position='relative';*/
-							 }
-			}
+		}
 		
 	</script>
 
