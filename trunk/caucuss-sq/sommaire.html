@@ -1,3 +1,4 @@
+
 #CACHE{2*3600}
 <INCLURE {fond=inc-top}>
 <INCLURE {fond=inc-menu}>
@@ -9,19 +10,6 @@
 			<!-- Exclusions des articles caches -->
 			<BOUCLE_exclurec(ARTICLES){titre_mot==cacher}{par date}{doublons}>
 			</BOUCLE_exclurec>
-			
-<B_agenda>
-<h3><:agenda:></h3>
-<dl>
-<BOUCLE_agenda(EVENEMENTS){par date}>
-<dt>#TITRE</dt>
-[<dd>Du (#DATE_DEBUT|affdate{"j/n à H:i"})</dd>]
-[<dd>au (#DATE_FIN|affdate{"j/n à H:i"})</dd>]
-<dd>#LIEU</dd>
-<dd>#DESCRIPTIF</dd>
-</BOUCLE_agenda>
-</dl>
-</B_agenda>
 
 			
 			<div class="billet">
