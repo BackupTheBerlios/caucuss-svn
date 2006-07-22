@@ -27,7 +27,7 @@ function _joursSuivants($day,$nb){
 }
 
 /* construction liste evenements */
-	<BOUCLE_articles(ARTICLES){id_article}>
+	<BOUCLE_articles(ARTICLES){type_mot == Agenda}>
 			$_dateDebut = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_REDAC');
 			$_sstitre='#SOUSTITRE';
 			$_nb_jours[1]=1;
@@ -41,9 +41,12 @@ function _joursSuivants($day,$nb){
 				{ $_events[$_d] = array();}
 				$_events[$_d][] = array('link' => '#URL_ARTICLE', 'title' => '[(#TITRE)]');
 			}
+
 	</BOUCLE_articles>
 
 ?>
+
+
 
 
 	<script type="text/javascript" language="JavaScript">
@@ -169,7 +172,6 @@ function _joursSuivants($day,$nb){
 			//echo " onmouseover=\"javascript:creerEncart('menu-calendar','bidon',new Array".$tab_js.");\" ";
 			//echo " onmouseout=\"javascript:effacerEncart('menu-calendar','encart');\" ";
 
-		
 			
 			echo ' >';
 			//tag <td>
