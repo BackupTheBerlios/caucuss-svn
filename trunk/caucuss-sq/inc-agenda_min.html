@@ -27,7 +27,6 @@ function _joursSuivants($day,$nb){
 }
 
 /* construction liste evenements */
-<BOUCLE_evenements(EVENEMENTS){tout}>
 	<BOUCLE_articles(ARTICLES){id_article}>
 			$_dateDebut = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_REDAC');
 			$_sstitre='#SOUSTITRE';
@@ -43,7 +42,6 @@ function _joursSuivants($day,$nb){
 				$_events[$_d][] = array('link' => '#URL_ARTICLE', 'title' => '[(#TITRE)]');
 			}
 	</BOUCLE_articles>
-</BOUCLE_evenements>
 
 ?>
 
