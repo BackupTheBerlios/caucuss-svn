@@ -65,8 +65,8 @@ $events = array();
 	
 	for($d=$dateDebut; $d <= $dateFin; $d = jourSuivant($d))
 	{
-		if (!isset($events[$d]))
-		{$events[$d] = array();}
+		//if (!isset($events[$d]))
+		//{$events[$d] = array();}
 		
 		// tout les article ou l'article a un mot clef choisi par le filtre
 		if ($str_motcle=="Tout" || $specif)
@@ -97,159 +97,181 @@ $events = array();
 						  }
 						}
 
-						function hideEvents(td){
-							events = td.getElementsByTagName('ul')[0];
-							if(events){
-								events.style.display='none';
-								/*events.style.position='relative';*/
-							}
-						}
+			function hideEvents(td){
+				events = td.getElementsByTagName('ul')[0];
+				if(events){
+					events.style.display='none';
+					/*events.style.position='relative';*/
+				}
+			}
 
-				</script>
+		</script>
 					
-					<h2 class="titre" id="titre_agenda">Agenda</h2>
-					<!-- Fabrication du tableau : l'en tete -->
-					<table id="agenda">
+		<h2 class="titre" id="titre_agenda">Agenda</h2>
+		<!-- Fabrication du tableau : l'en tete -->
+		<table id="agenda">
 
+		<tr>
+		<th colspan="7" class="agendaNav" >
+		
+		<form name="navigation" method="get" action="">
+		<a href="spip.php?page=agenda&amp;date=<?php echo (($M - 1 > 0) ? $Y : ($Y - 1)); ?>-<?php printf('%02d', ($M - 1) > 0 ?
+			($M - 1) : 12); ?>-01&amp;str_motcle=<?php echo $str_motcle ?>" ><img src="#CHEMIN{IMG/agt_back.png}" alt="Précédent"/></a>
+
+		<select name="var_nav_month">
+		<?php
+		for($i=1;$i<13;$i++)
+		echo '<option value="'.sprintf('%02d',$i).'" '.($i==$M?'selected="selected" ':' ').'>'.$months[$i].'</option>';
+		?>
+		</select>
+
+		<select name="var_nav_year">
+		<?php
+		for($i=2000; $i<2010; $i++)
+		echo '<option value="'.$i.'" '.($i==$Y?' selected="selected" ':' ').'>'.$i.'</option>';
+		?>
+				</select>
+
+				<!-- Construction Menu selection  attention double niveau car plusieurs groupes de mots-clef !
+				-->
+			<select name="var_nav_cle">
+			<?php
+			foreach($mot_cle as $key=>$value)
+			echo '<option value="'.$key.'"'.($key==$str_motcle?' selected="selected" ':' ').'>'.($key=='Tout'?'':'-> ').$key.'</option>';
+			?>
+			</select>
+
+					<input type="button" value="Afficher"
+					onclick="document.location.href='spip.php?page=agenda&amp;date=' + window.document.navigation.var_nav_year.value + '-' + window.document.navigation.var_nav_month.value + '-01&amp;str_motcle=' + window.document.navigation.var_nav_cle.value ; return false;" />
+
+					<input type="button" value="Aujourd'hui" onclick="document.location.href='spip.php?page=agenda&amp;date=<?php echo (date('Y-m-d')); ?>&amp;str_motcle=<?php echo $str_motcle ?>'; return false;" />
+
+					<a href="spip.php?page=agenda&amp;date=<?php echo (($M + 1 < 13) ? $Y : ($Y + 1)); ?>-<?php printf('%02d', ($M + 1) < 13 ? ($M + 1) : 1); ?>-01&amp;str_motcle=<?php echo $str_motcle ?>"
+					><img src="#CHEMIN{IMG/agt_forward.png}" alt="Suivant"/></a>
+					</form>
+					</th></tr>
+
+					<!-- les cases des jours -->
+					<!-- Fabrication du tableau : les donnees -->
 					<tr>
-					<th colspan="7" class="agendaNav" >
-					
-								<form name="navigation" method="get" action="">
-								<a href="spip.php?page=agenda&amp;date=<?php echo (($M - 1 > 0) ? $Y : ($Y - 1)); ?>-<?php printf('%02d', ($M - 1) > 0 ?
-								($M - 1) : 12); ?>-01&amp;str_motcle=<?php echo $str_motcle ?>" ><img src="#CHEMIN{IMG/agt_back.png}" alt="Précédent"/></a>
-
-								<select name="var_nav_month">
-								<?php
-								for($i=1;$i<13;$i++)
-								echo '<option value="'.sprintf('%02d',$i).'" '.($i==$M?'selected="selected" ':' ').'>'.$months[$i].'</option>';
-						?>
-								</select>
-
-								<select name="var_nav_year">
-								<?php
-								for($i=2000; $i<2010; $i++)
-								echo '<option value="'.$i.'" '.($i==$Y?' selected="selected" ':' ').'>'.$i.'</option>';
-						?>
-								</select>
-
-								<!-- Construction Menu selection  attention double niveau car plusieurs groupes de mots-clef !
-								-->
-								<select name="var_nav_cle">
-								<?php
-								foreach($mot_cle as $key=>$value)
-								echo '<option value="'.$key.'"'.($key==$str_motcle?' selected="selected" ':' ').'>'.($key=='Tout'?'':'-> ').$key.'</option>';
-						?>
-								</select>
-
-								<input type="button" value="Afficher"
-								onclick="document.location.href='spip.php?page=agenda&amp;date=' + window.document.navigation.var_nav_year.value + '-' + window.document.navigation.var_nav_month.value + '-01&amp;str_motcle=' + window.document.navigation.var_nav_cle.value ; return false;" />
-
-								<input type="button" value="Aujourd'hui" onclick="document.location.href='spip.php?page=agenda&amp;date=<?php echo (date('Y-m-d')); ?>&amp;str_motcle=<?php echo $str_motcle ?>'; return false;" />
-
-								<a href="spip.php?page=agenda&amp;date=<?php echo (($M + 1 < 13) ? $Y : ($Y + 1)); ?>-<?php printf('%02d', ($M + 1) < 13 ? ($M + 1) : 1); ?>-01&amp;str_motcle=<?php echo $str_motcle ?>"
-								><img src="#CHEMIN{IMG/agt_forward.png}" alt="Suivant"/></a>
-								</form>
-								</th></tr>
-
-
-								<!-- les cases des jours -->
-								<!-- Fabrication du tableau : les donnees -->
-								<tr>
-								<?php
-
-								for($i = 1; $i < 8; $i++)
-						{echo '<th width="14%" class="agendaHead">'.$days[$i%7].'</th>';}
-						$TempD = 1;
-						$Time = mktime(0, 0, 0, $M, 1, $Y);
-						if(date('w', $Time) != 1)
-						{
-                            // jours du mois precedent
-						echo '</tr><tr>';
-						$tmp = '';
-						while(date('w', $Time) != 1)
-						{
-						$TempD--;
-						$Time = mktime(0, 0, 0, $M, $TempD, $Y);
-						$case = '<td width="14%" height="50" class="agenda ';
-
-						if (isset($events[date('Ymd', $Time)]) and sizeof(each($events[date('Ymd', $Time)]))>1)
-						{
-							$case.=' events"'; //class css event
-							$case.='onmouseover="showEvents(this);" onmouseout="hideEvents(this);"';
-						}
-						else 
-						{ $case.='" '; }
-
-						$case.='>';
-						$case .= date('j', $Time);
-						if (isset($events[date('Ymd', $Time)]))
-						{
-						$case.='<ul class="agenda_events">';
-						while (list(, $event) = each($events[date('Ymd', $Time)]))
-						{
-                                                        //$case .= '<li>'.$event['logo'].'<a href="'.$event['link'].'">'.$event['title'].'</a></li>';
-						$case .= '<li><a href="'.$event['link'].'">'.$event['title'].'</a></li>';
-}
-						$case.='</ul>';
+<?php
+//ligne d'entete LMMJVSD
+for($i = 1; $i <=7; $i++)
+{
+	echo '<th width="14%" class="agendaHead">'.$days[$i%7].'</th>';
 }
 
-						$case .= '</td>';
-						$tmp = $case.$tmp;
-}
-						echo $tmp;
+$TempD = 1;
+$Time = mktime(0, 0, 0, $M, 1, $Y);
+
+
+//les jours du mois precedent le mois actuel
+//pas un lundi
+if(date('w', $Time) != 1)
+{
+	echo '</tr><tr>';
+	$tmp = '';
+
+	// jours du mois precedent
+	while(date('w', $Time) != 1)
+	{
+		$TempD--;
+		$Time = mktime(0, 0, 0, $M, $TempD, $Y);
+		$case = '<td width="14%" height="50" class="agenda ';
+		$date=date('Ymd', $_Time);
+
+		if (isset($events[$date]))
+		{
+			$case.=' events"'; //class css event
+			$case.='onmouseover="showEvents(this);" onmouseout="hideEvents(this);"';
+		}
+		else
+		{
+			$case.='" ';
+		}
+
+		$case.='>';
+		$case .= date('j', $Time);
+		if (isset($events[date('Ymd', $Time)]))
+		{
+			$case.='<ul class="agenda_events">';
+			while (list(, $event) = each($events[date('Ymd', $Time)]))
+			{
+				//$case .= '<li>'.$event['logo'].'<a href="'.$event['link'].'">'.$event['title'].'</a></li>';
+				$case .= '<li><a href="'.$event['link'].'">'.$event['title'].'</a></li>';
+			}
+			$case.='</ul>';
+		}
+		$case .= '</td>';
+		$tmp = $case.$tmp;
+	}
+	echo $tmp;
 }
 
-						$TempD = 1;
-						$Time = mktime(0, 0, 0, $M, 1, $Y);
-						while((date('m', $Time) == $M) || (date('w', $Time) != 1))
-						{
-							if(date('w', $Time) == 1) { echo '</tr><tr>'; }
-						echo '<td width="14%" height="50" ';
+$TempD = 1;
+$Time = mktime(0, 0, 0, $M, 1, $Y);
 
-                                //echo ' class="agenda'.(date('m', $Time) != $M ? 'Not' : '').'This'.(date('Ymd', $Time) == date('Ymd') ? 'Day' : 'Month').'">';
-						echo ' class="agenda';
-						if(date('m', $Time) == $M)//mois?
-						{
-							if(date(W) == date(W,$Time))//semaine?
-						{
-                                        //jour?
-								echo (date('Ymd', $Time) == date('Ymd')) ? 'Day' : 'MonthWeek';
-}
-						else
-						{echo 'Month';}
+// les jours du mois actuel || du mois suivant
+while((date('m', $Time) == $M) || (date('w', $Time) != 1))
+{
+	// c'est un lundi
+	if(date('w', $Time) == 1) { echo '</tr><tr>'; }
+	echo '<td width="14%" height="50" ';
 
-}
-						else
-						{
-                                        //semaine?
-								echo (date(W) == date(W,$Time)) ? 'Week' : '';
-}
-						if (isset($events[date('Ymd', $Time)]) and sizeof(each($events[date('Ymd', $Time)]))>1)
-								{echo ' events';}
-						echo ' "';
-						if (isset($events[date('Ymd', $Time)]))
-						{echo ' onmouseover="showEvents(this);" onmouseout="hideEvents(this);"';}
-						$case.='>';
-						echo '>';
-						echo date('j', $Time);
-						if (isset($events[date('Ymd', $Time)]))
-						{
-							echo '<ul class="agenda_events">';
-						
-						while (list(, $event) = each($events[date('Ymd', $Time)]))
-						{
-                                                    echo '<li><a href="'.$event['link'].'">'.$event['title'].'</a></li>';
-						}
-						echo '</ul>';
-}
-						echo '</td>';
-						$TempD++;
-						$Time = mktime(0, 0, 0, $M, $TempD, $Y);
-}
-						?>
+	echo ' class="agenda';
+	// mois courant
+	if(date('m', $Time) == $M)//mois?
+	{
+		// semaine courante
+		if(date(W) == date(W,$Time))
+		{
+			// jouractuel
+			echo (date('Ymd', $Time) == date('Ymd')) ? 'Day' : 'MonthWeek';
+		}
+		else
+		{
+			echo 'Month';
+		}
+	}
+	else
+	{
+		//semaine courante
+		echo (date(W) == date(W,$Time)) ? 'Week' : '';
+	}
+	if (isset($events[date('Ymd', $Time)]))
+	{
+		echo ' events';
+	}
 
-								</tr>
-								</table>
+	echo ' " ';
+	
+	if (isset($events[date('Ymd', $Time)]))
+	{
+		echo ' onmouseover="showEvents(this);" onmouseout="hideEvents(this);"';
+	}
+	$case.='>';
+	
+	echo '>';
+	echo date('j', $Time);
+	//evenements du jour?
+	if (isset($events[date('Ymd', $Time)]))
+	{
+		// un lien pour chaque article ce jour
+		echo '<ul class="agenda_events">';
+		while (list(, $event) = each($events[date('Ymd', $Time)]))
+		{
+			echo '<li><a href="'.$event['link'].'">'.$event['title'].'</a></li>';
+		}
+		echo '</ul>';
+	}
+echo '</td>';
+//jours suivant
+$TempD++;
+$Time = mktime(0, 0, 0, $M, $TempD, $Y);
+}
+?>
+</tr>
+</table>
 
 
 <INCLURE {fond=inc-bottom}>

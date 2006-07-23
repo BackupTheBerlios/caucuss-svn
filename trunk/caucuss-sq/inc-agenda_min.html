@@ -64,7 +64,6 @@ function _joursSuivants($day,$nb){
 			 events = td.getElementsByTagName('ul')[0];
 			 if(events){
  						events.style.display='none';
-						/*events.style.position='relative';*/
 			}
 		}
 		
@@ -80,126 +79,137 @@ function _joursSuivants($day,$nb){
 	<table>
 	<tbody>
 	
-	<tr> 
+	<tr>
 		<th colspan="7" class="agendaNav">
 		<?php
 			echo '<a href="spip.php?page=agenda" title="Vue du mois">'.$_months[$_M].'</a>&nbsp;';
 			echo '<a href="spip.php?page=agenda_annuel" title="Vue de l\'année">'.$_Y.'</a>';
 		?>
-		</th> 
+		</th>
 	</tr>
 	
 	<!-- agenda miniature: affichage jours et evenements -->
 	<tr>
-	<?php
-	for($_i = 1; $_i < 8; $_i++) { echo '<th>'.$_days[$_i%7].'</th>'; }
-	$_TempD = 1;
-	$_Time = mktime(0, 0, 0, $_M, 1, $_Y);
-	if(date('w', $_Time) != 1) {
-		echo '</tr><tr>';
-		$_tmp = '';
-		while(date('w', $_Time) != 1) {
-			$_TempD--;
-			$_Time = mktime(0, 0, 0, $_M, $_TempD, $_Y);
-			$_case = '<td width="14%" class="agenda" ';
-			$_date=date('Ymd', $_Time);
-			/*if (isset($_events[$_date])){
-			$_case.='onmouseover="showEvents(this);" onmouseout="hideEvents(this);"';
-			}*/
-		  $_case .='>';
-			
-			if (isset($_events[$_date])) 
-			{
-	
-				/****/
-				$_case.='<ul class="agenda_events">';
-				foreach ($_events[$_date] as $ev) { $_case.='<li><a href="'.$ev['link'].'">'.$ev['title'].'</a></li>'; }
-				$_case.='</ul>';
 
 
-				
-				$_case .= '<a href="spip.php?page=agenda&amp;" title="agenda">';
-				
-				$_case .= date('j', $_Time).'</a>';
-			} else {$_case .= date('j', $_Time);}
-			$_tmp = $_case.'</td>'.$_tmp;
-		}
-		echo $_tmp;
-	}
-	$_TempD = 1;
-	$_Time = mktime(0, 0, 0, $_M, 1, $_Y);	
-	
+<?php
 
-	while((date('m', $_Time) == $_M) || (date('w', $_Time) != 1)) {
-		if(date('w', $_Time) == 1) { echo '</tr><tr>'; }
-		
-		echo '<td width="14%" align="center"';
-		
-		echo ' class="agenda';
-		if(date('m', $_Time) == $_M)//mois?
-		{
-			if(date(W) == date(W,$_Time))//semaine?
-			{
-			    //jour?
-				echo (date('Ymd', $_Time) == date('Ymd')) ? 'Day' : 'MonthWeek';
-			}
-			else
-			{echo 'Month';}
-		}
-		else 
-		{
-			//semaine?
-			echo (date(W) == date(W,$_Time)) ? 'Week' : '';
-		}
-		
-		echo '"';
+// construction des jours
+
+//ligne d'entete LMMJVSD
+for($_i = 1; $_i <= 7; $_i++)
+{
+	echo '<th>'.$_days[$_i%7].'</th>';
+}
+
+$_TempD = 1;
+$_Time = mktime(0, 0, 0, $_M, 1, $_Y);
+
+//les jours du mois precedent le mois actuel
+//pas un lundi
+if(date('w', $_Time) != 1) 
+{
+	echo '</tr><tr>';
+	$_tmp = '';
+
+	// jours du mois precedent
+	while(date('w', $_Time) != 1) {
+		$_TempD--;
+		$_Time = mktime(0, 0, 0, $_M, $_TempD, $_Y);
+		$_case = '<td width="14%" class="agenda" ';
 		$_date=date('Ymd', $_Time);
-		/*	if (isset($_events[$_date])){
-			echo ' onmouseover="showEvents(this);" onmouseout="hideEvents(this);"';
-			}
-			*/
+		$_case .='>';
+		
+		//s'il y a au moins un article ce jour
 		if (isset($_events[$_date]))
 		{
-			//Pour voir les noms des events en passant la souris sur la case du jour.
-			$_dates[]=$_date;
+			// un lien pour chaque article ce jour
+			$_case.='<ul class="agenda_events">';
+			foreach ($_events[$_date] as $ev) { $_case.='<li><a href="'.$ev['link'].'">'.$ev['title'].'</a></li>'; }
+			$_case.='</ul>';
 			
-			//argument pour la fonction javascript (à conserver si on remet du javascript)
-			//$tab_js="(";
-			//foreach ($_events[$_date] as $ev){$tab_js.='\''.$ev['title'].'\',';}
-			//$tab_js.=")";
-			//$tab_js = str_replace(",)", ")", $tab_js);
+			//le numero du jour est un lien vers l'agenda du mois
+			$_case .= '<a href="spip.php?page=agenda&amp;" title="agenda">';
+			$_case .= date('j', $_Time).'</a>';
 
-			//echo " onmouseover=\"javascript:creerEncart('menu-calendar','bidon',new Array".$tab_js.");\" ";
-			//echo " onmouseout=\"javascript:effacerEncart('menu-calendar','encart');\" ";
-
-			
-			echo ' >';
-			//tag <td>
-			
-			/****/
-			echo '<ul class="agenda_events">';
-			foreach ($_events[$_date] as $ev) { echo '<li><a href="'.$ev['link'].'">'.$ev['title'].'</a></li>'; }
-			echo '</ul>';
-
-			
-			echo '<a href="spip.php?page=agenda&amp;" title="agenda">';
-			
-			echo date('j', $_Time).'</a>';
 		} 
-		else 
+		else
 		{
-			echo ' >'.date('j', $_Time);
+			//seulement le numero du jour
+			$_case .= date('j', $_Time);
 		}
-		echo '</td>';
-		$_TempD++;
-		$_Time = mktime(0, 0, 0, $_M, $_TempD, $_Y);
+		//ferme le jour
+		$_tmp = $_case.'</td>'.$_tmp;
 	}
-	?>
-	</tr>
+	echo $_tmp;
+}
+
+$_TempD = 1;
+$_Time = mktime(0, 0, 0, $_M, 1, $_Y);
+
+// les jours du mois actuel || du mois suivant
+while((date('m', $_Time) == $_M) || (date('w', $_Time) != 1)) 
+{
+	// c'est un lundi
+	if(date('w', $_Time) == 1) { echo '</tr><tr>'; }
 	
-	</tbody>
-	</table>
-	<!-- fausse div pour faire marcher l'insertion dynamique en javascript-->
-	<!--<i id=bidon></i>-->
-	</div>
+	echo '<td width="14%" align="center"';
 	
+	echo ' class="agenda';
+	// mois courant
+	if(date('m', $_Time) == $_M)
+	{
+		// semaine courante
+		if(date(W) == date(W,$_Time))
+		{
+			// jour actuel
+			echo (date('Ymd', $_Time) == date('Ymd')) ? 'Day' : 'MonthWeek';
+		}
+		else
+		{
+			echo 'Month';
+		}
+	}
+	else
+	{
+		// semaine courante
+		echo (date(W) == date(W,$_Time)) ? 'Week' : '';
+	}
+	echo ' ">';
+
+	$_date=date('Ymd', $_Time);
+	
+	//evenements du jour?
+	if (isset($_events[$_date]))
+	{
+		//Pour voir les noms des events en passant la souris sur la case du jour
+		$_dates[]=$_date;
+		
+		// un lien pour chaque article ce jour
+		echo '<ul class="agenda_events">';
+		foreach ($_events[$_date] as $ev) 
+		{
+			echo  '<li><a href="'.$ev['link'].'">'.$ev['title'].'</a></li>';
+		}
+		echo '</ul>';
+
+		// le numero du jour est un lien vers l'agenda du mois
+		echo  '<a href="spip.php?page=agenda&amp;" title="agenda">';
+		echo  ''.date('j', $_Time).'</a>';
+	} 
+	else 
+	{
+		// le numero du jours
+		echo ''.date('j', $_Time);
+	}
+
+	echo '</td>';
+	//jours suivant
+	$_TempD++;
+	$_Time = mktime(0, 0, 0, $_M, $_TempD, $_Y);
+}
+?>
+</tr>
+</tbody>
+</table>
+</div>
