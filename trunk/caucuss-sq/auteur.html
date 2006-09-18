@@ -1,6 +1,6 @@
 #CACHE{2*3600}
 
-<INCLURE  {fond=inc-top}>
+<INCLURE {fond=inc-top}>
 <INCLURE {fond=inc-menu}>
 		
 	
@@ -21,7 +21,7 @@
 <B_articles>
 [<p class="pagination">(#PAGINATION)</p>]
 <ul  id="result_auteur">
-<BOUCLE_articles(ARTICLES) {id_auteur}{par date}{inverse}>
+<BOUCLE_articles(ARTICLES) {id_auteur}{par date}{inverse}{pagination}>
 	<li><h3><a href="#URL_ARTICLE" [title="(#DESCRIPTIF|textebrut|entites_html)"]>#TITRE</a></h3>
 	<div class="resultats_infos">
 	[(#DATE|nom_jour)] [(#DATE|affdate)]
