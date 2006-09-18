@@ -23,51 +23,54 @@ function _jourSuivant($x){
 
 function _joursSuivants($day,$nb){
         if($nb<=1) return $day;
-	else 	           return _joursSuivants(_jourSuivant($day),$nb-1);
+	else return _joursSuivants(_jourSuivant($day),$nb-1);
 }
 
-/* construction liste evenements */
-	<BOUCLE_articles(ARTICLES){type_mot == Agenda}>
-			$_dateDebut = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_REDAC');
-			$_sstitre='#SOUSTITRE';
-			$_nb_jours[1]=1;
-			ereg("([0-9]+) +jour[s]?", $_sstitre, $_nb_jours);
-			if ($_nb_jours[1]=="") $_nb_jours[1]=1;
-			$_dateFin=_joursSuivants($_dateDebut,$_nb_jours[1]);
-		
-			for($_d=$_dateDebut; $_d <= $_dateFin; $_d = _jourSuivant($_d))
-			{
-				if (!isset($_events[$_d])) 
-				{ $_events[$_d] = array();}
-				$_events[$_d][] = array('link' => '#URL_ARTICLE', 'title' => '[(#TITRE)]');
-			}
 
-	</BOUCLE_articles>
+/* construction liste evenements */
+
+$_events = array();
+$_dates =array();
+
+<BOUCLE_ev(EVENEMENTS)>
+	<BOUCLE_articles_ev(ARTICLES){id_article}>
+	$_dateDebut = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_DEBUT');
+	$_dateFin      = ereg_replace("^([0-9]{4})-([0-9]{2})-([0-9]{2}).*$", "\\1\\2\\3", '#DATE_FIN');
+
+	for($_d=$_dateDebut; $_d <= $_dateFin; $_d = _jourSuivant($_d))
+	{
+		if (!isset($_events[$_d]))
+		{
+			$_events[$_d] = array();
+		}
+		$_events[$_d][] = array('link' => '#URL_ARTICLE', 'title' => '[(#TITRE)]');
+	}
+		
+	</BOUCLE_articles_ev>
+</BOUCLE_ev>
 
 ?>
 
-
-
-
-	<script type="text/javascript" language="JavaScript">
-		
-			
-		function showEvents(td){
-			 events = td.getElementsByTagName('ul')[0];
-			 if(events){
- 						events.style.display='block';
-						events.style.position='absolute';
-			 }
+<script type="text/javascript" language="JavaScript">
+	function showEvents(td)
+	{
+		 events = td.getElementsByTagName('ul')[0];
+		 if(events)
+		{
+			events.style.display='block';
+			events.style.position='absolute';
+		 }
+	}
+	
+	function hideEvents(td)
+	{
+		 events = td.getElementsByTagName('ul')[0];
+		 if(events)
+		{
+				events.style.display='none';
 		}
-		
-		function hideEvents(td){
-			 events = td.getElementsByTagName('ul')[0];
-			 if(events){
- 						events.style.display='none';
-			}
-		}
-		
-	</script>
+	}
+</script>
 
 	<!-- agenda miniature: en tete -->	
 	<div id="menu-calendar" class="menu-left-block">
@@ -148,7 +151,7 @@ $_TempD = 1;
 $_Time = mktime(0, 0, 0, $_M, 1, $_Y);
 
 // les jours du mois actuel || du mois suivant
-while((date('m', $_Time) == $_M) || (date('w', $_Time) != 1)) 
+while((date('m', $_Time) == $_M) || (date('w', $_Time) != 1))
 {
 	// c'est un lundi
 	if(date('w', $_Time) == 1) { echo '</tr><tr>'; }
