@@ -80,7 +80,7 @@ padding-top:3px;
 #menu-left{
 float:left;
 width:25%;
-margin-left:1%:
+margin-left:1%;
 }
 
 .menu-left-block{
@@ -239,19 +239,18 @@ text-decoration:underline;
 background:#CBD5E4;
 }
 
+/*
 #menu-calendar .agendaMonth, #menu-calendar .agendaMonthWeek{
 background:#C0CAD8;
 }
-
-
+*/
+#menu-calendar .agendaMonth, .agendaMonthWeek{
+background:#C0CAD8;
+}
 
 #menu-calendar .agendaDay{
 background:white;
 }
-
-
-
-
 
 #menu-calendar td a {
 display:block;
@@ -819,9 +818,11 @@ ul.resultats_recherche h3 a,  #result_auteur h3 a{
 	font-size:0.9em;
 }
 
+/* AGENDA */
+
 #agenda{
 	border:1px solid #577796;
-	
+	background:#cbd5e4;
 }
 
 #agenda .agendaNav,  #agenda_an_nav {
@@ -830,34 +831,35 @@ ul.resultats_recherche h3 a,  #result_auteur h3 a{
 }
 
 #agenda th *, #agenda_an_nav *{
-	
-vertical-align: middle;
+	vertical-align: middle;
 }
+
 
 #agenda td{
 	z-index:2;
 	padding:2px;
 	text-align: center;
+	background:#CBD5E4;
 }
 
-#agenda .agendaMonth, #agenda .agendaMonthWeek, #agenda .agendaDay{
-background:#CBD5E4;	
+#agenda .agendaMonth, #agenda .agendaMonthWeek{
+	background:#C0CAD8;
 }
 
 #agenda .agendaDay{
-	border:1px solid #577796;
+	/*border:3px solid #577796;*/
+	background:white;
 }
 
 
 td:hover .agenda_events{
 	display:block;
 	position:absolute !important;
-	
 }
 
 
 .agenda_events{
-display:none;
+	display:none;
 	background: white;
 	-moz-border-radius:0.3em;
 	border:1px solid #577796;
