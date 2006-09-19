@@ -91,6 +91,7 @@ $dates = array();
 				events.style.display='none';
 			}
 		}
+
 		</script>
 
 		<h2 class="titre" id="titre_agenda">Agenda</h2>
@@ -118,9 +119,8 @@ $dates = array();
 		?>
 		</select>
 
-
 		<input type="button" value="Afficher"
-		onclick="document.location.href='spip.php?page=agenda&amp;date=' + window.document.navigation.var_nav_year.value + '-' + window.document.navigation.var_nav_month.value + '-01; return false;" />
+		onclick="document.location.href='spip.php?page=agenda&date=' + window.document.navigation.var_nav_year.value + '-' + window.document.navigation.var_nav_month.value + '-01'; return false;" />
 
 		<input type="button" value="Aujourd'hui" onclick="document.location.href='spip.php?page=agenda&amp;date=<?php echo (date('Y-m-d')); ?>; return false;" />
 
